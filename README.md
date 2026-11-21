@@ -1,31 +1,38 @@
 # The Wicked Awaken
 
-A game about villains rising to meet, defeat, and dominate, a peaceful land of heroes (who quite frankly, have had it too good for too long.)
+A competitive deckbuilding game about villains rising to meet, defeat and dominate a peaceful land of heroes (who, quite frankly, have had it too good for too long).
 
-# Become the Villain!
+## Become the Villain!
 
-In *The Wicked Awaken* you will take control of a Villain, build a dungeon, lure heroes to their doom within your vile crypt, and then wield their souls to fuel your engines of malice and hatred. The goal of the game is to build a dungeon powerful enough to defeat every hero within a region, destroying all resistance and becoming the overlords.
+In *The Wicked Awaken* you take control of a Villain, build a dungeon, lure heroes to their doom inside your vile crypt, and then use their souls to fuel your engines of malice and hatred. The goal is to build a dungeon strong enough to defeat every hero in a region, crushing all resistance so the villains become its overlords.
 
-In this game, villains are on the backfoot. The forces of good and purity have already won long ago. As such, there's little room for villainous rivalry, not that the inconvenience of evil has ever stopped you before. Each player will have a secret goal they're working towards, but because villainy is less about what you accomplish and more about what you can take from the others, those goals are less "Do this thing" and more "Prevent another player from achieving this thing." Each player has a secret objective list they're trying to prevent the other villains from accomplishing. The surviving player with the most un-scored objectives by other villains when the last hero is defeated is the ultimate Overlord and winner of the game. If there is a tie, most souls harvested wins. Be weary, handicapping your other villains too harshly may yield victory to the Heroes!
+In this world the villains are on the back foot. The forces of good and purity won long ago, so there's little room for villainous rivalry. Not that the inconvenience of evil has ever stopped you before. Each villain has a secret list of objectives that they want to stop the other villains from achieving. When the last hero falls, the surviving villain whose list has the most objectives still unscored by the others becomes the Overlord and wins.
 
-# Build Your Dungeon, Terrorize the Heroes!
+Beware: hobble your fellow villains too badly and the Heroes may win instead!
 
-*The Wicked Awaken* is a market based deckbuilder game. Depending on the scenario or region the cards which appear in the central decks may change to match a motif. (A frozen region having icy cards for example.) Every game uses the following decks:
+## Design documents
 
-* **Villains**: The game begins with every player drawing 5 villains, choosing one, then passing the remaining 4 to the left. Then making a second choice from the villains they just got handed and passing the remaining 3 on. Then choosing a third and final villain before the leftovers are removed and the game moves on.
-* **Dungeon**: This deck is used to populate the Dungeon Market. Rooms are revealed in order, left being the oldest room, right-side being the newest. At game start players take turns either drawing from the market or randomly off the top of the deck until they have a hand of 5 room cards. If a card is taken from the market, all cards are shifted left to fill it and a new card is placed in the right-most spot (the newest card.) At the start of a new round the left-most (oldest) card is discarded and a new card is cycled in. Throughout the game during the "Town Phase" cards can be taken from the market again.
-* **Champion**: A villain can't do it all alone. Champions occupy rooms inside Dungeons and add bonuses to that room making it more perilous for a Hero to get through. Champions can also deploy unique effects based on how well they're paid. They're only in it for the money after all, not a misguided sense of loyalty to pain and suffering like a true villain.
-* **Tricks**: What is a villain without their bag of tricks? These are cards which can be played to a variety of effects. Hindering heroes or other villains, bolstering your own, building or enhancing rooms, destroying or limiting others, etc. At the start of a game each player has three of these cards. Tricks are hard to come by, but certain rooms and abilities can give you extra Tricks. Some Hero souls can also be exchanged for new Tricks.
-* **Heroes**: These little jerks will occupy the "Town." They come here following rumors of Villains starting to show their faces again. They're right, but still, the audacity. Heroes in town must be lured to a dungeon which will happen when the dungeon's treasury contains enough loot to attract a heroes attention (because Heroes are just mercenaries with better PR after all.) Heroes who are lured to a dungeon will embark across an Overworld. Then if they survive that, they will reach the Dungeon entrance. If they survive the Dungeon they will enter combat with the Villain at the end (That's you!) and if they win that fight they can vanquish you. You'll start over with one of your other Villains taking over the dungeon, or if that was your last villain, you are simply eliminated and lose the game. Heroes come in all shapes and sizes. They have different classes, desires, strengths and weaknesses. More on them will be found in their own document. [[LINK]]
-* **Terrain**: Before Heroes can infest your masterfully crafted dungeon, they must first embark on a glorious, albeit doomed, adventure across a treacherous overworld. At the start you will occupy a wasteland devoid of identifying features or monsters capable of defending it, but over time your power will grow and the lands themselves will bend to your will. Terrain cards get added to a central market (a separate one from the dungeon cards) and can be drafted at the same time you would draft dungeon rooms. These terrain cards however fill out a 4x4 grid. Heroes always enter at the top-left most square in the grid and then randomly move either right or down by one each round. Eventually they will reach the bottom-right most grid, then any movement from there will send them to your dungeon entrance. As terrain cards fill the grid, the trek from town to dungeon becomes more hostile as the Heroes are forced to navigate hex-filled swamps, cloud fortresses, vampiric strongholds, and so on. Each terrain card can also house a Monster making them even more powerful. Terrain cards are always drafted with a monster in pairs, although both are randomized and might not be a good match, but luckily monsters can be moved after the fact. So it's viable to draft hoping to make good pairings later on.
-* **Monsters**: Drafted at the same time as terrain cards, monsters make terrain more dangerous and difficult for Heroes to navigate. Each monster has an associated and preferred terrain type where they will prove most effective.
+The full design lives in [`docs/design/`](docs/design/). Start with the overview.
 
---hero document detailing classes (Warrior, Mage, Acolyte, Rogue), hero tiers (Common Hero > Paragon Hero > Legendary Hero), and town overflow trouble (too many Warriors makes Monsters less useful. Too many Rogues makes treasure harder to come by. Based on the regional "Town" which will have a building for each class type and the building has effects as it houses hero overflow.) Treasure types.
+| Doc | What it covers |
+| --- | --- |
+| [Overview](docs/design/00-overview.md) | Pitch, player count, components, win and loss, the overall game loop |
+| [Setup](docs/design/01-setup.md) | Villain draft, opening room draft, starting Tricks |
+| [Round Flow](docs/design/02-round-flow.md) | The phases of a round, in order (as far as they're known) |
+| [Markets](docs/design/03-markets.md) | How the Dungeon and Terrain markets work |
+| [Villains](docs/design/04-villains.md) | Villain lives, damage, souls, coins, powers |
+| [Objectives & Scoring](docs/design/05-objectives-and-scoring.md) | Secret objective lists, the Overlord, tie-breaks, hero victory |
+| [Dungeon & Champions](docs/design/06-dungeon-and-champions.md) | Rooms, dungeon order, Champions and paying them |
+| [Overworld](docs/design/07-overworld.md) | The 4×4 terrain grid, Monsters, hero movement |
+| [Heroes & Town](docs/design/08-heroes-and-town.md) | Hero classes, tiers, luring, the Town and its buildings, treasure |
+| [Tricks](docs/design/09-tricks.md) | Trick cards and their sub-types (Spells and more) |
+| [Regions](docs/design/10-regions.md) | Themed scenarios that change the card pools |
+| [Items](docs/design/12-items.md) | Relics that buff Heroes, then become Tainted for villains |
+| [Minions](docs/design/13-minions.md) | Non-combatant lackeys you send on errands |
+| [Data Model](docs/design/11-data-model.md) | Draft of the game entities and their fields, for coding |
+| [Glossary](docs/design/glossary.md) | Every game term in one place |
+| [Open Questions](docs/design/open-questions.md) | Every undecided rule, numbered, so it can be answered later |
 
---Tricks come in different sub-types. One of which is "Spells" which are not discarded on use, but rather "Exhausted" and can be refreshed after two turns. Come up with other types of tricks (Construction? Deceit? Empower? Command?)
+## Project status
 
---Villains taking damage, harvesting souls, converting souls, creating or securing treasures to lure enemies, spending Coins, various villain powers, Overlord Goals.
-
---Overworld terrain, monsters, grid navigation. Maybe we come up with new border ideas in the future.
-
---Multiplayer, up to 6 villains attempting to take over the world!
+Design stage, with no code yet. The docs keep **decided** rules apart from **ideas** and **open questions**, so nothing gets coded on a guess.
