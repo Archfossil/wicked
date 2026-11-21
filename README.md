@@ -8,6 +8,8 @@ In *The Wicked Awaken* you will take control of a Villain, build a dungeon, lure
 
 In this game, villains are on the backfoot. The forces of good and purity have already won long ago. As such, there's little room for villainous rivalry, not that the inconvenience of evil has ever stopped you before. Each player will have a secret goal they're working towards, but because villainy is less about what you accomplish and more about what you can take from the others, those goals are less "Do this thing" and more "Prevent another player from achieving this thing." Each player has a secret objective list they're trying to prevent the other villains from accomplishing. The surviving player with the most un-scored objectives by other villains when the last hero is defeated is the ultimate Overlord and winner of the game. If there is a tie, most souls harvested wins. Be weary, handicapping your other villains too harshly may yield victory to the Heroes!
 
+# Build Your Dungeon, Terrorize the Heroes!
+
 *The Wicked Awaken* is a market based deckbuilder game. Depending on the scenario or region the cards which appear in the central decks may change to match a motif. (A frozen region having icy cards for example.) Every game uses the following decks:
 
 * **Villains**: The game begins with every player drawing 5 villains, choosing one, then passing the remaining 4 to the left. Then making a second choice from the villains they just got handed and passing the remaining 3 on. Then choosing a third and final villain before the leftovers are removed and the game moves on.
