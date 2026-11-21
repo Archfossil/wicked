@@ -27,3 +27,5 @@ In this game, villains are on the backfoot. The forces of good and purity have a
 --Villains taking damage, harvesting souls, converting souls, creating or securing treasures to lure enemies, spending Coins, various villain powers, Overlord Goals.
 
 --Overworld terrain, monsters, grid navigation. Maybe we come up with new border ideas in the future.
+
+--Multiplayer, up to 6 villains attempting to take over the world!
