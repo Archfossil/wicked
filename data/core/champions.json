@@ -1,0 +1,369 @@
+[
+  {
+    "id": "champion-orc-captain",
+    "name": "Orc Captain",
+    "cost": 2,
+    "dice": 3,
+    "roomBonus": [
+      {
+        "op": "addDamage",
+        "amount": 1,
+        "target": "room",
+        "text": "This Room deals +1 damage."
+      }
+    ],
+    "levels": [
+      {
+        "coins": 2,
+        "effect": [
+          {
+            "op": "addDice",
+            "amount": 1,
+            "target": "room",
+            "text": "+1 die."
+          }
+        ]
+      },
+      {
+        "coins": 3,
+        "effect": [
+          {
+            "op": "addDamage",
+            "amount": 1,
+            "target": "room",
+            "text": "+1 more damage."
+          }
+        ]
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "champion-goblin-trapmaster",
+    "name": "Goblin Trapmaster",
+    "cost": 2,
+    "dice": 3,
+    "roomBonus": [
+      {
+        "op": "custom",
+        "text": "This Room counts as a trap Room (tests Cunning)."
+      }
+    ],
+    "levels": [
+      {
+        "coins": 2,
+        "effect": [
+          {
+            "op": "addDice",
+            "amount": 1,
+            "target": "room",
+            "text": "+1 die."
+          }
+        ]
+      },
+      {
+        "coins": 3,
+        "effect": [
+          {
+            "op": "inflictStatus",
+            "status": "Bleeding",
+            "rounds": 2,
+            "when": "afterWin",
+            "text": "Hero loses: Bleeding 2."
+          }
+        ]
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "champion-dark-knight",
+    "name": "Dark Knight",
+    "cost": 3,
+    "dice": 4,
+    "roomBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "room",
+        "text": "This Room rolls +1 die."
+      }
+    ],
+    "levels": [
+      {
+        "coins": 3,
+        "effect": [
+          {
+            "op": "addDamage",
+            "amount": 1,
+            "target": "room",
+            "text": "+1 damage."
+          }
+        ]
+      },
+      {
+        "coins": 4,
+        "effect": [
+          {
+            "op": "addDice",
+            "amount": 1,
+            "target": "room",
+            "text": "+1 more die."
+          }
+        ]
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "champion-cultist-leader",
+    "name": "Cultist Leader",
+    "cost": 3,
+    "dice": 3,
+    "roomBonus": [
+      {
+        "op": "gainMinion",
+        "amount": 1,
+        "when": "upkeep",
+        "text": "Upkeep: gain 1 Minion."
+      }
+    ],
+    "levels": [
+      {
+        "coins": 3,
+        "effect": [
+          {
+            "op": "tempt",
+            "amount": 1,
+            "text": "Lure Phase: +1 tempt on one Hero."
+          }
+        ]
+      },
+      {
+        "coins": 4,
+        "effect": [
+          {
+            "op": "gainMinion",
+            "amount": 1,
+            "when": "upkeep",
+            "text": "Upkeep: gain 1 more Minion."
+          }
+        ]
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "champion-overseer",
+    "name": "Overseer",
+    "cost": 3,
+    "dice": 3,
+    "roomBonus": [
+      {
+        "op": "custom",
+        "text": "Each Minion in this Room counts as 1 Gold treasure."
+      }
+    ],
+    "levels": [
+      {
+        "coins": 3,
+        "effect": [
+          {
+            "op": "addDice",
+            "amount": 1,
+            "target": "room",
+            "text": "+1 die per Minion here (max 2)."
+          }
+        ]
+      },
+      {
+        "coins": 4,
+        "effect": [
+          {
+            "op": "custom",
+            "text": "Each Minion here counts as 1 treasure of any class."
+          }
+        ]
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "champion-vampire-count",
+    "name": "Vampire Count",
+    "cost": 4,
+    "dice": 4,
+    "roomBonus": [
+      {
+        "op": "healVillain",
+        "amount": 1,
+        "when": "afterWin",
+        "text": "When a Hero dies here: heal your Villain 1."
+      }
+    ],
+    "levels": [
+      {
+        "coins": 4,
+        "effect": [
+          {
+            "op": "addDice",
+            "amount": 1,
+            "target": "room",
+            "text": "+1 die."
+          }
+        ]
+      },
+      {
+        "coins": 5,
+        "effect": [
+          {
+            "op": "custom",
+            "text": "Gain 1 extra soul from Heroes killed here."
+          }
+        ]
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "champion-necromancer",
+    "name": "Necromancer",
+    "cost": 4,
+    "dice": 4,
+    "roomBonus": [
+      {
+        "op": "custom",
+        "text": "Tests Magic instead of the Room's stat."
+      }
+    ],
+    "levels": [
+      {
+        "coins": 4,
+        "effect": [
+          {
+            "op": "inflictStatus",
+            "status": "Cursed",
+            "rounds": 2,
+            "when": "afterWin",
+            "text": "Hero loses: Cursed 2."
+          }
+        ]
+      },
+      {
+        "coins": 5,
+        "effect": [
+          {
+            "op": "addDamage",
+            "amount": 1,
+            "target": "room",
+            "text": "+1 damage."
+          }
+        ]
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "champion-young-dragon",
+    "name": "Young Dragon",
+    "cost": 5,
+    "dice": 5,
+    "roomBonus": [
+      {
+        "op": "addDamage",
+        "amount": 1,
+        "target": "room",
+        "text": "This Room deals +1 damage."
+      }
+    ],
+    "levels": [
+      {
+        "coins": 5,
+        "effect": [
+          {
+            "op": "addDice",
+            "amount": 1,
+            "target": "room",
+            "text": "+1 die."
+          }
+        ]
+      },
+      {
+        "coins": 6,
+        "effect": [
+          {
+            "op": "addDamage",
+            "amount": 1,
+            "target": "room",
+            "text": "+1 more damage."
+          }
+        ]
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  }
+]

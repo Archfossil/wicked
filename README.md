@@ -33,6 +33,15 @@ The full design lives in [`docs/design/`](docs/design/). Start with the overview
 | [Glossary](docs/design/glossary.md) | Every game term in one place |
 | [Open Questions](docs/design/open-questions.md) | Every undecided rule, numbered, so it can be answered later |
 
+## Card data
+
+A placeholder core set of cards lives in [`data/core/`](data/README.md) so the mechanics can be tested. Every card is a stand-in: [`docs/placeholders.md`](docs/placeholders.md) is the checklist for the art and design team to replace names, flavour, art, wording and numbers.
+
+```
+node tools/validate-data.mjs           # check the card data
+node tools/placeholder-checklist.mjs   # rebuild the placeholder checklist
+```
+
 ## Project status
 
-Design stage, with no code yet. The docs keep **decided** rules apart from **ideas** and **open questions**, so nothing gets coded on a guess.
+Design stage, with no game code yet. The docs keep **decided** rules apart from **ideas** and **open questions**, so nothing gets coded on a guess.

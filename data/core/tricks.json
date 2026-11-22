@@ -1,0 +1,494 @@
+[
+  {
+    "id": "trick-hex-bolt",
+    "name": "Hex Bolt",
+    "copies": 2,
+    "type": "Spell",
+    "phases": [
+      "adventure"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "heroLoseHealth",
+        "amount": 1,
+        "text": "One Hero in your lands loses 1 Health."
+      }
+    ],
+    "recharge": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-shadow-step",
+    "name": "Shadow Step",
+    "copies": 2,
+    "type": "Spell",
+    "phases": [
+      "build"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "moveHero",
+        "amount": -1,
+        "text": "Move one Overworld Hero in your lands 1 square back."
+      }
+    ],
+    "recharge": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-siren-song",
+    "name": "Siren Song",
+    "copies": 2,
+    "type": "Spell",
+    "phases": [
+      "lure"
+    ],
+    "playCost": {
+      "coins": 1
+    },
+    "effect": [
+      {
+        "op": "tempt",
+        "amount": 1,
+        "text": "+1 tempt on one Hero in Town."
+      }
+    ],
+    "recharge": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-dark-ward",
+    "name": "Dark Ward",
+    "copies": 2,
+    "type": "Spell",
+    "phases": [
+      "adventure"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "addDice",
+        "amount": 2,
+        "target": "any",
+        "text": "One of your Rooms or Monsters rolls +2 dice this round."
+      }
+    ],
+    "recharge": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-rapid-construction",
+    "name": "Rapid Construction",
+    "copies": 2,
+    "type": "Construction",
+    "phases": [
+      "build"
+    ],
+    "playCost": {
+      "coins": 1
+    },
+    "effect": [
+      {
+        "op": "extraPlacement",
+        "amount": 1,
+        "text": "Place one extra Room this Build Phase."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-reinforce",
+    "name": "Reinforce",
+    "copies": 4,
+    "type": "Construction",
+    "phases": [
+      "build"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "Your top Room in one space rolls +1 die until your next Upkeep."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-landscaping",
+    "name": "Landscaping",
+    "copies": 2,
+    "type": "Construction",
+    "phases": [
+      "build"
+    ],
+    "playCost": {
+      "coins": 1
+    },
+    "effect": [
+      {
+        "op": "custom",
+        "text": "Move one of your Terrain cards (with its Monster) to a wasteland square."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-sabotage",
+    "name": "Sabotage",
+    "copies": 2,
+    "type": "Deceit",
+    "phases": [
+      "build"
+    ],
+    "playCost": {
+      "coins": 2
+    },
+    "effect": [
+      {
+        "op": "destroyRoom",
+        "text": "Destroy the top Room of one space in another player's dungeon."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-poach",
+    "name": "Poach",
+    "copies": 2,
+    "type": "Deceit",
+    "phases": [
+      "lure"
+    ],
+    "playCost": {
+      "souls": 1
+    },
+    "effect": [
+      {
+        "op": "custom",
+        "amount": 2,
+        "text": "Remove up to 2 tempts another dungeon has on one Hero."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-spyglass",
+    "name": "Spyglass",
+    "copies": 3,
+    "type": "Deceit",
+    "phases": [
+      "build",
+      "end"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "learnObjective",
+        "text": "Look at one hidden objective of another player."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-forged-orders",
+    "name": "Forged Orders",
+    "copies": 1,
+    "type": "Deceit",
+    "phases": [
+      "build"
+    ],
+    "playCost": {
+      "souls": 2
+    },
+    "effect": [
+      {
+        "op": "swapObjective",
+        "text": "Swap one of your objectives with a random one from another player's list."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-rewrite-the-prophecy",
+    "name": "Rewrite the Prophecy",
+    "copies": 1,
+    "type": "Deceit",
+    "phases": [
+      "end"
+    ],
+    "playCost": {
+      "souls": 1
+    },
+    "effect": [
+      {
+        "op": "replaceObjective",
+        "text": "Replace one of your objectives with the top of the Objective deck."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-bloodlust",
+    "name": "Bloodlust",
+    "copies": 3,
+    "type": "Empower",
+    "phases": [
+      "adventure"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "addDamage",
+        "amount": 1,
+        "target": "villain",
+        "text": "Your Villain deals +1 damage this round."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-rally-the-ranks",
+    "name": "Rally the Ranks",
+    "copies": 2,
+    "type": "Empower",
+    "phases": [
+      "build"
+    ],
+    "playCost": {
+      "coins": 1
+    },
+    "effect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "monster",
+        "text": "All your Monsters roll +1 die until your next Upkeep."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-dark-pact",
+    "name": "Dark Pact",
+    "copies": 1,
+    "type": "Empower",
+    "phases": [
+      "end"
+    ],
+    "playCost": {
+      "souls": 2
+    },
+    "effect": [
+      {
+        "op": "healVillain",
+        "amount": 2,
+        "text": "Heal your active Villain 2."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-misdirection",
+    "name": "Misdirection",
+    "copies": 2,
+    "type": "Command",
+    "phases": [
+      "adventure"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "chooseDirection",
+        "text": "Choose the direction one Overworld Hero in your lands moves this round."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-lure-of-gold",
+    "name": "Lure of Gold",
+    "copies": 2,
+    "type": "Command",
+    "phases": [
+      "lure"
+    ],
+    "playCost": {
+      "coins": 2
+    },
+    "effect": [
+      {
+        "op": "custom",
+        "amount": 2,
+        "text": "Your treasury counts +2 Gold for one Hero this Lure Phase."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-stampede",
+    "name": "Stampede",
+    "copies": 1,
+    "type": "Command",
+    "phases": [
+      "build"
+    ],
+    "playCost": {
+      "coins": 1
+    },
+    "effect": [
+      {
+        "op": "custom",
+        "text": "Move two Monsters this Build Phase instead of one."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  }
+]

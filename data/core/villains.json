@@ -1,0 +1,852 @@
+[
+  {
+    "id": "villain-the-bone-duke",
+    "name": "The Bone Duke",
+    "threat": {
+      "tests": "might",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 10,
+    "power": [
+      {
+        "op": "raiseMonster",
+        "recharges": true,
+        "text": "Once per Build Phase, move a Monster to any Terrain square, ignoring the one-move limit."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-mother-rot",
+    "name": "Mother Rot",
+    "threat": {
+      "tests": "faith",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 12,
+    "power": [
+      {
+        "op": "inflictStatus",
+        "status": "Bleeding",
+        "rounds": 2,
+        "recharges": true,
+        "text": "Build Phase: one Hero in your lands gains Bleeding for 2 rounds."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-gilded-tyrant",
+    "name": "The Gilded Tyrant",
+    "threat": {
+      "tests": "cunning",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 10,
+    "power": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "when": "upkeep",
+        "text": "Upkeep: gain 1 extra Coin."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-hex-queen-morwen",
+    "name": "Hex Queen Morwen",
+    "threat": {
+      "tests": "magic",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 9,
+    "power": [
+      {
+        "op": "inflictStatus",
+        "status": "Cursed",
+        "rounds": 2,
+        "recharges": true,
+        "text": "Build Phase: one Hero in your lands gains Cursed for 2 rounds."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-grumbold-the-glutton",
+    "name": "Grumbold the Glutton",
+    "threat": {
+      "tests": "might",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 13,
+    "power": [
+      {
+        "op": "healVillain",
+        "amount": 1,
+        "when": "end",
+        "text": "End Phase: if a Hero died in your dungeon this round, heal 1."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-whispering-mask",
+    "name": "The Whispering Mask",
+    "threat": {
+      "tests": "cunning",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 9,
+    "power": [
+      {
+        "op": "learnObjective",
+        "recharges": true,
+        "text": "Build Phase: look at one hidden objective of another player."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-ashen-warlord",
+    "name": "Ashen Warlord",
+    "threat": {
+      "tests": "might",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 11,
+    "power": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "champion",
+        "when": "passive",
+        "text": "Your Champions roll +1 die."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-hollow-king",
+    "name": "The Hollow King",
+    "threat": {
+      "tests": "faith",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 10,
+    "power": [
+      {
+        "op": "gainMinion",
+        "amount": 1,
+        "when": "upkeep",
+        "text": "Upkeep: gain 1 Minion."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-silk-mistress-vey",
+    "name": "Silk Mistress Vey",
+    "threat": {
+      "tests": "cunning",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 10,
+    "power": [
+      {
+        "op": "tempt",
+        "amount": 1,
+        "recharges": true,
+        "text": "Lure Phase: +1 tempt on one Hero in Town."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-pyre-prophet",
+    "name": "Pyre Prophet",
+    "threat": {
+      "tests": "magic",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 11,
+    "power": [
+      {
+        "op": "addDamage",
+        "amount": 1,
+        "target": "trapRoom",
+        "when": "passive",
+        "text": "Your trap Rooms deal +1 damage."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-drowned-captain",
+    "name": "The Drowned Captain",
+    "threat": {
+      "tests": "might",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 12,
+    "power": [
+      {
+        "op": "inflictStatus",
+        "status": "Slowed",
+        "rounds": 1,
+        "recharges": true,
+        "text": "Build Phase: one Hero in your lands gains Slowed for 1 round."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-countess-nocturne",
+    "name": "Countess Nocturne",
+    "threat": {
+      "tests": "faith",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 9,
+    "power": [
+      {
+        "op": "custom",
+        "when": "passive",
+        "text": "When you harvest a Paragon or Legendary soul, gain 1 extra soul."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-carrion-bishop",
+    "name": "The Carrion Bishop",
+    "threat": {
+      "tests": "faith",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 9,
+    "power": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "when": "upkeep",
+        "text": "Upkeep: gain 1 extra Coin."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-lady-gallowmere",
+    "name": "Lady Gallowmere",
+    "threat": {
+      "tests": "cunning",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 10,
+    "power": [
+      {
+        "op": "gainMinion",
+        "amount": 1,
+        "recharges": true,
+        "text": "Build Phase: gain 1 Minion."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-iron-abbot",
+    "name": "The Iron Abbot",
+    "threat": {
+      "tests": "might",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 11,
+    "power": [
+      {
+        "op": "tempt",
+        "amount": 1,
+        "recharges": true,
+        "text": "Lure Phase: +1 tempt on one Hero in Town."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-old-man-marrow",
+    "name": "Old Man Marrow",
+    "threat": {
+      "tests": "magic",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 12,
+    "power": [
+      {
+        "op": "inflictStatus",
+        "status": "Cursed",
+        "rounds": 1,
+        "recharges": true,
+        "text": "Build Phase: one Hero in your lands gains Cursed for 1 round."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-smiling-jailer",
+    "name": "The Smiling Jailer",
+    "threat": {
+      "tests": "cunning",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 9,
+    "power": [
+      {
+        "op": "inflictStatus",
+        "status": "Bleeding",
+        "rounds": 1,
+        "recharges": true,
+        "text": "Build Phase: one Hero in your lands gains Bleeding for 1 round."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-queen-of-moths",
+    "name": "Queen of Moths",
+    "threat": {
+      "tests": "magic",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 10,
+    "power": [
+      {
+        "op": "heroLoseHealth",
+        "amount": 1,
+        "recharges": true,
+        "text": "Adventure Phase: one Hero in your dungeon loses 1 Health."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-brother-blight",
+    "name": "Brother Blight",
+    "threat": {
+      "tests": "faith",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 11,
+    "power": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "monster",
+        "when": "passive",
+        "text": "Your Monsters roll +1 die."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-tallow-king",
+    "name": "The Tallow King",
+    "threat": {
+      "tests": "might",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 12,
+    "power": [
+      {
+        "op": "gainTrick",
+        "amount": 1,
+        "when": "end",
+        "text": "End Phase: if you harvested a soul this round, gain a Trick."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-widow-thresh",
+    "name": "Widow Thresh",
+    "threat": {
+      "tests": "cunning",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 9,
+    "power": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "lastRoom",
+        "when": "passive",
+        "text": "Your top Room nearest the Villain rolls +1 die."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-pale-cartographer",
+    "name": "The Pale Cartographer",
+    "threat": {
+      "tests": "magic",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 10,
+    "power": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "when": "upkeep",
+        "text": "Upkeep: gain 1 extra Coin."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-gorlax-the-unwashed",
+    "name": "Gorlax the Unwashed",
+    "threat": {
+      "tests": "might",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 11,
+    "power": [
+      {
+        "op": "gainMinion",
+        "amount": 1,
+        "recharges": true,
+        "text": "Build Phase: gain 1 Minion."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-velvet-usurer",
+    "name": "The Velvet Usurer",
+    "threat": {
+      "tests": "cunning",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 12,
+    "power": [
+      {
+        "op": "tempt",
+        "amount": 1,
+        "recharges": true,
+        "text": "Lure Phase: +1 tempt on one Hero in Town."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-saint-nobody",
+    "name": "Saint Nobody",
+    "threat": {
+      "tests": "faith",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 9,
+    "power": [
+      {
+        "op": "inflictStatus",
+        "status": "Cursed",
+        "rounds": 1,
+        "recharges": true,
+        "text": "Build Phase: one Hero in your lands gains Cursed for 1 round."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-clockwork-margrave",
+    "name": "The Clockwork Margrave",
+    "threat": {
+      "tests": "might",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 10,
+    "power": [
+      {
+        "op": "inflictStatus",
+        "status": "Bleeding",
+        "rounds": 1,
+        "recharges": true,
+        "text": "Build Phase: one Hero in your lands gains Bleeding for 1 round."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-mistress-ninefingers",
+    "name": "Mistress Ninefingers",
+    "threat": {
+      "tests": "cunning",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 11,
+    "power": [
+      {
+        "op": "heroLoseHealth",
+        "amount": 1,
+        "recharges": true,
+        "text": "Adventure Phase: one Hero in your dungeon loses 1 Health."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-ember-witch",
+    "name": "The Ember Witch",
+    "threat": {
+      "tests": "magic",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 12,
+    "power": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "monster",
+        "when": "passive",
+        "text": "Your Monsters roll +1 die."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-baron-wormwood",
+    "name": "Baron Wormwood",
+    "threat": {
+      "tests": "faith",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 9,
+    "power": [
+      {
+        "op": "gainTrick",
+        "amount": 1,
+        "when": "end",
+        "text": "End Phase: if you harvested a soul this round, gain a Trick."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "villain-the-last-jester",
+    "name": "The Last Jester",
+    "threat": {
+      "tests": "cunning",
+      "dice": 5,
+      "damage": 2,
+      "rank": "Villain"
+    },
+    "health": 10,
+    "power": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "lastRoom",
+        "when": "passive",
+        "text": "Your top Room nearest the Villain rolls +1 die."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  }
+]

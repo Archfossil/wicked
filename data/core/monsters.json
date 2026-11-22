@@ -1,0 +1,350 @@
+[
+  {
+    "id": "monster-dire-wolf",
+    "name": "Dire Wolf",
+    "copies": 2,
+    "preferredTerrain": "Forest",
+    "threat": {
+      "tests": "might",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "preferredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die on its preferred terrain."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "monster-dryad",
+    "name": "Dryad",
+    "copies": 2,
+    "preferredTerrain": "Forest",
+    "threat": {
+      "tests": "magic",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "preferredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die on its preferred terrain."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "monster-owlbear",
+    "name": "Owlbear",
+    "copies": 2,
+    "preferredTerrain": "Forest",
+    "threat": {
+      "tests": "might",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "preferredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die on its preferred terrain."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "monster-bog-hag",
+    "name": "Bog Hag",
+    "copies": 2,
+    "preferredTerrain": "Swamp",
+    "threat": {
+      "tests": "magic",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "preferredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die on its preferred terrain."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "monster-giant-toad",
+    "name": "Giant Toad",
+    "copies": 2,
+    "preferredTerrain": "Swamp",
+    "threat": {
+      "tests": "might",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "preferredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die on its preferred terrain."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "monster-will-o-wisp",
+    "name": "Will-o'-Wisp",
+    "copies": 2,
+    "preferredTerrain": "Swamp",
+    "threat": {
+      "tests": "faith",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "preferredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die on its preferred terrain."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "monster-stone-troll",
+    "name": "Stone Troll",
+    "copies": 2,
+    "preferredTerrain": "Mountain",
+    "threat": {
+      "tests": "might",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "preferredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die on its preferred terrain."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "monster-harpy",
+    "name": "Harpy",
+    "copies": 2,
+    "preferredTerrain": "Mountain",
+    "threat": {
+      "tests": "cunning",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "preferredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die on its preferred terrain."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "monster-frost-giant",
+    "name": "Frost Giant",
+    "copies": 2,
+    "preferredTerrain": "Mountain",
+    "threat": {
+      "tests": "might",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "preferredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die on its preferred terrain."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "monster-skeleton",
+    "name": "Skeleton",
+    "copies": 2,
+    "preferredTerrain": "Ruins",
+    "threat": {
+      "tests": "might",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "preferredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die on its preferred terrain."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "monster-wraith",
+    "name": "Wraith",
+    "copies": 2,
+    "preferredTerrain": "Ruins",
+    "threat": {
+      "tests": "faith",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "preferredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die on its preferred terrain."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "monster-gargoyle",
+    "name": "Gargoyle",
+    "copies": 2,
+    "preferredTerrain": "Ruins",
+    "threat": {
+      "tests": "cunning",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "preferredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die on its preferred terrain."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  }
+]

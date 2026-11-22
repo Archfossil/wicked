@@ -2,7 +2,13 @@
 
 A first sketch of the entities, written as TypeScript-style types so it can be turned into code. Fields marked `// Q-xx` depend on an open question and will change.
 
-The suggested approach is **data-driven cards**: card definitions live in data files (JSON or YAML) and rules code reads them, so cards and Regions can be added without changing code.
+The approach is **data-driven cards**: card definitions live in JSON files under [`data/`](../../data/README.md) and rules code reads them, so cards and Regions can be added without changing code. The placeholder core set is in `data/core/`.
+
+Every card also has these shared fields (left out of the types below):
+
+```ts
+interface CardMeta { copies?: number /* default 1 */; flavour: string; art: string | null; todo: ("name" | "flavour" | "art" | "wording" | "balance")[] /* what's still placeholder */; }
+```
 
 ```ts
 // ---------- Card definitions (static data) ----------
@@ -17,21 +23,21 @@ type ThreatRank = "Monster" | "Champion" | "Villain"; // Monster = overworld mon
 interface Threat { tests: Stat /* Q-17g */; dice: number; damage: number; rank: ThreatRank; }
 
 interface VillainCard  { id: string; name: string; power: Effect[]; threat: Threat; health: number /* damage persists; healing costs souls, Q-14 */; }
-interface RoomCard     { id: string; name: string; threat?: Threat /* printed; some Rooms have only an effect */; effect: Effect[] /* active when on top */; treasure?: { type: TreasureType; value: number; when: "upkeep" | "whileOnTop" }; minionBonus?: Effect[]; coveredBonus: Effect[] /* passive while buried; stacks unlimited, destroyed Rooms discarded */; soulExchanges?: { souls: number; gives: Effect }[] /* End Phase, Q-35a */; } // taking and building are free (Q-23)
+interface RoomCard     { id: string; name: string; trap?: boolean /* tests Cunning */; threat?: Threat /* printed; some Rooms have only an effect */; effect: Effect[] /* active when on top */; treasure?: { type: TreasureType; value: number; when: "upkeep" | "whileOnTop" }; minionBonus?: Effect[]; coveredBonus: Effect[] /* passive while buried; stacks unlimited, destroyed Rooms discarded */; soulExchanges?: { souls: number; gives: Effect }[] /* End Phase, Q-35a */; } // taking and building are free (Q-23)
 interface ItemCard     { id: string; name: string; type: HeroClass; heroEffect: Effect[]; villainEffect: Effect[]; recharges: boolean; }
 interface ChampionCard { id: string; name: string; cost: number /* printed, ~2-5 */; dice: number /* room uses max(room, champion) at Champion rank */; roomBonus: Effect[]; levels: { coins: number; effect: Effect[] }[] /* printed per card, usually 2-3 */; }
 type Phase = "upkeep" | "town" | "build" | "lure" | "adventure" | "end";
 interface TrickCard    { id: string; name: string; type: TrickType; effect: Effect[]; recharge?: 1 | 2 | 3 /* Spells only */; playCost: { coins?: number; souls?: number } /* empty = free; Mage overflow adds coins */; phases: Phase[] /* printed; no reactions */; }
 interface HeroCard     { id: string; name: string; class: HeroClass; tier: HeroTier; stats: HeroStats; desire: number /* own-class treasure + floor(gold/3) */; souls: 1 | 2 | 3 /* by tier */; }
 type Status = "Cursed" | "Slowed" | "Bleeding"; // starter set; timers tick in End Phase
-interface TerrainCard  { id: string; name: string; terrainType: string; kind: "hazard" | "status"; threat?: Threat /* hazard, Monster rank */; status?: Status; }
+interface TerrainCard  { id: string; name: string; terrainType: string; kind: "hazard" | "status"; threat?: Threat /* hazard, Monster rank */; status?: Status; statusRounds?: number /* printed duration */; }
 interface MonsterCard  { id: string; name: string; preferredTerrain: string; threat: Threat; preferredBonus: Effect[]; }
 interface ObjectiveCard{ id: string; text: string; kind: "event" | "state" /* event: scored when it happens; state: checked at game end */; trigger: TriggerCondition; }
 
 interface Region {
   id: string; name: string;
-  decks: { rooms: string[]; champions: string[]; tricks: string[]; heroes: string[]; items: string[]; terrain: string[]; monsters: string[]; villains: string[]; };
-  town: { overflow: Record<HeroClass, Effect[]> /* Q-58 */; capacity: number /* Q-59 */ };
+  decks: { rooms: string[]; champions: string[]; tricks: string[]; heroes: string[]; items: string[]; terrain: string[]; monsters: string[]; villains: string[]; treasures: string[]; objectives: string[]; };
+  town: { overflow: Record<HeroClass, Effect> /* per overflowing Hero */; capacity: number /* 2 */ };
 }
 
 // ---------- Game state (changes as you play) ----------
@@ -95,7 +101,9 @@ interface GameState {
   rng: Seed;                         // seeded so hero movement and draws can be replayed
 }
 
-type Effect = unknown;           // a small effect language, still to be designed
+// Draft effect shape: `op` for the engine, `text` as the source of truth. Vocabulary in data/README.md
+type Effect = { op: string; text: string; when?: "passive" | "upkeep" | "end" | "onEnter" | "afterWin" | "whileOnTop"; recharges?: boolean; target?: string; amount?: number; [arg: string]: unknown };
+type TriggerCondition = { op: string; [arg: string]: unknown }; // objective triggers, e.g. heroKilled { tier }
 type TreasureType = HeroClass | "Gold"; // Gold lures every class at 1/3 value, rounded down
 type Treasure = { type: TreasureType; value: number };
 interface TreasureCard { id: string; name: string; type: TreasureType; value: number; soulThreshold: number /* soulsHarvestedTotal needed */; coinCost: number; } // from the Treasure Market

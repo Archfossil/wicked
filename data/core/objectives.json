@@ -1,0 +1,389 @@
+[
+  {
+    "id": "objective-a-villain-kills-a-legendary-hero",
+    "text": "A villain kills a Legendary Hero.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "tier": "Legendary"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-kills-a-paragon-hero-in-their-overworl",
+    "text": "A villain kills a Paragon Hero in their Overworld.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "tier": "Paragon",
+      "where": "overworld"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-kills-a-hero-with-a-trick",
+    "text": "A villain kills a Hero with a Trick.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "by": "trick"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-kills-two-heroes-in-one-round",
+    "text": "A villain kills two Heroes in one round.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroesKilledInRound",
+      "count": 2
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-kills-a-hero-carrying-an-item",
+    "text": "A villain kills a Hero carrying an Item.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "carrying": true
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-kills-a-warrior-hero",
+    "text": "A villain kills a Warrior Hero.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "class": "Warrior"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-kills-a-mage-hero",
+    "text": "A villain kills a Mage Hero.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "class": "Mage"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-kills-an-acolyte-hero",
+    "text": "A villain kills an Acolyte Hero.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "class": "Acolyte"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-kills-a-rogue-hero",
+    "text": "A villain kills a Rogue Hero.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "class": "Rogue"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villains-villain-kills-a-hero-in-a-villain-fig",
+    "text": "A villain's Villain kills a Hero in a Villain fight.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "where": "villainFight"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-destroys-another-players-room",
+    "text": "A villain destroys another player's Room.",
+    "kind": "event",
+    "trigger": {
+      "op": "roomDestroyed",
+      "owner": "other"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-buys-a-treasure-worth-3-or-more",
+    "text": "A villain buys a Treasure worth 3 or more.",
+    "kind": "event",
+    "trigger": {
+      "op": "treasureBought",
+      "minValue": 3
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-hires-a-champion-costing-4-or-more",
+    "text": "A villain hires a Champion costing 4 or more.",
+    "kind": "event",
+    "trigger": {
+      "op": "championHired",
+      "minCost": 4
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-advances-a-champion-to-its-top-level",
+    "text": "A villain advances a Champion to its top level.",
+    "kind": "event",
+    "trigger": {
+      "op": "championMaxLevel"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-uses-a-soul-exchange",
+    "text": "A villain uses a soul exchange.",
+    "kind": "event",
+    "trigger": {
+      "op": "soulExchangeUsed"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-plays-three-tricks-in-one-round",
+    "text": "A villain plays three Tricks in one round.",
+    "kind": "event",
+    "trigger": {
+      "op": "tricksPlayedInRound",
+      "count": 3
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-learns-one-of-your-objectives",
+    "text": "A villain learns one of your objectives.",
+    "kind": "event",
+    "trigger": {
+      "op": "objectiveLearned",
+      "target": "owner"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villains-villain-is-vanquished",
+    "text": "A villain's Villain is vanquished.",
+    "kind": "event",
+    "trigger": {
+      "op": "villainVanquished"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-lures-a-hero-away-from-a-dungeon-that-",
+    "text": "A villain lures a Hero away from a dungeon that had tempted them.",
+    "kind": "event",
+    "trigger": {
+      "op": "luredAway"
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-sustains-two-tainted-items-at-once",
+    "text": "A villain sustains two Tainted Items at once.",
+    "kind": "event",
+    "trigger": {
+      "op": "sustainedItems",
+      "count": 2
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-has-4-or-more-champions",
+    "text": "A villain has 4 or more Champions.",
+    "kind": "state",
+    "trigger": {
+      "op": "championCount",
+      "min": 4
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-has-a-stack-of-3-or-more-rooms",
+    "text": "A villain has a stack of 3 or more Rooms.",
+    "kind": "state",
+    "trigger": {
+      "op": "stackHeight",
+      "min": 3
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-has-5-minions",
+    "text": "A villain has 5 Minions.",
+    "kind": "state",
+    "trigger": {
+      "op": "minionCount",
+      "min": 5
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-has-16-terrain-cards-in-their-overworl",
+    "text": "A villain has 16 Terrain cards in their Overworld.",
+    "kind": "state",
+    "trigger": {
+      "op": "terrainCount",
+      "min": 16
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-has-harvested-12-or-more-souls-in-tota",
+    "text": "A villain has harvested 12 or more souls in total.",
+    "kind": "state",
+    "trigger": {
+      "op": "soulsHarvestedTotal",
+      "min": 12
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-has-10-or-more-coins",
+    "text": "A villain has 10 or more Coins.",
+    "kind": "state",
+    "trigger": {
+      "op": "coins",
+      "min": 10
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-has-treasure-of-all-four-classes",
+    "text": "A villain has treasure of all four classes.",
+    "kind": "state",
+    "trigger": {
+      "op": "treasureClasses",
+      "min": 4
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-still-has-all-3-villains",
+    "text": "A villain still has all 3 Villains.",
+    "kind": "state",
+    "trigger": {
+      "op": "villainsRemaining",
+      "min": 3
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-has-3-or-more-tainted-items-in-total",
+    "text": "A villain has 3 or more Tainted Items in total.",
+    "kind": "state",
+    "trigger": {
+      "op": "taintedItemCount",
+      "min": 3
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-a-villain-has-4-or-more-trap-rooms-on-top",
+    "text": "A villain has 4 or more trap Rooms on top.",
+    "kind": "state",
+    "trigger": {
+      "op": "trapRoomsOnTop",
+      "min": 4
+    },
+    "todo": [
+      "wording",
+      "balance"
+    ]
+  }
+]

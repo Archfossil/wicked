@@ -1,0 +1,240 @@
+[
+  {
+    "id": "treasure-warrior-trinket",
+    "name": "Warrior Trinket",
+    "copies": 2,
+    "type": "Warrior",
+    "value": 1,
+    "soulThreshold": 0,
+    "coinCost": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-warrior-prize",
+    "name": "Warrior Prize",
+    "copies": 1,
+    "type": "Warrior",
+    "value": 2,
+    "soulThreshold": 3,
+    "coinCost": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-warrior-legend",
+    "name": "Warrior Legend",
+    "copies": 1,
+    "type": "Warrior",
+    "value": 3,
+    "soulThreshold": 6,
+    "coinCost": 4,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-mage-trinket",
+    "name": "Mage Trinket",
+    "copies": 2,
+    "type": "Mage",
+    "value": 1,
+    "soulThreshold": 0,
+    "coinCost": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-mage-prize",
+    "name": "Mage Prize",
+    "copies": 1,
+    "type": "Mage",
+    "value": 2,
+    "soulThreshold": 3,
+    "coinCost": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-mage-legend",
+    "name": "Mage Legend",
+    "copies": 1,
+    "type": "Mage",
+    "value": 3,
+    "soulThreshold": 6,
+    "coinCost": 4,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-acolyte-trinket",
+    "name": "Acolyte Trinket",
+    "copies": 2,
+    "type": "Acolyte",
+    "value": 1,
+    "soulThreshold": 0,
+    "coinCost": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-acolyte-prize",
+    "name": "Acolyte Prize",
+    "copies": 1,
+    "type": "Acolyte",
+    "value": 2,
+    "soulThreshold": 3,
+    "coinCost": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-acolyte-legend",
+    "name": "Acolyte Legend",
+    "copies": 1,
+    "type": "Acolyte",
+    "value": 3,
+    "soulThreshold": 6,
+    "coinCost": 4,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-rogue-trinket",
+    "name": "Rogue Trinket",
+    "copies": 2,
+    "type": "Rogue",
+    "value": 1,
+    "soulThreshold": 0,
+    "coinCost": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-rogue-prize",
+    "name": "Rogue Prize",
+    "copies": 1,
+    "type": "Rogue",
+    "value": 2,
+    "soulThreshold": 3,
+    "coinCost": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-rogue-legend",
+    "name": "Rogue Legend",
+    "copies": 1,
+    "type": "Rogue",
+    "value": 3,
+    "soulThreshold": 6,
+    "coinCost": 4,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-gold-pile",
+    "name": "Gold Pile",
+    "copies": 3,
+    "type": "Gold",
+    "value": 3,
+    "soulThreshold": 0,
+    "coinCost": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-dragons-hoard",
+    "name": "Dragon's Hoard",
+    "copies": 1,
+    "type": "Gold",
+    "value": 6,
+    "soulThreshold": 5,
+    "coinCost": 5,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  }
+]

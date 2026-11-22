@@ -1,0 +1,230 @@
+[
+  {
+    "id": "terrain-thornwood",
+    "name": "Thornwood",
+    "copies": 2,
+    "terrainType": "Forest",
+    "kind": "hazard",
+    "threat": {
+      "tests": "might",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-wolf-run",
+    "name": "Wolf Run",
+    "copies": 2,
+    "terrainType": "Forest",
+    "kind": "hazard",
+    "threat": {
+      "tests": "cunning",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-witchlight-glade",
+    "name": "Witchlight Glade",
+    "copies": 2,
+    "terrainType": "Forest",
+    "kind": "status",
+    "status": "Cursed",
+    "statusRounds": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-sucking-mire",
+    "name": "Sucking Mire",
+    "copies": 2,
+    "terrainType": "Swamp",
+    "kind": "status",
+    "status": "Slowed",
+    "statusRounds": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-leech-pools",
+    "name": "Leech Pools",
+    "copies": 2,
+    "terrainType": "Swamp",
+    "kind": "status",
+    "status": "Bleeding",
+    "statusRounds": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-hexfen",
+    "name": "Hexfen",
+    "copies": 2,
+    "terrainType": "Swamp",
+    "kind": "hazard",
+    "threat": {
+      "tests": "magic",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-rockslide-pass",
+    "name": "Rockslide Pass",
+    "copies": 2,
+    "terrainType": "Mountain",
+    "kind": "hazard",
+    "threat": {
+      "tests": "might",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-frozen-ledge",
+    "name": "Frozen Ledge",
+    "copies": 2,
+    "terrainType": "Mountain",
+    "kind": "status",
+    "status": "Slowed",
+    "statusRounds": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-eagle-cliffs",
+    "name": "Eagle Cliffs",
+    "copies": 2,
+    "terrainType": "Mountain",
+    "kind": "hazard",
+    "threat": {
+      "tests": "cunning",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-cursed-barrow",
+    "name": "Cursed Barrow",
+    "copies": 2,
+    "terrainType": "Ruins",
+    "kind": "status",
+    "status": "Cursed",
+    "statusRounds": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-collapsed-keep",
+    "name": "Collapsed Keep",
+    "copies": 2,
+    "terrainType": "Ruins",
+    "kind": "hazard",
+    "threat": {
+      "tests": "cunning",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-bleeding-stones",
+    "name": "Bleeding Stones",
+    "copies": 2,
+    "terrainType": "Ruins",
+    "kind": "status",
+    "status": "Bleeding",
+    "statusRounds": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  }
+]

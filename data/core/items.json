@@ -1,0 +1,347 @@
+[
+  {
+    "id": "item-sword-of-dawn",
+    "name": "Sword of Dawn",
+    "type": "Warrior",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "might",
+        "text": "+1 Might die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "addDamage",
+        "amount": 1,
+        "target": "room",
+        "text": "One Room deals +1 damage this round."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-tower-shield",
+    "name": "Tower Shield",
+    "type": "Warrior",
+    "heroEffect": [
+      {
+        "op": "custom",
+        "text": "Ignore the first 1 damage in each fight."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "custom",
+        "text": "Your Villain ignores 1 damage per exchange."
+      }
+    ],
+    "recharges": false,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-warhorn",
+    "name": "Warhorn",
+    "type": "Warrior",
+    "heroEffect": [
+      {
+        "op": "custom",
+        "text": "Move 2 Overworld squares on the first round."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "tempt",
+        "amount": 1,
+        "text": "+1 tempt on one Warrior in Town."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-staff-of-embers",
+    "name": "Staff of Embers",
+    "type": "Mage",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "magic",
+        "text": "+1 Magic die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "heroLoseHealth",
+        "amount": 1,
+        "text": "One Hero in your lands loses 1 Health."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-spellbook-of-wards",
+    "name": "Spellbook of Wards",
+    "type": "Mage",
+    "heroEffect": [
+      {
+        "op": "custom",
+        "text": "Ignore one more status."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "inflictStatus",
+        "status": "Cursed",
+        "rounds": 1,
+        "text": "One Hero in your lands gains Cursed 1."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-crystal-orb",
+    "name": "Crystal Orb",
+    "type": "Mage",
+    "heroEffect": [
+      {
+        "op": "custom",
+        "text": "Look at the next Room before entering it; may reroll 1 die there."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "learnObjective",
+        "text": "Look at one hidden objective of another player."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-holy-relic",
+    "name": "Holy Relic",
+    "type": "Acolyte",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "faith",
+        "text": "+1 Faith die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "healVillain",
+        "amount": 1,
+        "text": "Heal your active Villain 1."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-prayer-beads",
+    "name": "Prayer Beads",
+    "type": "Acolyte",
+    "heroEffect": [
+      {
+        "op": "custom",
+        "text": "Heal 1 at the start of each Adventure Phase."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "gainMinion",
+        "amount": 1,
+        "text": "Gain 1 Minion."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-censer-of-light",
+    "name": "Censer of Light",
+    "type": "Acolyte",
+    "heroEffect": [
+      {
+        "op": "custom",
+        "text": "Remove one status on entering the dungeon."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "villain",
+        "text": "Your Villain rolls +1 die this round."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-shadow-cloak",
+    "name": "Shadow Cloak",
+    "type": "Rogue",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "cunning",
+        "text": "+1 Cunning die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "chooseDirection",
+        "text": "Choose one Overworld Hero's move direction."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-lockpicks",
+    "name": "Lockpicks",
+    "type": "Rogue",
+    "heroEffect": [
+      {
+        "op": "custom",
+        "text": "May skip one more trap Room."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "addDamage",
+        "amount": 1,
+        "target": "trapRoom",
+        "text": "Your trap Rooms deal +1 damage this round."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-lucky-coin",
+    "name": "Lucky Coin",
+    "type": "Rogue",
+    "heroEffect": [
+      {
+        "op": "custom",
+        "text": "Reroll one die per fight."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "text": "Gain 1 Coin."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  }
+]
