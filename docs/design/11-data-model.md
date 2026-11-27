@@ -1,6 +1,6 @@
 # 11 — Data Model (draft)
 
-A first sketch of the entities, written as TypeScript-style types so it can be turned into code. Fields marked `// Q-xx` depend on an open question and will change.
+The entities, written as TypeScript-style types. The card definitions are still a draft. The **game state** section matches the prototype engine in `src/engine/` (plain JavaScript), so change both together. Fields marked `// Q-xx` depend on an open question and will change.
 
 The approach is **data-driven cards**: card definitions live in JSON files under [`data/`](../../data/README.md) and rules code reads them, so cards and Regions can be added without changing code. The placeholder core set is in `data/core/`.
 
@@ -41,64 +41,91 @@ interface Region {
 }
 
 // ---------- Game state (changes as you play) ----------
-interface Market<T> { deck: T[]; slots: T[]; discard: T[]; size: number /* dungeon & terrain: players + 2; champions: 3 */; }
-// Terrain market slot = { terrain: TerrainCard; monster: MonsterCard }
+// This section matches the code in src/engine/ (game.js creates it). Keep them in step.
+// A card in play is an instance { uid, id }: `id` is the card definition, `uid` tells copies apart.
+// The loader adds `deck` ("rooms", "items", ...) to each definition so code can tell card types apart.
+interface Card { uid: string; id: string; }
 
-interface OverworldSquare { terrain?: TerrainCard; monster?: MonsterCard; }
+interface Market { type: "dungeon" | "terrain" | "champion" | "treasure"; size: number /* dungeon, terrain, treasure: players + 2; champion: 3 */;
+  deck: Card[]; discard: Card[]; slots: Card[] /* index 0 = oldest (left) */;
+  monsterDeck?: Card[]; monsterDiscard?: Card[]; } // terrain only: slots hold { terrain: Card; monster: Card }
+
+interface OverworldSquare { terrain: Card | null; monster: Card | null; }
 type Overworld = OverworldSquare[][]; // 4x4, [row][col], (0,0) = entry
 
 interface HeroInPlay {
-  card: HeroCard;
-  location:
-    | { at: "town"; tempts: Record<PlayerId, number> /* per dungeon; lured at 1/2/3 by tier */ }
-    | { at: "overworld"; owner: PlayerId; row: number; col: number }
-    | { at: "dungeon"; owner: PlayerId; roomIndex: number }
-    | { at: "villainFight"; owner: PlayerId };
-  health: number;                  // starts at card.stats.health; dies at 0 (assumed)
-  statuses: { status: Status; roundsLeft: number }[]; // timed; the same status adds to roundsLeft
-  carrying?: ItemCard;             // Paragon/Legendary arrive with 1, Common with none
+  uid: string; id: string;
+  loc:
+    | { at: "town" }
+    | { at: "overworld"; owner: PlayerId; r: number; c: number }
+    | { at: "dungeon"; owner: PlayerId; space: number }   // 0-4; leaving (3,3) enters space 0 directly
+    | { at: "fight"; owner: PlayerId };                    // the Villain fight
+  tempts: Record<PlayerId, number>;  // per dungeon, while in Town; lured at 1/2/3 by tier; reset on return to Town
+  health: number;                    // max = card health (+1 Warrior); dies at 0
+  statuses: { status: Status; rounds: number }[]; // the same status adds to rounds; ticks down in the End Phase
+  carrying: Card | null;             // an Item; Paragon/Legendary arrive with 1
+  trip: {                            // reset each time the Hero leaves Town
+    statusIgnores: number;           // Mage passive (+ Spellbook of Wards)
+    trapSkips: number;               // Rogue passive (+ Lockpicks)
+    lingered: boolean;               // Slowed: has spent its extra round in this space
+    path: [number, number][];        // Overworld squares visited, for "move back" effects
+    moved: boolean; justLured: boolean; forcedDir: "right" | "down" | null;
+  };
 }
 
 // A dungeon space holds a stack of rooms. The last one is the top (its effect is active);
 // the ones below give their coveredBonus, so taller stacks get stronger.
-interface DungeonSpace { stack: RoomCard[]; champion?: { card: ChampionCard; level: number } /* belongs to the space; guards the top Room. Empty stack: Q-49c */; }
-
-interface TaintedItem { card: ItemCard; exhausted: boolean; } // villain effect recharges in Upkeep
+interface DungeonSpace { stack: Card[]; champion: { card: Card; level: number; used: boolean } | null; } // the Champion belongs to the space (empty space: Q-49c, a config option)
 
 interface PlayerState {
-  id: PlayerId;
-  villains: { card: VillainCard; damage: number; vanquished: boolean }[]; // 3 after the draft
-  activeVillain: number;            // index; reserves are face-down until they step in
-  hand: { rooms: RoomCard[]; tricks: TrickCard[] };   // limit 7 combined, checked at end of End Phase; the 5 opening rooms start here
-  exhaustedSpells: { card: TrickCard; refreshIn: number }[]; // starts at the card's recharge, -1 each Upkeep
-  dungeon: DungeonSpace[];          // exactly 5, in order from the entrance
-  minions: { location: "unassigned" | "town" | { space: number }; townTarget?: HeroId /* re-chosen each Lure Phase */ }[]; // identical tokens, max 5, never lost; stay put until re-ordered
+  id: PlayerId; name: string; isBot: boolean;
+  villains: { card: Card; damage: number; vanquished: boolean; revealed: boolean }[]; // 3 after the draft; reserves stay face-down
+  activeVillain: number | null;     // index; null between a vanquish and choosing the next Villain
+  needsVillainChoice: boolean;
+  draftPack: Card[];                // setup only
+  hand: { rooms: Card[]; tricks: Card[] }; // limit 7 combined, checked when you finish the End Phase
+  pendingTricks: Card[][];          // "gain a Trick" = draw 2, keep 1: choices still to make
+  exhausted: { card: Card; refreshIn: number }[]; // Spells: -1 each Upkeep, back to hand at 0
+  powerUsed: boolean;               // Villain power with recharges: true
+  dungeon: DungeonSpace[];          // exactly 5, from the entrance
+  championReserve: Card[];          // hired in the Town Phase, not yet placed
+  minions: ("home" | "town" | number)[]; // identical tokens, max 5; a number is a dungeon space
+  minionTargets: string[];          // Hero uid per Town Minion, chosen each Lure Phase
   overworld: Overworld;
-  coins: number;                    // separate from treasure (Q-30 answered)
-  treasury: (Treasure | ItemCard)[]; // lures heroes; stored items lure their own class
-  sustainedItems: TaintedItem[];    // max 2
-
-  souls: number;                    // spent only through Rooms' soulExchanges in the End Phase
-  soulsHarvestedTotal: number;      // never goes down; unlocks TreasureCards and is the tie-break
-  objectives: { card: ObjectiveCard; revealed: boolean; learnedBy: PlayerId[]; scoredBy?: PlayerId }[]; // 5 dealt, 1 revealed at start
+  coins: number;
+  treasury: Card[];                 // Treasure cards and stored Tainted Items (Items lure their own class)
+  treasureTokens: { type: TreasureType; value: number }[]; // from Rooms that add treasure in Upkeep
+  sustained: { card: Card; exhausted: boolean }[]; // Tainted Items, max 2
+  souls: number;                    // spendable, through Rooms' soulExchanges in the End Phase
+  soulsTotal: number;               // harvested ever; unlocks Treasure cards; the tie-break
+  objectives: { card: Card; revealed: boolean; learnedBy: PlayerId[]; scoredBy: PlayerId | null }[];
   eliminated: boolean;
+  allow: { placements: number; monsterMoves: number; championMoves: number; treasureBuys: number }; // what is left this phase
+  buffs: { dice?: number; damage?: number; space?: number; square?: [number, number]; allMonsters?: true; villain?: true; trapRooms?: true }[]; // from Tricks and Items; cleared in Upkeep
+  exchangesUsed: Record<string, number>; // soul exchanges used this End Phase
+  round_: { lootTiers: number[]; kills: number; harvested: boolean; dungeonKill: boolean; tricks: number }; // reset each Upkeep
 }
 
 interface GameState {
-  region: Region;
+  config: Config;                    // src/engine/config.js: an option for every Open question the code touches
+  seed: number; rng: number;         // seeded (mulberry32), so games replay exactly
   round: number;
-  firstPlayer: number;              // Town picks go clockwise from here; moves left each round. Build is simultaneous
-  phase: Phase | "setup" | "gameOver";
+  phase: "setup" | Phase | "gameOver";
+  step: { type: StepType; mode: "sim"; waiting: PlayerId[] } | { type: StepType; mode: "seq"; order: PlayerId[]; idx: number };
+  // StepType: draftVillain, chooseVillain, revealObjective, startingTricks, roomDraft (setup);
+  //           town, build, buildTricks, lure, adventure, end (each round); chooseVillain again after a vanquish
+  firstPlayer: PlayerId;             // Town picks and Trick turns go clockwise from here; moves left each round
   players: PlayerState[];
-  dungeonMarket: Market<RoomCard>;
-  terrainMarket: Market<{ terrain: TerrainCard; monster: MonsterCard }>;
-  championMarket: Market<ChampionCard>;
-  treasureMarket: Market<TreasureCard>;  // players + 2, bought in End Phase
-  heroDeck: HeroCard[];
-  heroes: HeroInPlay[];
-  itemDeck: ItemCard[];
-  townShop: ItemCard[];              // items no hero was eligible for; first eligible hero takes one (Q-36d)
-  rng: Seed;                         // seeded so hero movement and draws can be replayed
+  markets: { dungeon: Market; terrain: Market; champion: Market; treasure: Market };
+  heroDeck: Card[]; itemDeck: Card[]; trickDeck: Card[]; trickDiscard: Card[]; objectiveDeck: Card[]; villainDeck: Card[];
+  heroes: HeroInPlay[];              // alive, in Town or in someone's lands
+  fallen: { uid: string; id: string; killer: PlayerId; round: number }[];
+  townShop: Card[];                  // Items no Hero was eligible for; oldest first (Q-36d)
+  lureBonus: Record<PlayerId, Record<string, number>>; // extra tempts on a Hero this Lure Phase (Tricks, powers)
+  lureGold: Record<PlayerId, Record<string, number>>;  // extra Gold for one Hero this Lure Phase (Lure of Gold)
+  buildSnapshot: Record<PlayerId, object> | null;      // what others see of your lands until the Build reveal
+  log: { n: number; round: number; phase: string; text: string; kind?: string; only?: PlayerId }[]; // `only` = a private line
+  result: { heroesWin: boolean; winners: PlayerId[]; standings: { pid: PlayerId; unscored: number; souls: number }[]; solo: boolean } | null;
 }
 
 // Draft effect shape: `op` for the engine, `text` as the source of truth. Vocabulary in data/README.md
@@ -112,5 +139,5 @@ interface TreasureCard { id: string; name: string; type: TreasureType; value: nu
 ## Implementation notes
 
 - **Seeded RNG:** hero movement, shuffles, pairings, lure rolls and combat dice all depend on randomness. A seeded RNG makes games replayable and testable.
-- **Hidden information:** objective lists and reserve villains are secret, so the rules engine has to give each player their own view of the state.
-- **The rules engine stays separate from the UI**, so the same rules can run in tests, local hotseat play or a future online mode.
+- **Hidden information:** objective lists and reserve villains are secret, so the rules engine gives each player their own view of the state (`src/engine/view.js`).
+- **The rules engine stays separate from the UI**, so the same rules run in tests (`npm test`), bot simulations (`npm run simulate`) and the online server (`server/index.js`).

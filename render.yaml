@@ -1,0 +1,12 @@
+# Render Blueprint: one web service serves the page and the WebSocket game server.
+services:
+  - type: web
+    name: wicked-awaken
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
