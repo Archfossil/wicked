@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Wicked Awaken: card art</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body { padding: 16px; }
+    h1 { color: #f3d9ff; margin-bottom: 4px; }
+    h2 { color: var(--gold); margin: 18px 0 8px; font-size: 16px; }
+    .gal { display: flex; flex-wrap: wrap; gap: 10px; }
+    .gal figure { margin: 0; width: 192px; font-size: 11px; color: var(--muted); }
+    .gal img.big { width: 192px; height: 108px; image-rendering: pixelated; border: 1px solid var(--line2); border-radius: 4px; display: block; }
+    .sprites { display: flex; flex-wrap: wrap; gap: 6px; }
+    .sprites figure { margin: 0; width: 76px; text-align: center; font-size: 10px; color: var(--muted); }
+    .sprites img { width: 72px; height: 72px; image-rendering: pixelated; background: #2a2032; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Card art</h1>
+  <div class="muted">Placeholder pixel art, drawn in code by <code>public/art.js</code>. <a href="/" style="color:var(--violet)">Back to the game</a></div>
+  <div id="out"></div>
+  <script type="module">
+    import { artFor, spriteFor, minionSprite, pairArt } from "/art.js";
+    const cards = Object.values(await fetch("/cards.json").then((r) => r.json()));
+    const decks = ["villains", "champions", "monsters", "heroes", "rooms", "terrain", "items", "treasures", "tricks"];
+    let html = "";
+    html += `<h2>Sprites</h2><div class="sprites">${cards.filter((c) => ["villains", "champions", "monsters", "heroes"].includes(c.deck)).map((c) => `<figure><img src="${spriteFor(c)}"><figcaption>${c.name}</figcaption></figure>`).join("")}<figure><img src="${minionSprite()}"><figcaption>Minion</figcaption></figure></div>`;
+    for (const deck of decks) {
+      const list = cards.filter((c) => c.deck === deck);
+      html += `<h2>${deck[0].toUpperCase() + deck.slice(1)} (${list.length})</h2><div class="gal">${list.map((c) => `<figure><img class="big" src="${artFor(c)}"><figcaption>${c.name}</figcaption></figure>`).join("")}</div>`;
+    }
+    const t = cards.filter((c) => c.deck === "terrain"), m = cards.filter((c) => c.deck === "monsters");
+    html += `<h2>Terrain + Monster pairs</h2><div class="gal">${t.slice(0, 6).map((x, i) => `<figure><img class="big" src="${pairArt(x, m[i * 2])}"><figcaption>${x.name} + ${m[i * 2].name}</figcaption></figure>`).join("")}</div>`;
+    document.getElementById("out").innerHTML = html;
+  </script>
+</body>
+</html>
