@@ -42,6 +42,19 @@ node tools/validate-data.mjs           # check the card data
 node tools/placeholder-checklist.mjs   # rebuild the placeholder checklist
 ```
 
+## Play the prototype
+
+A browser prototype plays the core set for 1 to 6 villains, online or against bots. It needs Node.js 20+.
+
+```
+npm install
+npm start          # then open http://localhost:3000 (or /?bots=3 for a quick game)
+npm test           # rules tests
+npm run simulate   # bot-only games, with rough balance numbers
+```
+
+It deploys to Render as one web service (`render.yaml`). How it works, which Open questions are lobby options, and the calls the code had to make where the design is silent are in [`docs/prototype.md`](docs/prototype.md).
+
 ## Project status
 
-Design stage, with no game code yet. The docs keep **decided** rules apart from **ideas** and **open questions**, so nothing gets coded on a guess.
+Design stage, with a playable prototype for playtesting. The docs keep **decided** rules apart from **ideas** and **open questions**, so nothing gets coded on a guess: where the code meets an Open question it's a lobby option.

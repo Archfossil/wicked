@@ -1,0 +1,18 @@
+{
+  "name": "the-wicked-awaken",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Prototype of The Wicked Awaken: a competitive deckbuilder about villains building dungeons to kill heroes.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test tests/",
+    "simulate": "node tools/simulate.mjs",
+    "validate": "node tools/validate-data.mjs && node tools/placeholder-checklist.mjs"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
