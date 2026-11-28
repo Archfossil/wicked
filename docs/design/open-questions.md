@@ -30,7 +30,7 @@ Numbering: 0x general · 1x villains · 2x markets · 3x resources · 4x dungeon
 | Q-02 | When do the Heroes win? | Only if every villain is eliminated | [Objectives](05-objectives-and-scoring.md) |
 | Q-40 | What happens to the opening rooms? | They go into your hand, the dungeon starts empty, and you build over time | [Dungeon](06-dungeon-and-champions.md) |
 | Q-51c/d | How are tempts counted? | Per dungeon. Common needs 1, Paragon 2, Legendary 3, and the first dungeon there gets the Hero | [Heroes](08-heroes-and-town.md#luring) |
-| Q-70/71 | Objective count and secrecy? | Deal 5 and reveal 1 at the start. Minions and Tricks can learn, swap or replace objectives. Each time one of your Villains is vanquished, reveal another at random | [Objectives](05-objectives-and-scoring.md) |
+| Q-70/71 | Objective count and secrecy? | Superseded by Q-79: no secret lists. Everyone races for a public Objective Market | [Objectives](05-objectives-and-scoring.md) |
 | Q-05 | Build Phase limit? | 1 placement (a Room or a Champion). Other actions are extra and cost-limited | [Round Flow](02-round-flow.md) |
 | Q-10/11 | Starting Villain and reserves? | Chosen in secret, then revealed. Reserves face-down. Choose the next one when needed | [Setup](01-setup.md) |
 | Q-33 | How do you earn Coins? | 1 each Upkeep, plus loot from dead Heroes (1/2/3 by tier) | [Villains](04-villains.md) |
@@ -61,7 +61,7 @@ Numbering: 0x general · 1x villains · 2x markets · 3x resources · 4x dungeon
 | Q-23 | Do cards or building cost anything? | No: taking Rooms and Terrain and building are free; the one pick is the limit | [Markets](03-markets.md) |
 | Q-34a | Where do Treasure cards come from? | A Treasure Market (players + 2), bought in the End Phase | [Markets](03-markets.md) |
 | Q-49b | Champion when its Room is covered or destroyed? | Moves to the new top Room in that space | [Dungeon](06-dungeon-and-champions.md) |
-| Q-72 | When is an objective scored? | The card says: event objectives when they happen, state objectives at game end | [Objectives](05-objectives-and-scoring.md) |
+| Q-72 | When is an objective scored? | Superseded by Q-79c: "do it" Objectives are claimed when they happen, "have it" Objectives at the end of each End Phase | [Objectives](05-objectives-and-scoring.md) |
 | Q-24 | When a deck runs out? | Reshuffle its discards, except the Hero deck, which never reshuffles | [Markets](03-markets.md) |
 | Q-48 | Champion levels? | Printed per card (usually 2–3), each with a Coin price and an effect | [Dungeon](06-dungeon-and-champions.md) |
 | Q-62 | Hand limit? | 7 cards (Rooms and Tricks together), discard at the end of the End Phase | [Tricks](09-tricks.md) |
@@ -73,11 +73,11 @@ Numbering: 0x general · 1x villains · 2x markets · 3x resources · 4x dungeon
 | Q-07 | Tricks in the simultaneous Build Phase? | Build and reveal simultaneously, then play Tricks one at a time in turn order | [Round Flow](02-round-flow.md) |
 | Q-37 | Who gets a Tainted Item? | The villain whose land killed the Hero, or the player whose Trick did | [Items](12-items.md) |
 | Q-39 | A 3rd Tainted Item? | Choose which 2 to sustain whenever you gain one; the rest go to the treasury or another player. Swap in each Build Phase | [Items](12-items.md) |
-| Q-73 | Are scored objectives revealed? | Yes, to everyone | [Objectives](05-objectives-and-scoring.md) |
+| Q-73 | Are scored objectives revealed? | Moot (Q-79): every Objective is public | [Objectives](05-objectives-and-scoring.md) |
 | Q-12 | What carries over when a Villain is vanquished? | Everything; only the Villain card changes | [Villains](04-villains.md) |
 | Q-55 | Who harvests a Hero's soul? | Whoever's land killed them, or the player whose Trick did (same as Tainted Items) | [Heroes](08-heroes-and-town.md) |
-| Q-74 | Can one action score several lists? | Yes, every matching objective is scored | [Objectives](05-objectives-and-scoring.md) |
-| Q-77 | Starting reveal chosen or random? | Chosen | [Objectives](05-objectives-and-scoring.md) |
+| Q-74 | Can one action score several objectives? | Yes: one action claims every matching face-up Objective | [Objectives](05-objectives-and-scoring.md) |
+| Q-77 | Starting reveal chosen or random? | Moot (Q-79): nothing is dealt or revealed | [Objectives](05-objectives-and-scoring.md) |
 | Q-41 | How do Rooms resolve? | Printed threat (stat, dice, damage), like a Hazard; some have only an effect | [Dungeon](06-dungeon-and-champions.md) |
 | Q-42 | Champions per space? | 1, and you can move one to a free space as a Build Phase extra | [Dungeon](06-dungeon-and-champions.md) |
 | Q-43 | Do Rooms make treasure? | Some do: in Upkeep, or counting as treasure while on top | [Dungeon](06-dungeon-and-champions.md) |
@@ -97,13 +97,20 @@ Numbering: 0x general · 1x villains · 2x markets · 3x resources · 4x dungeon
 | Q-32 | Treasure types? | Warrior, Mage, Acolyte and Rogue (full value to their class), plus Gold (every class, at reduced value) | [Heroes](08-heroes-and-town.md) |
 | Q-36 | How do Items reach Heroes? | Paragon and Legendary Heroes arrive carrying 1 Item, and Common Heroes carry none | [Items](12-items.md) |
 | Q-51 (part) | What tempts a Hero? | Automatic if the matching treasure meets their desire, a die roll if it falls short | [Heroes](08-heroes-and-town.md#luring) |
+| Q-92 | Is the Hero deck the whole Hero set? | No: a Region has a large Hero pool, and each game deals a fixed-shape Hero deck from it (core: 3 Common, 2 Paragon, 1 Legendary per class). The deck's size still ends the game | [Regions](10-regions.md) |
+| Q-79 | Secret objective lists or something else? | A public **Objective Market**: the first villain to complete a face-up Objective claims it and its reward. Most claimed wins | [Objectives](05-objectives-and-scoring.md) |
+| Q-79a | How many Objectives are face-up? | Players + 2, refilled from the Objective deck when one is claimed | [Objectives](05-objectives-and-scoring.md) |
+| Q-79b | Does the Objective Market drop its oldest card each round? | No: an Objective stays until claimed | [Objectives](05-objectives-and-scoring.md) |
+| Q-79c | When are "have it" (state) Objectives claimed, and who wins a tie? | Once a round, at the end of the End Phase; the first villain in turn order who meets it | [Objectives](05-objectives-and-scoring.md) |
+| Q-75 | What if the soul tie-break is tied too? | Most Coins; if still tied, the win is shared | [Objectives](05-objectives-and-scoring.md) |
+| Q-76 | Objective swaps: trade between players or with the deck? | Moot (Q-79): there are no lists to swap | [Objectives](05-objectives-and-scoring.md) |
 | Q-51 | How does luring work? | A Hero's desire (amount + treasure types wanted, set by class) is compared with the treasure count, and a die is rolled. Each success tempts the Hero, and enough tempts lure them. Details in Q-51a to Q-51d | [Heroes](08-heroes-and-town.md#luring) |
 
 ## General
 
 | ID | Question | Doc |
 | --- | --- | --- |
-| Q-01a | How does solo mode work? What's the goal without rivals to score objectives? | [Overview](00-overview.md) |
+| Q-01a | How does solo mode work? What's the goal without rivals to race for Objectives (e.g. claim a target number before the Hero deck runs out)? | [Overview](00-overview.md) |
 
 ## Villains
 
@@ -157,8 +164,7 @@ Numbering: 0x general · 1x villains · 2x markets · 3x resources · 4x dungeon
 
 | ID | Question | Doc |
 | --- | --- | --- |
-| Q-75 | What if the soul tie-break is tied too? | [Objectives](05-objectives-and-scoring.md) |
-| Q-76 | Does a "force swap" trade objectives between two players, or swap one for a new card from the deck? Does it keep its scored or revealed status? | [Objectives](05-objectives-and-scoring.md) |
+| Q-78 | Do souls gained as an Objective reward count as harvested (Treasure thresholds and the tie-break), or only as souls to spend? (Assumed spend only.) | [Objectives](05-objectives-and-scoring.md) |
 
 ## Overworld
 

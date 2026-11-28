@@ -3,18 +3,19 @@
 // target slots; the engine validates targets against the same option lists it
 // sends to the client, so there's one source of truth.
 import { GRID } from "./config.js";
-import { randInt } from "./rng.js";
 import {
   def, name, log, fail, squares, topRoom, heroInLandsOf, heroesInTown, villainDef, activeVillain, overflow,
   inflictStatus, damageHero, gainMinions, gainTrick, fireEvent, champLevelEffects, livePlayers, pname,
+  claimObjective, stateObjectiveMet,
 } from "./core.js";
+import { drawCard } from "./market.js";
 import { healVillain } from "./adventure.js";
 
 // Which phase an effect can be used in, by op (Items don't print a phase yet: this is a placeholder mapping).
 const OP_PHASES = {
   heroLoseHealth: ["build", "adventure"], inflictStatus: ["build"], tempt: ["lure"], addDice: ["adventure"],
   addDamage: ["adventure"], chooseDirection: ["adventure"], healVillain: ["build", "end"], gainMinion: ["build"],
-  gainCoins: ["build", "end"], learnObjective: ["build", "end"], raiseMonster: ["build"], gainTrick: ["end"],
+  gainCoins: ["build", "end"], peekObjective: ["build", "end"], replaceObjective: ["build", "end"], raiseMonster: ["build"], gainTrick: ["end"],
 };
 const PHASE_WORD = { Build: "build", Lure: "lure", Adventure: "adventure", End: "end", Upkeep: "upkeep" };
 
@@ -114,15 +115,12 @@ function slotsFor(state, p, eff, cardId) {
       for (const q of others) q.dungeon.forEach((sp, i) => { if (topRoom(sp)) opts.push({ label: `${q.name}: ${name(state, topRoom(sp))} (space ${i + 1})`, value: [q.id, i] }); });
       return [opts];
     }
-    case "learnObjective":
-      return [others.filter((q) => q.objectives.some((o) => !o.revealed && !o.learnedBy.includes(p.id))).map((q) => ({ label: q.name, value: q.id }))];
-    case "swapObjective": {
-      const opts = [];
-      p.objectives.forEach((o, i) => others.forEach((q) => opts.push({ label: `"${def(state, o.card).text}" ↔ random from ${q.name}`, value: [i, q.id] })));
-      return [opts];
-    }
+    case "peekObjective": return [];
     case "replaceObjective":
-      return state.objectiveDeck.length ? [p.objectives.map((o, i) => ({ label: `"${def(state, o.card).text}"`, value: i }))] : [[]];
+      return [state.markets.objective.slots.map((c) => ({ label: `"${def(state, c).name}": ${def(state, c).text}`, value: c.uid }))];
+    case "claimObjective":
+      return [state.markets.objective.slots.filter((c) => def(state, c).kind === "state" && stateObjectiveMet(state, p, def(state, c).trigger))
+        .map((c) => ({ label: `"${def(state, c).name}": ${def(state, c).text}`, value: c.uid }))];
     default: return [];
   }
 }
@@ -247,35 +245,24 @@ function apply(state, p, e, cardId, t, by) {
       fireEvent(state, p.id, { op: "roomDestroyed", owner: qid });
       return;
     }
-    case "learnObjective": {
-      const q = state.players[t[0]];
-      const hidden = q.objectives.filter((o) => !o.revealed && !o.learnedBy.includes(p.id));
-      const o = hidden[randInt(state, hidden.length)];
-      o.learnedBy.push(p.id);
-      log(state, `${p.name} learns one of ${q.name}'s hidden objectives.`, { kind: "objective" });
-      log(state, `(private) ${q.name}'s objective: "${def(state, o.card).text}"`, { kind: "private", only: p.id });
-      fireEvent(state, p.id, { op: "objectiveLearned", from: q.id });
-      return;
-    }
-    case "swapObjective": {
-      const [mine, qid] = t[0];
-      const q = state.players[qid];
-      const j = randInt(state, q.objectives.length);
-      const a = p.objectives[mine], b = q.objectives[j];
-      if (state.config.swapKeepsStatus) { p.objectives[mine] = b; q.objectives[j] = a; }
-      else { p.objectives[mine] = { ...b, card: b.card }; q.objectives[j] = { ...a, card: a.card }; }
-      p.objectives[mine].learnedBy = [...new Set([...p.objectives[mine].learnedBy, p.id])];
-      q.objectives[j].learnedBy = [...new Set([...q.objectives[j].learnedBy, q.id])];
-      log(state, `${p.name} swaps an objective with ${q.name}.`, { kind: "objective" });
+    case "peekObjective": {
+      const deck = state.markets.objective.deck;
+      const top = deck.slice(-(e.amount ?? 2)).reverse();
+      log(state, `${p.name} peeks at the Objective deck.`, { kind: "objective" });
+      log(state, `(private) Next Objectives: ${top.map((c) => `"${def(state, c).name}" (${def(state, c).text})`).join(", ") || "none, the deck is empty"}.`, { kind: "private", only: p.id });
       return;
     }
     case "replaceObjective": {
-      const card = state.objectiveDeck.pop();
-      if (!card) return;
-      p.objectives[t[0]] = { card, revealed: false, learnedBy: [], scoredBy: null };
-      log(state, `${p.name} replaces one of their objectives.`, { kind: "objective" });
+      const m = state.markets.objective;
+      const i = m.slots.findIndex((c) => c.uid === t[0]);
+      const old = m.slots[i];
+      const fresh = drawCard(state, m);
+      m.discard.push(old);
+      if (fresh) m.slots[i] = fresh; else m.slots.splice(i, 1);
+      log(state, `${p.name} throws out the Objective "${def(state, old).name}"${fresh ? ` for "${def(state, fresh).name}"` : ""}.`, { kind: "objective" });
       return;
     }
+    case "claimObjective": claimObjective(state, p, state.markets.objective.slots.find((c) => c.uid === t[0]), "early"); return;
     case "healVillain": healVillain(state, p, e.amount, cardId); return;
     case "gainCoins": p.coins += e.amount; log(state, `${p.name} gains ${e.amount} Coin.`, { pid: p.id }); return;
     case "gainMinion": gainMinions(state, p, e.amount ?? 1); return;

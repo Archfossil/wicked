@@ -11,7 +11,7 @@
 | --- | --- |
 | Name, theme | e.g. "The Frozen North" |
 | Card pools | Which Rooms, Terrain, Monsters, Champions, Tricks and Heroes are in the decks |
-| Hero deck | Its size sets how long the game runs |
+| Hero pool and Hero deck | The Region lists a large **Hero pool** and the **shape** of each game's Hero deck (core: 3 Common, 2 Paragon, 1 Legendary per class = 24). Each game deals its deck at random from the pool, so games see different Heroes, while the deck's size still sets how long the game runs (answers Q-92) |
 | Town buildings | Overflow effects could change per Region |
 | Special rules? | Idea |
 

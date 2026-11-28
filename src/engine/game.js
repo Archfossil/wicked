@@ -5,11 +5,11 @@ import { loadSet, buildDeck } from "./data.js";
 import { shuffle, randInt, rollDice, countHits } from "./rng.js";
 import { makeMarket, refill, take, shiftOldest, drawCard } from "./market.js";
 import {
-  DEFAULT_CONFIG, DUNGEON_SPACES, GRID, HAND_LIMIT, LURE, MAX_SUSTAINED, STARTING_COINS,
+  CLASSES, DEFAULT_CONFIG, DUNGEON_SPACES, GRID, HAND_LIMIT, LURE, MAX_SUSTAINED, STARTING_COINS,
 } from "./config.js";
 import {
   def, name, log, fail, RuleError, livePlayers, turnOrder, activeVillain, villainPower, topRoom, heroArrives,
-  heroesInTown, treasureBreakdown, overflow, gainMinions, gainTrick, fireEvent, stateObjectiveMet, damageHero,
+  heroesInTown, treasureBreakdown, overflow, gainMinions, gainTrick, fireEvent, checkStateObjectives, damageHero,
   healHero, hasStatus, freshTrip, champLevelEffects, pname, heroInLandsOf,
 } from "./core.js";
 import { activate, destroyTop } from "./effects.js";
@@ -27,7 +27,7 @@ function newPlayer(id, seat) {
     championReserve: [], minions: [], minionTargets: [],
     overworld: Array.from({ length: GRID }, () => Array.from({ length: GRID }, () => ({ terrain: null, monster: null }))),
     coins: STARTING_COINS, treasury: [], treasureTokens: [], sustained: [], souls: 0, soulsTotal: 0,
-    objectives: [], eliminated: false, powerUsed: false, needsVillainChoice: false,
+    claimed: [], eliminated: false, powerUsed: false, needsVillainChoice: false,
     allow: { placements: 0, monsterMoves: 0, championMoves: 0, treasureBuys: 0 },
     exchangesUsed: {}, buffs: [], buildNotes: [],
     round_: freshRound(),
@@ -48,28 +48,43 @@ export function createGame(seats, { seed = Date.now(), config = {} } = {}) {
     buildSnapshot: null, result: null, firstPlayer: 0,
   };
   const deck = (k) => shuffle(state, buildDeck(cards, region.decks[k]));
-  state.heroDeck = deck("heroes");
+  state.heroDeck = dealHeroDeck(state, cards, region);
   if (cfg.heroDeckLimit) state.heroDeck = state.heroDeck.slice(-Math.max(n + 1, cfg.heroDeckLimit));
   state.itemDeck = deck("items");
   state.trickDeck = deck("tricks");
   state.trickDiscard = [];
-  state.objectiveDeck = deck("objectives");
   state.villainDeck = deck("villains");
   state.markets = {
     dungeon: makeMarket("dungeon", n + 2, deck("rooms")),
     terrain: makeMarket("terrain", n + 2, deck("terrain"), deck("monsters")),
     champion: makeMarket("champion", 3, deck("champions")),
     treasure: makeMarket("treasure", n + 2, deck("treasures")),
+    objective: makeMarket("objective", n + 2, deck("objectives")), // never drops its oldest: an Objective stays until claimed
   };
   for (const m of Object.values(state.markets)) refill(state, m);
   state.firstPlayer = randInt(state, n);
   for (const p of state.players) {
     p.draftPack = state.villainDeck.splice(-5);
-    p.objectives = state.objectiveDeck.splice(-5).map((card) => ({ card, revealed: false, learnedBy: [], scoredBy: null }));
   }
   log(state, `A new age of villainy begins. ${n} villain${n > 1 ? "s" : ""} gather. ${state.players[state.firstPlayer].name} goes first.`, { kind: "phase" });
   beginSim(state, "draftVillain", { pick: 1 });
   return state;
+}
+
+/**
+ * Each game deals its own Hero deck from the Region's Hero pool, in the shape the
+ * Region sets (region.heroDeck.perClass, e.g. 3 Common, 2 Paragon, 1 Legendary per
+ * class). The pool gives variety; the deck's size still ends the game.
+ */
+function dealHeroDeck(state, cards, region) {
+  const pool = shuffle(state, buildDeck(cards, region.decks.heroes));
+  const shape = region.heroDeck?.perClass;
+  if (!shape) return pool;
+  const out = [];
+  for (const cls of CLASSES) for (const [tier, n] of Object.entries(shape)) {
+    out.push(...pool.filter((h) => cards[h.id].class === cls && cards[h.id].tier === tier).slice(0, n));
+  }
+  return shuffle(state, out);
 }
 
 // ---------- steps ----------
@@ -130,17 +145,17 @@ function onStepComplete(state) {
         if (!v.revealed) { v.revealed = true; log(state, `${p.name}'s Villain is ${name(state, v.card)}.`, { kind: "villain", pid: p.id }); }
         p.needsVillainChoice = false;
       }
-      if (s.reason === "setup") { beginSim(state, "revealObjective"); return; }
+      if (s.reason === "setup") {
+        for (const p of state.players) {
+          p.startingTricksLeft = 2;
+          gainTrick(state, p, "starting Trick 1 of 3");
+        }
+        beginSim(state, "startingTricks");
+        return;
+      }
       endPhaseA(state);
       return;
     }
-    case "revealObjective":
-      for (const p of state.players) {
-        p.startingTricksLeft = 2;
-        gainTrick(state, p, "starting Trick 1 of 3");
-      }
-      beginSim(state, "startingTricks");
-      return;
     case "startingTricks": {
       const order = turnOrder(state);
       const snake = [];
@@ -329,6 +344,7 @@ function endPhaseA(state) {
 }
 
 function endPhaseB(state) {
+  checkStateObjectives(state);
   for (const h of state.heroes) {
     for (const s of h.statuses) s.rounds--;
     h.statuses = h.statuses.filter((s) => s.rounds > 0);
@@ -340,22 +356,20 @@ function endPhaseB(state) {
 function finish(state) {
   state.phase = "gameOver";
   state.step = null;
-  const live = livePlayers(state);
-  for (const q of state.players) {
-    for (const o of q.objectives) {
-      const d = def(state, o.card);
-      if (o.scoredBy != null || d.kind !== "state") continue;
-      const scorer = live.find((p) => p.id !== q.id && stateObjectiveMet(state, p, d.trigger));
-      if (scorer) { o.scoredBy = scorer.id; log(state, `🎯 ${scorer.name} scores "${d.text}" against ${q.name} (final board).`, { kind: "objective" }); }
-    }
-  }
-  for (const p of state.players) { for (const o of p.objectives) o.revealed = true; for (const v of p.villains) v.revealed = true; }
-  const standings = live.map((p) => ({ pid: p.id, unscored: p.objectives.filter((o) => o.scoredBy == null).length, souls: p.soulsTotal }))
-    .sort((a, b) => b.unscored - a.unscored || b.souls - a.souls);
+  for (const p of state.players) for (const v of p.villains) v.revealed = true;
+  const standings = rankPlayers(state);
   const top = standings[0];
-  const winners = top ? standings.filter((s) => s.unscored === top.unscored && s.souls === top.souls).map((s) => s.pid) : [];
+  const same = (a, b) => a.objectives === b.objectives && a.souls === b.souls && a.coins === b.coins;
+  const winners = top ? standings.filter((s) => same(s, top)).map((s) => s.pid) : [];
   state.result = { heroesWin: false, winners, standings, solo: state.players.length === 1 };
   log(state, `The last Hero has fallen. ${winners.map((w) => pname(state, w)).join(" and ")} ${winners.length > 1 ? "share" : "becomes"} the Overlord!`, { kind: "gameover" });
+}
+
+/** Most Objectives claimed, then most souls harvested in total, then most Coins. Eliminated players can't win. */
+export function rankPlayers(state) {
+  return livePlayers(state)
+    .map((p) => ({ pid: p.id, objectives: p.claimed.length, souls: p.soulsTotal, coins: p.coins }))
+    .sort((a, b) => b.objectives - a.objectives || b.souls - a.souls || b.coins - a.coins);
 }
 
 // ---------- actions ----------
@@ -513,15 +527,6 @@ const STEP_ACTIONS = {
       finishTurn(state, p.id);
     },
   },
-  revealObjective: {
-    revealObjective(state, p, a) {
-      const o = p.objectives[a.index];
-      if (!o) fail("Pick one of your objectives.");
-      o.revealed = true;
-      log(state, `${p.name} reveals an objective: "${def(state, o.card).text}".`, { kind: "objective", pid: p.id });
-      finishTurn(state, p.id);
-    },
-  },
   startingTricks: {},
   roomDraft: {
     draftRoom(state, p, a) {
@@ -626,6 +631,7 @@ const STEP_ACTIONS = {
       } else if (g.op === "healVillain") healVillain(state, p, g.amount, name(state, room));
       else if (g.op === "gainTrick") gainTrick(state, p, name(state, room));
       else if (g.op === "gainMinion") gainMinions(state, p, g.amount, name(state, room));
+      else if (g.op === "gainCoins") p.coins += g.amount;
       p.souls -= x.souls;
       p.exchangesUsed[key] = (p.exchangesUsed[key] ?? 0) + 1;
       log(state, `${p.name} trades ${x.souls} souls at the ${name(state, room)}: ${g.text}`, { pid: p.id });

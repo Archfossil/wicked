@@ -6,9 +6,9 @@
 - **Rule:** one Villain is active at a time and waits at the end of your dungeon.
 - **Rule:** you choose your starting Villain in secret. Reserves stay **face-down**, and you choose who steps in when a Villain falls.
 - **Rule:** a Hero who gets through your whole dungeon **fights your active Villain**.
-- **Rule:** if the Hero wins, that Villain is **vanquished**. One of your other Villains **takes over the dungeon**, and you **reveal one of your objectives at random**.
+- **Rule:** if the Hero wins, that Villain is **vanquished**. One of your other Villains **takes over the dungeon**.
 - **Rule:** if your last Villain is vanquished, you are **eliminated** and lose the game.
-- **Rule (answers Q-12):** **everything carries over** when a new Villain takes over: dungeon, Overworld, Champions, Minions, Coins, souls, treasury, Tainted Items and hand. Only the Villain card changes (plus the stolen Item and the random objective reveal).
+- **Rule (answers Q-12):** **everything carries over** when a new Villain takes over: dungeon, Overworld, Champions, Minions, Coins, souls, treasury, Tainted Items and hand. Only the Villain card changes (plus the stolen Item). Claimed Objectives are kept.
 
 ## What every Villain has (draft)
 

@@ -4,7 +4,7 @@ Heroes are mercenaries with better PR. They've heard rumours that the villains a
 
 ## Hero lifecycle
 
-1. **In Town:** each Town Phase, **1 Hero** is revealed from the Hero deck and joins the shared Town. Paragon and Legendary Heroes arrive **carrying 1 Item** (see [Items](12-items.md)).
+1. **In Town:** each Town Phase, **1 Hero** is revealed from the Hero deck and joins the shared Town. **Rule (answers Q-92):** at setup the Hero deck is dealt at random from the Region's larger Hero pool, in a fixed shape (core: 3 Common, 2 Paragon, 1 Legendary per class, 24 in all). The deck never reshuffles, so its size still ends the game. Paragon and Legendary Heroes arrive **carrying 1 Item** (see [Items](12-items.md)).
 2. **Lured:** in the Lure Phase, Heroes are tempted by the treasure in a dungeon's treasury. Once tempted enough times, the Hero heads for that villain. See [Luring](#luring).
 3. **Overworld:** the Hero crosses that villain's 4×4 grid (see [Overworld](07-overworld.md)).
 4. **Dungeon:** the Hero goes through the rooms (see [Dungeon](06-dungeon-and-champions.md)).

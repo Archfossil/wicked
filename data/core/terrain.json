@@ -2,7 +2,7 @@
   {
     "id": "terrain-thornwood",
     "name": "Thornwood",
-    "copies": 2,
+    "copies": 4,
     "terrainType": "Forest",
     "kind": "hazard",
     "threat": {
@@ -23,7 +23,7 @@
   {
     "id": "terrain-wolf-run",
     "name": "Wolf Run",
-    "copies": 2,
+    "copies": 4,
     "terrainType": "Forest",
     "kind": "hazard",
     "threat": {
@@ -44,7 +44,7 @@
   {
     "id": "terrain-witchlight-glade",
     "name": "Witchlight Glade",
-    "copies": 2,
+    "copies": 4,
     "terrainType": "Forest",
     "kind": "status",
     "status": "Cursed",
@@ -59,9 +59,127 @@
     ]
   },
   {
+    "id": "terrain-strangling-vines",
+    "name": "Strangling Vines",
+    "copies": 4,
+    "terrainType": "Forest",
+    "kind": "hazard",
+    "threat": {
+      "tests": "might",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-snare-thicket",
+    "name": "Snare Thicket",
+    "copies": 4,
+    "terrainType": "Forest",
+    "kind": "hazard",
+    "threat": {
+      "tests": "cunning",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-bramble-maze",
+    "name": "Bramble Maze",
+    "copies": 5,
+    "terrainType": "Forest",
+    "kind": "status",
+    "status": "Slowed",
+    "statusRounds": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-hanging-oak",
+    "name": "Hanging Oak",
+    "copies": 4,
+    "terrainType": "Forest",
+    "kind": "hazard",
+    "threat": {
+      "tests": "faith",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-fey-ring",
+    "name": "Fey Ring",
+    "copies": 3,
+    "terrainType": "Forest",
+    "kind": "status",
+    "status": "Cursed",
+    "statusRounds": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-whispering-pines",
+    "name": "Whispering Pines",
+    "copies": 3,
+    "terrainType": "Forest",
+    "kind": "hazard",
+    "threat": {
+      "tests": "magic",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "terrain-sucking-mire",
     "name": "Sucking Mire",
-    "copies": 2,
+    "copies": 4,
     "terrainType": "Swamp",
     "kind": "status",
     "status": "Slowed",
@@ -78,7 +196,7 @@
   {
     "id": "terrain-leech-pools",
     "name": "Leech Pools",
-    "copies": 2,
+    "copies": 4,
     "terrainType": "Swamp",
     "kind": "status",
     "status": "Bleeding",
@@ -95,7 +213,7 @@
   {
     "id": "terrain-hexfen",
     "name": "Hexfen",
-    "copies": 2,
+    "copies": 4,
     "terrainType": "Swamp",
     "kind": "hazard",
     "threat": {
@@ -114,9 +232,127 @@
     ]
   },
   {
+    "id": "terrain-drowning-pool",
+    "name": "Drowning Pool",
+    "copies": 3,
+    "terrainType": "Swamp",
+    "kind": "hazard",
+    "threat": {
+      "tests": "might",
+      "dice": 2,
+      "damage": 2,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-bloodfly-swarm",
+    "name": "Bloodfly Swarm",
+    "copies": 3,
+    "terrainType": "Swamp",
+    "kind": "status",
+    "status": "Bleeding",
+    "statusRounds": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-lantern-bog",
+    "name": "Lantern Bog",
+    "copies": 5,
+    "terrainType": "Swamp",
+    "kind": "hazard",
+    "threat": {
+      "tests": "cunning",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-rotting-causeway",
+    "name": "Rotting Causeway",
+    "copies": 4,
+    "terrainType": "Swamp",
+    "kind": "status",
+    "status": "Slowed",
+    "statusRounds": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-witchs-stilt-hut",
+    "name": "Witch's Stilt Hut",
+    "copies": 5,
+    "terrainType": "Swamp",
+    "kind": "hazard",
+    "threat": {
+      "tests": "magic",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-gator-shallows",
+    "name": "Gator Shallows",
+    "copies": 3,
+    "terrainType": "Swamp",
+    "kind": "hazard",
+    "threat": {
+      "tests": "might",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "terrain-rockslide-pass",
     "name": "Rockslide Pass",
-    "copies": 2,
+    "copies": 4,
     "terrainType": "Mountain",
     "kind": "hazard",
     "threat": {
@@ -137,7 +373,7 @@
   {
     "id": "terrain-frozen-ledge",
     "name": "Frozen Ledge",
-    "copies": 2,
+    "copies": 4,
     "terrainType": "Mountain",
     "kind": "status",
     "status": "Slowed",
@@ -154,7 +390,7 @@
   {
     "id": "terrain-eagle-cliffs",
     "name": "Eagle Cliffs",
-    "copies": 2,
+    "copies": 5,
     "terrainType": "Mountain",
     "kind": "hazard",
     "threat": {
@@ -173,9 +409,127 @@
     ]
   },
   {
+    "id": "terrain-avalanche-slope",
+    "name": "Avalanche Slope",
+    "copies": 3,
+    "terrainType": "Mountain",
+    "kind": "hazard",
+    "threat": {
+      "tests": "might",
+      "dice": 2,
+      "damage": 2,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-dizzying-heights",
+    "name": "Dizzying Heights",
+    "copies": 4,
+    "terrainType": "Mountain",
+    "kind": "status",
+    "status": "Cursed",
+    "statusRounds": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-knife-edge-ridge",
+    "name": "Knife-Edge Ridge",
+    "copies": 4,
+    "terrainType": "Mountain",
+    "kind": "hazard",
+    "threat": {
+      "tests": "cunning",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-storm-peak",
+    "name": "Storm Peak",
+    "copies": 4,
+    "terrainType": "Mountain",
+    "kind": "hazard",
+    "threat": {
+      "tests": "magic",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-silent-monastery",
+    "name": "Silent Monastery",
+    "copies": 4,
+    "terrainType": "Mountain",
+    "kind": "hazard",
+    "threat": {
+      "tests": "faith",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-wyrms-gorge",
+    "name": "Wyrm's Gorge",
+    "copies": 3,
+    "terrainType": "Mountain",
+    "kind": "status",
+    "status": "Bleeding",
+    "statusRounds": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "terrain-cursed-barrow",
     "name": "Cursed Barrow",
-    "copies": 2,
+    "copies": 5,
     "terrainType": "Ruins",
     "kind": "status",
     "status": "Cursed",
@@ -192,7 +546,7 @@
   {
     "id": "terrain-collapsed-keep",
     "name": "Collapsed Keep",
-    "copies": 2,
+    "copies": 5,
     "terrainType": "Ruins",
     "kind": "hazard",
     "threat": {
@@ -213,11 +567,125 @@
   {
     "id": "terrain-bleeding-stones",
     "name": "Bleeding Stones",
-    "copies": 2,
+    "copies": 4,
     "terrainType": "Ruins",
     "kind": "status",
     "status": "Bleeding",
     "statusRounds": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-haunted-ossuary",
+    "name": "Haunted Ossuary",
+    "copies": 4,
+    "terrainType": "Ruins",
+    "kind": "hazard",
+    "threat": {
+      "tests": "faith",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-crumbling-stair",
+    "name": "Crumbling Stair",
+    "copies": 3,
+    "terrainType": "Ruins",
+    "kind": "hazard",
+    "threat": {
+      "tests": "might",
+      "dice": 2,
+      "damage": 2,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-warded-gate",
+    "name": "Warded Gate",
+    "copies": 4,
+    "terrainType": "Ruins",
+    "kind": "hazard",
+    "threat": {
+      "tests": "magic",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-plague-pit",
+    "name": "Plague Pit",
+    "copies": 3,
+    "terrainType": "Ruins",
+    "kind": "status",
+    "status": "Bleeding",
+    "statusRounds": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-shifting-halls",
+    "name": "Shifting Halls",
+    "copies": 4,
+    "terrainType": "Ruins",
+    "kind": "status",
+    "status": "Slowed",
+    "statusRounds": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "terrain-toppled-idol",
+    "name": "Toppled Idol",
+    "copies": 3,
+    "terrainType": "Ruins",
+    "kind": "status",
+    "status": "Cursed",
+    "statusRounds": 1,
     "flavour": "TODO",
     "art": null,
     "todo": [

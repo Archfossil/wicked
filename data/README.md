@@ -14,17 +14,17 @@ Card definitions live here as JSON, one folder per set. The rules engine reads t
 
 | File | Cards | Notes |
 | --- | --- | --- |
-| `heroes.json` | 24 | 6 per class: 3 Common, 2 Paragon, 1 Legendary |
-| `villains.json` | 30 | Enough for the 6-player draft (5 drawn each) |
-| `rooms.json` | 20 (43 copies) | Includes traps, Barracks, a Vault, class-treasure Rooms and soul-exchange Rooms |
-| `terrain.json` | 12 (24 copies) | 3 per terrain type (Forest, Swamp, Mountain, Ruins); hazards and statuses |
-| `monsters.json` | 12 (24 copies) | 3 preferring each terrain type |
-| `champions.json` | 8 | Costs 2–5, each with 2 levels |
-| `tricks.json` | 18 (36 copies) | All five sub-types |
-| `items.json` | 12 | 3 per class |
-| `treasures.json` | 14 (20 copies) | Each class at values 1/2/3, plus Gold |
-| `objectives.json` | 30 | 20 event, 10 state |
-| `region.json` | 1 | Deck lists and Town overflow rules |
+| `heroes.json` | 72 | The Hero **pool**: 18 per class (9 Common, 6 Paragon, 3 Legendary). Each game deals its own 24-card Hero deck from it (see `region.json`) |
+| `villains.json` | 48 | Enough for the 6-player draft (5 drawn each) with 18 left over |
+| `rooms.json` | 40 (358 copies) | Traps, creature Rooms, Barracks and Hatcheries, Vaults and class hoards, status Rooms, soul-exchange Rooms. Sized so the deck lasts to about round 60 at 6 players |
+| `terrain.json` | 36 (140 copies) | 9 per terrain type (Forest, Swamp, Mountain, Ruins), 35 copies of each type; hazards and statuses. Enough for every grid to fill at 6 players |
+| `monsters.json` | 28 (140 copies) | 7 preferring each terrain type. The home bonus is +1 die or +1 damage (`preferredBonus` with `addDice` or `addDamage`) |
+| `champions.json` | 18 (43 copies) | Costs 2–5, each with 2 levels |
+| `tricks.json` | 30 (80 copies) | All five sub-types |
+| `items.json` | 28 | 7 per class |
+| `treasures.json` | 19 (157 copies) | Each class at values 1/2/3/4, plus Gold 3/6/9. Sized so the deck lasts to about round 60 at 6 players |
+| `objectives.json` | 60 | The Objective Market: 35 "do it" (event), 25 "have it" (state). Each has a `name` and a `reward` |
+| `region.json` | 1 | Deck lists, the Hero deck's shape (`heroDeck.perClass`) and Town overflow rules |
 
 ## Conventions
 
@@ -54,17 +54,17 @@ The effect language is still to be designed. For now every effect is `{ op, ...a
 | `inflictStatus` | `status`, `rounds` | Give a Hero a timed status |
 | `heroLoseHealth` | `amount` | Direct damage to a Hero |
 | `healVillain` | `amount` | Heal your active Villain |
-| `gainCoins` / `gainMinion` / `gainTrick` | `amount` | Gain resources (a Trick is draw 2, keep 1) |
+| `gainCoins` / `gainSouls` / `gainMinion` / `gainTrick` | `amount` | Gain resources (a Trick is draw 2, keep 1). `gainSouls` is only used by Objective rewards. A soul exchange can give `gainCoins`, `gainMinion`, `gainTrick`, `healVillain` or `advanceChampion` |
 | `tempt` | `amount` | Extra tempts on a Hero in Town |
 | `advanceChampion` | `amount` | Advance a Champion for free |
 | `extraPlacement` | `amount` | Extra Room placement this Build Phase |
 | `destroyRoom` | | Destroy a top Room |
 | `moveHero` / `chooseDirection` | `amount` | Move a Hero, or pick their Overworld direction |
-| `learnObjective` / `swapObjective` / `replaceObjective` | | Objective tricks |
+| `peekObjective` / `replaceObjective` / `claimObjective` | `amount` | Objective Market tricks: look at the top cards of the Objective deck; throw out a face-up Objective; claim a "have it" Objective you meet now |
 | `raiseMonster` | | Villain power: an extra Monster move |
 | `custom` | | Anything else. The engine needs a hand-written handler, or skips it |
 
-Objective `trigger`s use the same shape (`{ op, ...args }`), e.g. `heroKilled { tier, class, where, by, carrying }` or `championCount { min }`.
+Objective `trigger`s use the same shape (`{ op, ...args }`), e.g. `heroKilled { tier, class, where, by, carrying }` or `championCount { min }`. A `state` trigger needs a `min` of 1 or more, so nobody meets it at the start. Objective `reward`s are effects.
 
 ## Known gaps
 
@@ -74,12 +74,13 @@ Things the placeholder set fills in or leaves out that a designer should look at
 - **Healing cost (Q-14):** the Blood Altar (3 souls → heal 2) and Dark Pact Trick (2 souls → heal 2) are guesses at the cost.
 - **Balance basics:** every number is a first guess. The main ones are below.
   - Hero stats are main stat 3/4/5 by tier, with Health 3/5/7 and desire 2/4/6.
-  - Monsters and Hazards roll 2–3 dice, and Rooms roll 2–4.
+  - Monsters and Hazards roll 2–3 dice (a few 2-dice ones deal 2 damage), and Rooms roll 2–4.
   - Villains roll 4–5 dice, deal 2 damage and have 9–13 Health.
 - **Starting treasure:** players start with none. The Trinket and Gold Pile Treasures have a soul threshold of 0, so everyone can buy one in the round 1 End Phase and start luring in round 2.
-- **Game length:** the 24-card Hero deck means roughly 20 rounds at 4 players. It hasn't been tested.
+- **Game length:** each game's 24-card Hero deck means roughly 30–35 rounds with bots (the Hero pool is bigger, but each game still deals 24).
 - **Solo mode (Q-01a)** isn't supported by any card yet.
-- The 18 extra Villains reuse a small pool of powers. They need unique powers.
+- Most of the Villains reuse a small pool of generic powers (all within the effect ops above). They need unique powers.
+- **Deck sizes** were set from bot games with padded decks: Rooms and Treasures are the hungry decks, because dungeons stack a Room most rounds and bought Treasures stay bought. See [the prototype notes](../docs/prototype.md#what-simulated-games-say-bots-placeholder-numbers).
 
 ## Tools
 

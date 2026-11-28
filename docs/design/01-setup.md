@@ -38,7 +38,7 @@ draw 5 → keep 1, pass 4 ← → keep 1, pass 3 ← → keep 1, discard 2
 
 ## 5. Other setup (open)
 
-- **Rule:** deal each player **5 objectives**, and each player **chooses 1 to reveal** (answers Q-77). See [Objectives](05-objectives-and-scoring.md).
+- **Rule:** fill the **Objective Market** (players + 2 face-up Objectives) with the other markets. Nothing is dealt to players (answers Q-79). See [Objectives](05-objectives-and-scoring.md).
 - **Rule:** each player starts with **3 Coins**. Starting treasure and souls: assumed none.
 - **Rule (answers Q-50):** reveal **1 Hero per player** into the Town, so there's something to lure in round 1. The Town has **no cap**; overflow penalties are the only limit.
 - Every Overworld starts as an empty 4×4 wasteland (Rule). See [Overworld](07-overworld.md).

@@ -22,7 +22,7 @@ Minions are the villain's lackeys. They don't fight. They're **non-combatant res
 | --- | --- |
 | Stay in a Room | Empowers that Room if it has a Minion bonus |
 | Go to Town | +1 tempt each round it stays there, on a Hero you **choose each Lure Phase** (answers Q-18g). If its last target was lured away, just pick another |
-| Spy (via cards) | Learn another player's objective, or force an objective swap or replacement. See [Objectives](05-objectives-and-scoring.md) |
+| Spy (via cards) | Peek at the Objective deck, or throw out a face-up Objective. See [Objectives](05-objectives-and-scoring.md) |
 | Card-specific | "Send a Minion to…" effects on Rooms, Champions, Tricks and Items |
 
 ## Example cards (illustration only)

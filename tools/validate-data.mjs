@@ -76,7 +76,14 @@ for (const [file, check] of [
     if (![...CLASSES, "Gold"].includes(c.type)) err(c.id, "bad type");
     if (!(c.value >= 1) || !(c.soulThreshold >= 0) || !(c.coinCost >= 0)) err(c.id, "value, threshold or cost");
   }],
-  ["objectives.json", (c) => { if (!["event", "state"].includes(c.kind)) err(c.id, "kind"); if (typeof c.trigger?.op !== "string") err(c.id, "trigger op"); }],
+  ["objectives.json", (c) => {
+    if (!c.name) err(c.id, "missing name");
+    if (typeof c.text !== "string") err(c.id, "missing text");
+    if (!["event", "state"].includes(c.kind)) err(c.id, "kind");
+    if (typeof c.trigger?.op !== "string") err(c.id, "trigger op");
+    if (c.kind === "state" && !(c.trigger?.min >= 1)) err(c.id, "a state Objective needs trigger.min of 1 or more (it must not be met at the start)");
+    checkEffects(c.id, c.reward, "reward");
+  }],
 ]) {
   const cards = load(file);
   decks[file] = cards;
@@ -97,14 +104,22 @@ for (const [deck, list] of Object.entries(region.decks)) {
   for (const id of list) if (!known.has(id)) err(region.id, `deck ${deck} lists unknown card ${id}`);
 }
 
+// The Hero pool must be able to deal the Region's Hero deck shape (heroDeck.perClass).
+const heroShape = region.heroDeck?.perClass;
+if (heroShape) for (const cls of CLASSES) for (const [tier, n] of Object.entries(heroShape)) {
+  const have = decks["heroes.json"].filter((h) => region.decks.heroes.includes(h.id) && h.class === cls && h.tier === tier).length;
+  if (have < n) err(region.id, `Hero pool has ${have} ${tier} ${cls} Heroes; each game deals ${n}`);
+}
+const heroDeckSize = heroShape ? CLASSES.length * Object.values(heroShape).reduce((a, b) => a + b, 0) : null;
+
 // How many players can this set seat? (setup needs; markets refill from what's left)
 const count = (f) => decks[f].reduce((n, c) => n + (c.copies ?? 1), 0);
 const needs = [
   ["Villains", count("villains.json"), (p) => 5 * p, "draft draws 5 per player"],
   ["Rooms", count("rooms.json"), (p) => 5 * p + (p + 2), "5 opening Rooms each + a full market"],
   ["Tricks", count("tricks.json"), (p) => 6 * p, "3 starting Tricks at draw 2, keep 1"],
-  ["Objectives", count("objectives.json"), (p) => 5 * p, "5 dealt per player"],
-  ["Heroes", count("heroes.json"), (p) => p + 1, "1 per player at setup + 1 in round 1"],
+  ["Objectives", count("objectives.json"), (p) => p + 2, "a full market"],
+  ["Heroes", heroDeckSize ?? count("heroes.json"), (p) => p + 1, `1 per player at setup + 1 in round 1${heroDeckSize ? `; each game deals ${heroDeckSize} from a pool of ${count("heroes.json")}` : ""}`],
   ["Terrain", count("terrain.json"), (p) => p + 2, "a full market"],
   ["Monsters", count("monsters.json"), (p) => p + 2, "a full market"],
   ["Treasures", count("treasures.json"), (p) => p + 2, "a full market"],

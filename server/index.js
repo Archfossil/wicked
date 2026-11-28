@@ -21,7 +21,7 @@ const MIME = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; cha
 
 // Only these options can be changed from the lobby.
 const CONFIG_KEYS = ["heroDeckLimit", "blindDrawInTown", "shiftTerrainMarket", "shiftChampionMarket", "shiftTreasureMarket", "treasureBuysPerEnd",
-  "coveredSoulExchanges", "soulExchangeUsesPerEnd", "championOnEmptiedSpace", "warriorOverflowAffectsRooms", "slowedAffectsOverworld", "swapKeepsStatus"];
+  "coveredSoulExchanges", "soulExchangeUsesPerEnd", "championOnEmptiedSpace", "warriorOverflowAffectsRooms", "slowedAffectsOverworld", "rewardSoulsHarvested"];
 
 const cardsJson = JSON.stringify(loadSet("core").cards);
 

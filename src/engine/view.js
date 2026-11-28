@@ -1,8 +1,10 @@
 // What one player is allowed to see. Hidden: decks, other hands, reserve
-// Villains (face-down), unrevealed objectives (unless learned), pending Trick
-// choices, and other players' builds until the Build Phase reveal.
+// Villains (face-down), the Objective deck, pending Trick choices, and other players' builds until the Build Phase reveal.
 import { CLASSES, LURE } from "./config.js";
-import { def, heroesInTown, overflow, treasureBreakdown, minionsInTown, livePlayers } from "./core.js";
+import { def, heroesInTown, overflow, treasureBreakdown, minionsInTown, livePlayers, stateProgress, maxHealth } from "./core.js";
+import { heroDice } from "./adventure.js";
+
+const STATS = ["might", "magic", "faith", "cunning"];
 import { mustAct } from "./game.js";
 import { usableSources, trickCost } from "./effects.js";
 
@@ -32,10 +34,7 @@ export function viewFor(state, viewer) {
       championReserve: lands.championReserve, sustained: lands.sustained, treasury: lands.treasury,
       treasureTokens: p.treasureTokens,
       treasureByClass: Object.fromEntries(CLASSES.map((c) => [c, treasureBreakdown(state, p, c).total])),
-      objectives: p.objectives.map((o) => ({
-        card: own || o.revealed || o.learnedBy.includes(viewer) || over ? o.card : null,
-        revealed: o.revealed, scoredBy: o.scoredBy, learned: o.learnedBy.includes(viewer), learnedByOthers: own ? o.learnedBy.filter((x) => x !== p.id) : undefined,
-      })),
+      claimed: p.claimed,
       needsVillainChoice: p.needsVillainChoice,
       acting: acting.includes(p.id),
       hiddenBuild: !!snap,
@@ -50,9 +49,18 @@ export function viewFor(state, viewer) {
       heroDeck: state.heroDeck.length, itemDeck: state.itemDeck.length, trickDeck: state.trickDeck.length,
       dungeonDeck: state.markets.dungeon.deck.length, terrainDeck: state.markets.terrain.deck.length,
       championDeck: state.markets.champion.deck.length, treasureDeck: state.markets.treasure.deck.length, fallen: state.fallen.length,
+      objectiveDeck: state.markets.objective.deck.length,
     },
+    // each live player's progress toward every face-up "have X" Objective
+    objectiveProgress: Object.fromEntries(state.markets.objective.slots.filter((c) => def(state, c).kind === "state")
+      .map((c) => [c.uid, Object.fromEntries(livePlayers(state).map((p) => [p.id, stateProgress(state, p, def(state, c).trigger)]))])),
     markets: Object.fromEntries(Object.entries(state.markets).map(([k, m]) => [k, m.slots])),
-    heroes: state.heroes.map((h) => ({ uid: h.uid, id: h.id, health: h.health, loc: h.loc, statuses: h.statuses, carrying: h.carrying, tempts: h.tempts, lure: LURE[def(state, h).tier] })),
+    heroes: state.heroes.map((h) => ({
+      uid: h.uid, id: h.id, health: h.health, maxHealth: maxHealth(state, h), loc: h.loc, statuses: h.statuses, carrying: h.carrying,
+      tempts: h.tempts, lure: LURE[def(state, h).tier],
+      dice: Object.fromEntries(STATS.map((st) => [st, heroDice(state, h, st)])), // what they roll right now (Item, Cursed)
+      statusIgnores: h.trip?.statusIgnores ?? 0, trapSkips: h.trip?.trapSkips ?? 0,
+    })),
     townShop: state.townShop,
     overflow: Object.fromEntries(CLASSES.map((c) => [c, overflow(state, c)])),
     fallen: state.fallen,

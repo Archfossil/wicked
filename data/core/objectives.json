@@ -1,387 +1,1589 @@
 [
   {
-    "id": "objective-a-villain-kills-a-legendary-hero",
-    "text": "A villain kills a Legendary Hero.",
+    "id": "objective-slay-a-legend",
+    "name": "Slay a Legend",
+    "text": "Kill a Legendary Hero.",
     "kind": "event",
     "trigger": {
       "op": "heroKilled",
       "tier": "Legendary"
     },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 2,
+        "text": "Gain 2 souls."
+      },
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-kills-a-paragon-hero-in-their-overworl",
-    "text": "A villain kills a Paragon Hero in their Overworld.",
+    "id": "objective-ambush-on-the-road",
+    "name": "Ambush on the Road",
+    "text": "Kill a Paragon Hero in your Overworld.",
     "kind": "event",
     "trigger": {
       "op": "heroKilled",
       "tier": "Paragon",
       "where": "overworld"
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 3,
+        "text": "Gain 3 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-kills-a-hero-with-a-trick",
-    "text": "A villain kills a Hero with a Trick.",
+    "id": "objective-deep-in-the-dark",
+    "name": "Deep in the Dark",
+    "text": "Kill a Paragon Hero in your dungeon.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "tier": "Paragon",
+      "where": "dungeon"
+    },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 2,
+        "text": "Gain 2 souls."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-death-by-trickery",
+    "name": "Death by Trickery",
+    "text": "Kill a Hero with a Trick.",
     "kind": "event",
     "trigger": {
       "op": "heroKilled",
       "by": "trick"
     },
+    "reward": [
+      {
+        "op": "gainTrick",
+        "text": "Gain a Trick (draw 2, keep 1)."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-kills-two-heroes-in-one-round",
-    "text": "A villain kills two Heroes in one round.",
+    "id": "objective-massacre",
+    "name": "Massacre",
+    "text": "Kill two Heroes in one round.",
     "kind": "event",
     "trigger": {
       "op": "heroesKilledInRound",
       "count": 2
     },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 2,
+        "text": "Gain 2 souls."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-kills-a-hero-carrying-an-item",
-    "text": "A villain kills a Hero carrying an Item.",
+    "id": "objective-spoils-of-war",
+    "name": "Spoils of War",
+    "text": "Kill a Hero carrying an Item.",
     "kind": "event",
     "trigger": {
       "op": "heroKilled",
       "carrying": true
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-kills-a-warrior-hero",
-    "text": "A villain kills a Warrior Hero.",
+    "id": "objective-breaker-of-shields",
+    "name": "Breaker of Shields",
+    "text": "Kill a Warrior Hero.",
     "kind": "event",
     "trigger": {
       "op": "heroKilled",
       "class": "Warrior"
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "text": "Gain 1 Coin."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-kills-a-mage-hero",
-    "text": "A villain kills a Mage Hero.",
+    "id": "objective-snuffer-of-sparks",
+    "name": "Snuffer of Sparks",
+    "text": "Kill a Mage Hero.",
     "kind": "event",
     "trigger": {
       "op": "heroKilled",
       "class": "Mage"
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "text": "Gain 1 Coin."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-kills-an-acolyte-hero",
-    "text": "A villain kills an Acolyte Hero.",
+    "id": "objective-silencer-of-prayers",
+    "name": "Silencer of Prayers",
+    "text": "Kill an Acolyte Hero.",
     "kind": "event",
     "trigger": {
       "op": "heroKilled",
       "class": "Acolyte"
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "text": "Gain 1 Coin."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-kills-a-rogue-hero",
-    "text": "A villain kills a Rogue Hero.",
+    "id": "objective-catcher-of-thieves",
+    "name": "Catcher of Thieves",
+    "text": "Kill a Rogue Hero.",
     "kind": "event",
     "trigger": {
       "op": "heroKilled",
       "class": "Rogue"
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "text": "Gain 1 Coin."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villains-villain-kills-a-hero-in-a-villain-fig",
-    "text": "A villain's Villain kills a Hero in a Villain fight.",
+    "id": "objective-dungeon-master",
+    "name": "Dungeon Master",
+    "text": "Kill a Hero in your dungeon.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "where": "dungeon"
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-face-me",
+    "name": "Face Me",
+    "text": "Your Villain kills a Hero in a Villain fight.",
     "kind": "event",
     "trigger": {
       "op": "heroKilled",
       "where": "villainFight"
     },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 2,
+        "text": "Gain 2 souls."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-destroys-another-players-room",
-    "text": "A villain destroys another player's Room.",
+    "id": "objective-sabotage",
+    "name": "Sabotage",
+    "text": "Destroy another villain's Room.",
     "kind": "event",
     "trigger": {
       "op": "roomDestroyed",
       "owner": "other"
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-buys-a-treasure-worth-3-or-more",
-    "text": "A villain buys a Treasure worth 3 or more.",
+    "id": "objective-hoarders-pride",
+    "name": "Hoarder's Pride",
+    "text": "Buy a Treasure worth 3 or more.",
     "kind": "event",
     "trigger": {
       "op": "treasureBought",
       "minValue": 3
     },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 1,
+        "text": "Gain 1 soul."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-hires-a-champion-costing-4-or-more",
-    "text": "A villain hires a Champion costing 4 or more.",
+    "id": "objective-hired-muscle",
+    "name": "Hired Muscle",
+    "text": "Hire a Champion costing 4 or more.",
     "kind": "event",
     "trigger": {
       "op": "championHired",
       "minCost": 4
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-advances-a-champion-to-its-top-level",
-    "text": "A villain advances a Champion to its top level.",
+    "id": "objective-veteran",
+    "name": "Veteran",
+    "text": "Advance a Champion to its top level.",
     "kind": "event",
     "trigger": {
       "op": "championMaxLevel"
     },
+    "reward": [
+      {
+        "op": "gainMinion",
+        "amount": 1,
+        "text": "Gain 1 Minion."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-uses-a-soul-exchange",
-    "text": "A villain uses a soul exchange.",
+    "id": "objective-dark-bargain",
+    "name": "Dark Bargain",
+    "text": "Use a soul exchange.",
     "kind": "event",
     "trigger": {
       "op": "soulExchangeUsed"
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-plays-three-tricks-in-one-round",
-    "text": "A villain plays three Tricks in one round.",
+    "id": "objective-sleight-of-hand",
+    "name": "Sleight of Hand",
+    "text": "Play three Tricks in one round.",
     "kind": "event",
     "trigger": {
       "op": "tricksPlayedInRound",
       "count": 3
     },
+    "reward": [
+      {
+        "op": "gainTrick",
+        "text": "Gain a Trick (draw 2, keep 1)."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-learns-one-of-your-objectives",
-    "text": "A villain learns one of your objectives.",
-    "kind": "event",
-    "trigger": {
-      "op": "objectiveLearned",
-      "target": "owner"
-    },
-    "todo": [
-      "wording",
-      "balance"
-    ]
-  },
-  {
-    "id": "objective-a-villains-villain-is-vanquished",
-    "text": "A villain's Villain is vanquished.",
-    "kind": "event",
-    "trigger": {
-      "op": "villainVanquished"
-    },
-    "todo": [
-      "wording",
-      "balance"
-    ]
-  },
-  {
-    "id": "objective-a-villain-lures-a-hero-away-from-a-dungeon-that-",
-    "text": "A villain lures a Hero away from a dungeon that had tempted them.",
+    "id": "objective-poacher",
+    "name": "Poacher",
+    "text": "Lure a Hero away from a dungeon that had tempted them.",
     "kind": "event",
     "trigger": {
       "op": "luredAway"
     },
+    "reward": [
+      {
+        "op": "gainMinion",
+        "amount": 1,
+        "text": "Gain 1 Minion."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-sustains-two-tainted-items-at-once",
-    "text": "A villain sustains two Tainted Items at once.",
+    "id": "objective-two-handed",
+    "name": "Two-Handed",
+    "text": "Sustain two Tainted Items at once.",
     "kind": "event",
     "trigger": {
       "op": "sustainedItems",
       "count": 2
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-has-4-or-more-champions",
-    "text": "A villain has 4 or more Champions.",
+    "id": "objective-war-council",
+    "name": "War Council",
+    "text": "Have 3 or more Champions in your dungeon.",
     "kind": "state",
     "trigger": {
       "op": "championCount",
-      "min": 4
+      "min": 3
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-has-a-stack-of-3-or-more-rooms",
-    "text": "A villain has a stack of 3 or more Rooms.",
+    "id": "objective-tower-of-rooms",
+    "name": "Tower of Rooms",
+    "text": "Have a stack of 3 or more Rooms.",
     "kind": "state",
     "trigger": {
       "op": "stackHeight",
       "min": 3
     },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 1,
+        "text": "Gain 1 soul."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-has-5-minions",
-    "text": "A villain has 5 Minions.",
+    "id": "objective-the-horde",
+    "name": "The Horde",
+    "text": "Have 5 Minions.",
     "kind": "state",
     "trigger": {
       "op": "minionCount",
       "min": 5
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-has-16-terrain-cards-in-their-overworl",
-    "text": "A villain has 16 Terrain cards in their Overworld.",
+    "id": "objective-master-of-the-wilds",
+    "name": "Master of the Wilds",
+    "text": "Have Terrain on all 16 squares of your Overworld.",
     "kind": "state",
     "trigger": {
       "op": "terrainCount",
       "min": 16
     },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 2,
+        "text": "Gain 2 souls."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-has-harvested-12-or-more-souls-in-tota",
-    "text": "A villain has harvested 12 or more souls in total.",
+    "id": "objective-soul-reaper",
+    "name": "Soul Reaper",
+    "text": "Have harvested 12 or more souls in total.",
     "kind": "state",
     "trigger": {
       "op": "soulsHarvestedTotal",
       "min": 12
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 3,
+        "text": "Gain 3 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-has-10-or-more-coins",
-    "text": "A villain has 10 or more Coins.",
+    "id": "objective-counting-house",
+    "name": "Counting House",
+    "text": "Have 10 or more Coins.",
     "kind": "state",
     "trigger": {
       "op": "coins",
       "min": 10
     },
+    "reward": [
+      {
+        "op": "gainTrick",
+        "text": "Gain a Trick (draw 2, keep 1)."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-has-treasure-of-all-four-classes",
-    "text": "A villain has treasure of all four classes.",
+    "id": "objective-every-temptation",
+    "name": "Every Temptation",
+    "text": "Have treasure of all four classes.",
     "kind": "state",
     "trigger": {
       "op": "treasureClasses",
       "min": 4
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-still-has-all-3-villains",
-    "text": "A villain still has all 3 Villains.",
-    "kind": "state",
-    "trigger": {
-      "op": "villainsRemaining",
-      "min": 3
-    },
-    "todo": [
-      "wording",
-      "balance"
-    ]
-  },
-  {
-    "id": "objective-a-villain-has-3-or-more-tainted-items-in-total",
-    "text": "A villain has 3 or more Tainted Items in total.",
+    "id": "objective-relic-hunter",
+    "name": "Relic Hunter",
+    "text": "Have 3 or more Tainted Items in total.",
     "kind": "state",
     "trigger": {
       "op": "taintedItemCount",
       "min": 3
     },
+    "reward": [
+      {
+        "op": "gainMinion",
+        "amount": 1,
+        "text": "Gain 1 Minion."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]
   },
   {
-    "id": "objective-a-villain-has-4-or-more-trap-rooms-on-top",
-    "text": "A villain has 4 or more trap Rooms on top.",
+    "id": "objective-gauntlet-of-traps",
+    "name": "Gauntlet of Traps",
+    "text": "Have 3 or more trap Rooms on top.",
     "kind": "state",
     "trigger": {
       "op": "trapRoomsOnTop",
+      "min": 3
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-beasts-at-home",
+    "name": "Beasts at Home",
+    "text": "Have 4 or more Monsters on their preferred terrain.",
+    "kind": "state",
+    "trigger": {
+      "op": "monstersAtHome",
       "min": 4
     },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
     "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-giant-slayer",
+    "name": "Giant Slayer",
+    "text": "Kill a Legendary Hero in your dungeon.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "tier": "Legendary",
+      "where": "dungeon"
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 3,
+        "text": "Gain 3 Coins."
+      },
+      {
+        "op": "gainSouls",
+        "amount": 1,
+        "text": "Gain 1 soul."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-throne-of-bones",
+    "name": "Throne of Bones",
+    "text": "Your Villain kills a Legendary Hero in a Villain fight.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "tier": "Legendary",
+      "where": "villainFight"
+    },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 3,
+        "text": "Gain 3 souls."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-road-warden",
+    "name": "Road Warden",
+    "text": "Kill a Common Hero in your Overworld.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "tier": "Common",
+      "where": "overworld"
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "text": "Gain 1 Coin."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-trial-by-combat",
+    "name": "Trial by Combat",
+    "text": "Your Villain kills a Paragon Hero in a Villain fight.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "tier": "Paragon",
+      "where": "villainFight"
+    },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 2,
+        "text": "Gain 2 souls."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-wicked-will",
+    "name": "Wicked Will",
+    "text": "Kill a Hero with your Villain's power or a Tainted Item.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "by": "power"
+    },
+    "reward": [
+      {
+        "op": "gainTrick",
+        "text": "Gain a Trick (draw 2, keep 1)."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-bloodbath",
+    "name": "Bloodbath",
+    "text": "Kill three Heroes in one round.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroesKilledInRound",
+      "count": 3
+    },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 3,
+        "text": "Gain 3 souls."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-warlords-trophy",
+    "name": "Warlord's Trophy",
+    "text": "Kill a Paragon Warrior Hero.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "tier": "Paragon",
+      "class": "Warrior"
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-arcane-harvest",
+    "name": "Arcane Harvest",
+    "text": "Kill a Paragon Mage Hero.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "tier": "Paragon",
+      "class": "Mage"
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-fallen-saint",
+    "name": "Fallen Saint",
+    "text": "Kill a Paragon Acolyte Hero.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "tier": "Paragon",
+      "class": "Acolyte"
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-thiefs-end",
+    "name": "Thief's End",
+    "text": "Kill a Paragon Rogue Hero.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "tier": "Paragon",
+      "class": "Rogue"
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-holy-terror",
+    "name": "Holy Terror",
+    "text": "Kill an Acolyte Hero in your Overworld.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "class": "Acolyte",
+      "where": "overworld"
+    },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 1,
+        "text": "Gain 1 soul."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-grand-patron",
+    "name": "Grand Patron",
+    "text": "Hire a Champion costing 5 or more.",
+    "kind": "event",
+    "trigger": {
+      "op": "championHired",
+      "minCost": 5
+    },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 2,
+        "text": "Gain 2 souls."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-treasure-lord",
+    "name": "Treasure Lord",
+    "text": "Buy a Treasure worth 4 or more.",
+    "kind": "event",
+    "trigger": {
+      "op": "treasureBought",
+      "minValue": 4
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "text": "Gain 1 Coin."
+      },
+      {
+        "op": "gainSouls",
+        "amount": 1,
+        "text": "Gain 1 soul."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-master-of-tricks",
+    "name": "Master of Tricks",
+    "text": "Play four Tricks in one round.",
+    "kind": "event",
+    "trigger": {
+      "op": "tricksPlayedInRound",
+      "count": 4
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      },
+      {
+        "op": "gainTrick",
+        "text": "Gain a Trick (draw 2, keep 1)."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-ambush-at-the-gate",
+    "name": "Ambush at the Gate",
+    "text": "Kill a Rogue Hero in your Overworld.",
+    "kind": "event",
+    "trigger": {
+      "op": "heroKilled",
+      "class": "Rogue",
+      "where": "overworld"
+    },
+    "reward": [
+      {
+        "op": "gainMinion",
+        "amount": 1,
+        "text": "Gain 1 Minion."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-full-house",
+    "name": "Full House",
+    "text": "Have a Room in all 5 dungeon spaces.",
+    "kind": "state",
+    "trigger": {
+      "op": "spacesBuilt",
+      "min": 5
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-labyrinth",
+    "name": "Labyrinth",
+    "text": "Have 10 or more Rooms in your dungeon, covered ones included.",
+    "kind": "state",
+    "trigger": {
+      "op": "roomsInDungeon",
+      "min": 10
+    },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 2,
+        "text": "Gain 2 souls."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-deep-foundations",
+    "name": "Deep Foundations",
+    "text": "Have a stack of 5 or more Rooms.",
+    "kind": "state",
+    "trigger": {
+      "op": "stackHeight",
+      "min": 5
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-hazard-country",
+    "name": "Hazard Country",
+    "text": "Have 6 or more Hazard Terrain in your Overworld.",
+    "kind": "state",
+    "trigger": {
+      "op": "hazardCount",
+      "min": 6
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-blighted-lands",
+    "name": "Blighted Lands",
+    "text": "Have 5 or more Status Terrain in your Overworld.",
+    "kind": "state",
+    "trigger": {
+      "op": "statusTerrainCount",
+      "min": 5
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "text": "Gain 1 Coin."
+      },
+      {
+        "op": "gainSouls",
+        "amount": 1,
+        "text": "Gain 1 soul."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-battle-hardened",
+    "name": "Battle-Hardened",
+    "text": "Have Champions with 4 or more levels in total.",
+    "kind": "state",
+    "trigger": {
+      "op": "championLevels",
+      "min": 4
+    },
+    "reward": [
+      {
+        "op": "gainMinion",
+        "amount": 1,
+        "text": "Gain 1 Minion."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-busy-roads",
+    "name": "Busy Roads",
+    "text": "Have 3 or more Heroes in your lands.",
+    "kind": "state",
+    "trigger": {
+      "op": "heroesInLands",
+      "min": 3
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-dragons-bed",
+    "name": "Dragon's Bed",
+    "text": "Have 6 or more Treasure cards in your treasury.",
+    "kind": "state",
+    "trigger": {
+      "op": "treasureCards",
+      "min": 6
+    },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 2,
+        "text": "Gain 2 souls."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-legion",
+    "name": "Legion",
+    "text": "Have 5 Champions in your dungeon.",
+    "kind": "state",
+    "trigger": {
+      "op": "championCount",
+      "min": 5
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 3,
+        "text": "Gain 3 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-grim-harvest",
+    "name": "Grim Harvest",
+    "text": "Have harvested 20 or more souls in total.",
+    "kind": "state",
+    "trigger": {
+      "op": "soulsHarvestedTotal",
+      "min": 20
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 3,
+        "text": "Gain 3 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-treasure-mountain",
+    "name": "Treasure Mountain",
+    "text": "Have 20 or more Coins.",
+    "kind": "state",
+    "trigger": {
+      "op": "coins",
+      "min": 20
+    },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 2,
+        "text": "Gain 2 souls."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-whispers-in-town",
+    "name": "Whispers in Town",
+    "text": "Have 3 or more Minions in Town.",
+    "kind": "state",
+    "trigger": {
+      "op": "minionsInTown",
+      "min": 3
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "text": "Gain 1 Coin."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-wild-kingdom",
+    "name": "Wild Kingdom",
+    "text": "Have 8 or more Monsters on their preferred terrain.",
+    "kind": "state",
+    "trigger": {
+      "op": "monstersAtHome",
+      "min": 8
+    },
+    "reward": [
+      {
+        "op": "gainSouls",
+        "amount": 2,
+        "text": "Gain 2 souls."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-pit-of-despair",
+    "name": "Pit of Despair",
+    "text": "Have 5 trap Rooms on top.",
+    "kind": "state",
+    "trigger": {
+      "op": "trapRoomsOnTop",
+      "min": 5
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 3,
+        "text": "Gain 3 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "objective-lord-of-all-lands",
+    "name": "Lord of All Lands",
+    "text": "Have Terrain of all four types in your Overworld.",
+    "kind": "state",
+    "trigger": {
+      "op": "terrainTypes",
+      "min": 4
+    },
+    "reward": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "text": "Gain 1 Coin."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
       "wording",
       "balance"
     ]

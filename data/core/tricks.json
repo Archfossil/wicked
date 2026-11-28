@@ -2,7 +2,7 @@
   {
     "id": "trick-hex-bolt",
     "name": "Hex Bolt",
-    "copies": 2,
+    "copies": 3,
     "type": "Spell",
     "phases": [
       "adventure"
@@ -29,7 +29,7 @@
   {
     "id": "trick-shadow-step",
     "name": "Shadow Step",
-    "copies": 2,
+    "copies": 3,
     "type": "Spell",
     "phases": [
       "build"
@@ -56,7 +56,7 @@
   {
     "id": "trick-siren-song",
     "name": "Siren Song",
-    "copies": 2,
+    "copies": 3,
     "type": "Spell",
     "phases": [
       "lure"
@@ -85,7 +85,7 @@
   {
     "id": "trick-dark-ward",
     "name": "Dark Ward",
-    "copies": 2,
+    "copies": 3,
     "type": "Spell",
     "phases": [
       "adventure"
@@ -113,7 +113,7 @@
   {
     "id": "trick-rapid-construction",
     "name": "Rapid Construction",
-    "copies": 2,
+    "copies": 3,
     "type": "Construction",
     "phases": [
       "build"
@@ -141,7 +141,7 @@
   {
     "id": "trick-reinforce",
     "name": "Reinforce",
-    "copies": 4,
+    "copies": 5,
     "type": "Construction",
     "phases": [
       "build"
@@ -168,7 +168,7 @@
   {
     "id": "trick-landscaping",
     "name": "Landscaping",
-    "copies": 2,
+    "copies": 3,
     "type": "Construction",
     "phases": [
       "build"
@@ -195,7 +195,7 @@
   {
     "id": "trick-sabotage",
     "name": "Sabotage",
-    "copies": 2,
+    "copies": 3,
     "type": "Deceit",
     "phases": [
       "build"
@@ -222,7 +222,7 @@
   {
     "id": "trick-poach",
     "name": "Poach",
-    "copies": 2,
+    "copies": 3,
     "type": "Deceit",
     "phases": [
       "lure"
@@ -250,7 +250,7 @@
   {
     "id": "trick-spyglass",
     "name": "Spyglass",
-    "copies": 3,
+    "copies": 4,
     "type": "Deceit",
     "phases": [
       "build",
@@ -259,8 +259,9 @@
     "playCost": {},
     "effect": [
       {
-        "op": "learnObjective",
-        "text": "Look at one hidden objective of another player."
+        "op": "peekObjective",
+        "amount": 2,
+        "text": "Look at the top 2 cards of the Objective deck."
       }
     ],
     "flavour": "TODO",
@@ -276,18 +277,19 @@
   {
     "id": "trick-forged-orders",
     "name": "Forged Orders",
-    "copies": 1,
+    "copies": 2,
     "type": "Deceit",
     "phases": [
-      "build"
+      "build",
+      "end"
     ],
     "playCost": {
       "souls": 2
     },
     "effect": [
       {
-        "op": "swapObjective",
-        "text": "Swap one of your objectives with a random one from another player's list."
+        "op": "claimObjective",
+        "text": "Claim a face-up \"have\" Objective you meet right now, without waiting for the End Phase check."
       }
     ],
     "flavour": "TODO",
@@ -303,9 +305,10 @@
   {
     "id": "trick-rewrite-the-prophecy",
     "name": "Rewrite the Prophecy",
-    "copies": 1,
+    "copies": 2,
     "type": "Deceit",
     "phases": [
+      "build",
       "end"
     ],
     "playCost": {
@@ -314,7 +317,7 @@
     "effect": [
       {
         "op": "replaceObjective",
-        "text": "Replace one of your objectives with the top of the Objective deck."
+        "text": "Throw out one face-up Objective. The top of the Objective deck replaces it."
       }
     ],
     "flavour": "TODO",
@@ -330,7 +333,7 @@
   {
     "id": "trick-bloodlust",
     "name": "Bloodlust",
-    "copies": 3,
+    "copies": 4,
     "type": "Empower",
     "phases": [
       "adventure"
@@ -357,7 +360,7 @@
   {
     "id": "trick-rally-the-ranks",
     "name": "Rally the Ranks",
-    "copies": 2,
+    "copies": 3,
     "type": "Empower",
     "phases": [
       "build"
@@ -386,7 +389,7 @@
   {
     "id": "trick-dark-pact",
     "name": "Dark Pact",
-    "copies": 1,
+    "copies": 2,
     "type": "Empower",
     "phases": [
       "end"
@@ -414,7 +417,7 @@
   {
     "id": "trick-misdirection",
     "name": "Misdirection",
-    "copies": 2,
+    "copies": 3,
     "type": "Command",
     "phases": [
       "adventure"
@@ -439,7 +442,7 @@
   {
     "id": "trick-lure-of-gold",
     "name": "Lure of Gold",
-    "copies": 2,
+    "copies": 3,
     "type": "Command",
     "phases": [
       "lure"
@@ -467,7 +470,7 @@
   {
     "id": "trick-stampede",
     "name": "Stampede",
-    "copies": 1,
+    "copies": 2,
     "type": "Command",
     "phases": [
       "build"
@@ -479,6 +482,339 @@
       {
         "op": "custom",
         "text": "Move two Monsters this Build Phase instead of one."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-venom-spit",
+    "name": "Venom Spit",
+    "copies": 2,
+    "type": "Spell",
+    "phases": [
+      "adventure"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "inflictStatus",
+        "status": "Bleeding",
+        "rounds": 1,
+        "text": "One Hero in your lands gains Bleeding for 1 round."
+      }
+    ],
+    "recharge": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-curse-of-weakness",
+    "name": "Curse of Weakness",
+    "copies": 2,
+    "type": "Spell",
+    "phases": [
+      "build"
+    ],
+    "playCost": {
+      "coins": 1
+    },
+    "effect": [
+      {
+        "op": "inflictStatus",
+        "status": "Cursed",
+        "rounds": 2,
+        "text": "One Hero in your lands gains Cursed for 2 rounds."
+      }
+    ],
+    "recharge": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-quicksand",
+    "name": "Quicksand",
+    "copies": 2,
+    "type": "Spell",
+    "phases": [
+      "build"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "inflictStatus",
+        "status": "Slowed",
+        "rounds": 1,
+        "text": "One Hero in your lands gains Slowed for 1 round."
+      }
+    ],
+    "recharge": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-grave-chill",
+    "name": "Grave Chill",
+    "copies": 2,
+    "type": "Spell",
+    "phases": [
+      "adventure"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "addDamage",
+        "amount": 1,
+        "target": "any",
+        "text": "One of your Rooms or Monsters deals +1 damage this round."
+      }
+    ],
+    "recharge": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-soul-siphon",
+    "name": "Soul Siphon",
+    "copies": 3,
+    "type": "Empower",
+    "phases": [
+      "end"
+    ],
+    "playCost": {
+      "souls": 1
+    },
+    "effect": [
+      {
+        "op": "gainCoins",
+        "amount": 3,
+        "text": "Gain 3 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-dark-tithe",
+    "name": "Dark Tithe",
+    "copies": 3,
+    "type": "Empower",
+    "phases": [
+      "build"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "gainCoins",
+        "amount": 2,
+        "text": "Gain 2 Coins."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-iron-will",
+    "name": "Iron Will",
+    "copies": 2,
+    "type": "Empower",
+    "phases": [
+      "adventure"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "villain",
+        "text": "Your Villain rolls +1 die this round."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-hidden-blades",
+    "name": "Hidden Blades",
+    "copies": 2,
+    "type": "Empower",
+    "phases": [
+      "adventure"
+    ],
+    "playCost": {
+      "coins": 1
+    },
+    "effect": [
+      {
+        "op": "addDamage",
+        "amount": 1,
+        "target": "trapRoom",
+        "text": "Your trap Rooms deal +1 damage this round."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-blood-ritual",
+    "name": "Blood Ritual",
+    "copies": 2,
+    "type": "Empower",
+    "phases": [
+      "end"
+    ],
+    "playCost": {
+      "souls": 1
+    },
+    "effect": [
+      {
+        "op": "gainTrick",
+        "amount": 1,
+        "text": "Gain a Trick (draw 2, keep 1)."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-recruit",
+    "name": "Recruit",
+    "copies": 2,
+    "type": "Command",
+    "phases": [
+      "build"
+    ],
+    "playCost": {
+      "coins": 1
+    },
+    "effect": [
+      {
+        "op": "gainMinion",
+        "amount": 2,
+        "text": "Gain 2 Minions."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-whispered-promise",
+    "name": "Whispered Promise",
+    "copies": 3,
+    "type": "Command",
+    "phases": [
+      "lure"
+    ],
+    "playCost": {},
+    "effect": [
+      {
+        "op": "tempt",
+        "amount": 1,
+        "text": "+1 tempt on one Hero in Town."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "trick-cave-in",
+    "name": "Cave-In",
+    "copies": 1,
+    "type": "Deceit",
+    "phases": [
+      "build"
+    ],
+    "playCost": {
+      "souls": 1
+    },
+    "effect": [
+      {
+        "op": "destroyRoom",
+        "text": "Destroy the top Room of one space in another player's dungeon."
       }
     ],
     "flavour": "TODO",

@@ -15,7 +15,9 @@ npm run simulate -- 20 4  # 20 bot-only games at 4 players, with rough balance n
 
 - **Create a game** and share the 4-letter code (or the `?room=CODE` link). Friends join from their own browsers. The host can add bots and change options before starting.
 - **Quick game vs bots:** open `/?bots=3` (1 to 5 bots). Add `&heroes=6` for a short game with a 6-card Hero deck.
-- **The screen:** the centre switches between each player's lands and the **Markets**, and the right panel between your **Villain**, **Hand** and **Objectives**. Both switch by themselves to what your turn needs, and a red **!** marks a tab with something to do. Hover any card to read it in full; open `/art.html` to see all the card art.
+- **The screen:** the centre switches between each player's lands and the **Markets**, and the right panel between your **Villain**, **Hand** and **Objectives**. Both switch by themselves to what your turn needs, and a red **!** marks a tab with something to do. Hover any card, or any Overworld square, to read it in full. **Click a Terrain square** for its details (the Terrain, the Monster's stats as it fights there, the Heroes on it), and **click any Hero** for their character sheet (Health, printed stats and the dice they roll now, status effects with rounds left, class passive, Item, and how close each dungeon is to luring them); open `/art.html` to see all the card art.
+- **A player's lands:** the Overworld board fills the left of the centre. Arrows between squares show the way Heroes walk, and light up where a Hero can step next. Beside the board are a summary (Terrain filled, types, Monsters at home) and **On the road**, the Heroes in these lands and how far each has to go, then the Treasury. The Dungeon is below the board, and waiting Champions, Tainted Items and Minions are below the Dungeon.
+- **Objectives:** the right panel's **Objectives** tab (and the bottom of **Markets**) shows the face-up Objective Market with each card's reward. "Have it" Objectives show every villain's progress (e.g. `Sludge 6/10`), so you can see who is about to claim what. Below that is everyone's claimed count, the race that decides the Overlord. Each player tab shows 🎯 claimed.
 - Refreshing the page reconnects you to your seat. Each browser tab is its own seat, so you can play several seats from one machine to test.
 
 ## Deploy to Render
@@ -58,9 +60,9 @@ Where the code meets an **Open** question it follows the design's stated assumpt
 | Champion whose space is emptied | stays (doesn't fight) | Q-49c |
 | Warrior overflow also weakens creature Rooms | off | Q-59b |
 | Slowed also slows Overworld movement | off | Q-87b |
-| Swapped objectives keep their status | on | Q-76 |
+| Souls from Objective rewards count as harvested | off | Q-78 |
 
-Fixed to the stated assumption (not yet an option): Q-80 (edge moves are forced), Q-33b (loot paid in the End Phase), Q-36d (the Shop's oldest eligible Item), Q-54d (a stolen Item is untainted, and kept only if the Hero is eligible), Q-56a (Mage ignores the *first* status each trip, Rogue skips the first trap Room each trip, Acolyte healing capped at max), Q-75 (tied players share the win), Q-86a (same-distance Heroes go in arrival order).
+Fixed to the stated assumption (not yet an option): Q-80 (edge moves are forced), Q-33b (loot paid in the End Phase), Q-36d (the Shop's oldest eligible Item), Q-54d (a stolen Item is untainted, and kept only if the Hero is eligible), Q-56a (Mage ignores the *first* status each trip, Rogue skips the first trap Room each trip, Acolyte healing capped at max), Q-86a (same-distance Heroes go in arrival order).
 
 **Solo (Q-01a)** runs as a sandbox. Nobody can score your objectives, so the result screen just says the round is over.
 
@@ -79,19 +81,21 @@ None of these is in the design docs yet. They're the simplest workable reading. 
 - Markets drop their oldest card in round 1's Upkeep too, as written.
 
 **Cards and effects**
-- Items don't print a phase for their Tainted (villain) effect. The prototype uses: damage and dice buffs and steering in **Adventure**, statuses and Minions in **Build**, tempts in **Lure**, healing and Coins in **Build or End**, objective peeking in **Build or End**.
+- Items don't print a phase for their Tainted (villain) effect. The prototype uses: damage and dice buffs and steering in **Adventure**, statuses and Minions in **Build**, tempts in **Lure**, healing and Coins in **Build or End**, Objective peeking in **Build or End**.
 - Gaining a Tainted Item puts it in a free sustained slot, otherwise in the treasury. You swap which 2 you sustain in the Build or End Phase. **Giving an Item to another player isn't in yet** (Q-38).
 - A Room with no threat (the Vault) that has a Champion in it: the Champion fights, testing Might.
-- Learning an objective shows you a random one of that player's hidden objectives that you don't know yet.
 - Town Minions with no chosen target tempt the Hero your dungeon has tempted most.
 - Lucky Coin and Crystal Orb reroll automatically, once, when the Hero is losing. The Rogue's trap skip is used automatically on the first trap.
 - Overseer: at its base level each Minion in its Room counts as 1 Gold, and from level 2 as 1 treasure of the Hero's own class. Its level-1 bonus is +1 die per Minion there (max 2).
-- State objectives at game end can only be scored by villains still in the game.
+- Objectives: rewards are paid at once, and a Trick won from a reward is the usual draw 2, keep 1. A "do it" event claims only Objectives that were face-up when it happened, not ones that refill into the market as a result. The Objective cards and their rewards are placeholders.
 
 ## What simulated games say (bots, placeholder numbers)
 
 From `npm run simulate` with the core set. Treat these as hints, not data: the bots are simple.
-- **Games run long:** about 35–45 rounds, against the README's guess of about 20 at 4 players. The Hero deck runs out around round 24, and the last few Heroes then take many rounds to lure and kill.
+- **Game length:** about 32 rounds at 2–6 players (20 to 60), with the 24-card Hero deck each game deals from the 72-Hero pool. That's still longer than the README's guess of about 20 at 4 players: once the Hero deck is empty, the last few Heroes take many rounds to lure and kill.
 - **Heroes almost never win.** Few Villains are vanquished: about 1–2 per game at 4–6 players.
 - **Town Minions are strong.** Each one is +1 tempt every round, so a player with 5 in Town lures almost any Common Hero at once.
-- **The Terrain deck is small.** With 24 Terrain cards, 3 or more players can't come close to filling their grids, so "has 16 Terrain cards" is nearly impossible to score.
+- **Terrain fills up now.** The Terrain and Monster decks went from 24 to 96 cards each. Before, the 24 Terrain cards capped every Overworld in the game combined (about 6 squares each at 4 players, 4 at 6 players). Now bots fill all 16 squares in about 90% of games at 4 players and nearly always at 6. The bots draft Terrain eagerly, though, so the "Master of the Wilds" Objective (Terrain on all 16 squares) may be too easy. Worth watching with people.
+- **Objectives get claimed.** With 60 Objectives, about 7 are claimed per game at 2 players, 11 at 4 and 14 at 6 (between 48 and 54 different ones over 30 games). The winner claims about 5–6, with a lead of 2–3 over second place. The bots don't chase Objectives on purpose (they claim them by accident while playing as before), so these numbers say more about the cards than about strategy.
+- **Deck sizes.** Every deck was grown so games don't run out. Before, the Dungeon, Champion and Treasure markets emptied in every game. Bot games with padded decks measured real demand. Rooms are the hungriest at about 6 a round at 6 players, because players stack a Room most rounds and never give it back. Treasures stay bought, so they run down too. With 358 Rooms and 157 Treasures, no deck ran short in 120 bot games (4 and 6 players); by the numbers they last to about round 60 at 6 players. The game is digital-only, so big decks cost nothing.
+- **Push-back must not repeat every round.** Anything that moves an Overworld Hero back a square and can be used every round (an every-round Villain power or a recharging Tainted Item) can trap a Hero forever: they step forward, get pushed back, and an Acolyte heals as fast as they're hurt. That happened in testing and nothing ended the game (Q-08: no backstop). Shadow Step only recharges every 3 rounds, so Heroes still advance. Keep push-back on slow recharges or one-shot cards.

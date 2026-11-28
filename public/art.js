@@ -583,6 +583,22 @@ const SPEC = {
   "monster-skeleton": { base: "skeleton", pal: { w: "#e8e2d0", W: "#a8a290", k: "#1a1018", m: "#9aa3ad" } },
   "monster-wraith": { base: "wraith", pal: { a: "#5a6a8a", k: "#0a0a14", E: "#8fe8ff", w: "#c8d0e0" } },
   "monster-gargoyle": { base: "gargoyle", pal: { a: "#6a6a78", m: "#5a5048", E: "#ff4060", w: "#e8e2d0" } },
+  "monster-goblin-raiders": { base: "goblin", pal: { a: "#5a8a30", b: "#4a3a5a", E: "#ff4030", w: "#efe8d8" } },
+  "monster-antlered-hunter": { base: "rogue", over: ["horns"], pal: { a: "#3a4a2a", b: "#5a3a1a", s: "#c8a070", k: "#1a1410", m: "#c8b890", e: "#d0ff60" } },
+  "monster-thorn-troll": { base: "troll", pal: { a: "#4a6a2a", b: "#3a2a1a", E: "#ff5050", w: "#c84a4a", k: "#1a2410" } },
+  "monster-lizardfolk-ambusher": { base: "goblin", pal: { a: "#3a7a6a", b: "#5a4a2a", E: "#ffe040", w: "#d8e8c0", k: "#102a24" } },
+  "monster-drowned-dead": { base: "skeleton", pal: { w: "#a8c0a8", W: "#6a8a70", k: "#0a1a14", m: "#3a6a5a" } },
+  "monster-marsh-hydra": { base: "dragon", pal: { a: "#3a6a3a", b: "#7aa050", g: "#b8c870", E: "#ffe040", w: "#e8f0d0", k: "#102010" } },
+  "monster-kobold-miners": { base: "imp", pal: { a: "#8a5a3a", b: "#5a3a2a", E: "#ffd040", w: "#efe8d8", g: "#e6b84a", k: "#2a1a10" } },
+  "monster-storm-wyvern": { base: "dragon", pal: { a: "#3a4a7a", b: "#7a9ad0", g: "#d0e0ff", E: "#a0f0ff", w: "#ffffff", k: "#101830" } },
+  "monster-ice-wraith": { base: "wraith", pal: { a: "#8ab0d0", k: "#0a1424", E: "#e0ffff", w: "#f0f8ff" } },
+  "monster-ghoul": { base: "goblin", pal: { a: "#8a9a8a", b: "#3a3030", E: "#ff3040", w: "#e8e2d0", k: "#1a1a1a" } },
+  "monster-animated-armour": { base: "armored", pal: { n: "#6a6a78", m: "#8a8a98", a: "#3a3448", E: "#80c0ff", g: "#5a5a6a", k: "#1a1820", s: "#101018" } },
+  "monster-wild-boar": { base: "wolf", pal: { a: "#6a4a2a", w: "#e8e2d0", E: "#ff4030", k: "#2a1a10" } },
+  "monster-bog-serpent": { base: "dragon", pal: { a: "#2a4a3a", b: "#5a7a4a", g: "#8aa060", E: "#ffe040", w: "#d8e8c0", k: "#0a1a10" } },
+  "monster-rock-golem": { base: "troll", pal: { a: "#7a7468", b: "#5a5448", E: "#80e0ff", w: "#c8c0b0", k: "#2a2620" } },
+  "monster-banshee": { base: "wraith", pal: { a: "#c8d0e0", k: "#2a3040", E: "#ff8090", w: "#ffffff" } },
+  "monster-cult-fanatic": { base: "acolyte", over: ["hood"], pal: { a: "#5a1a2a", b: "#2a1018", g: "#c84a4a", s: "#d8b098", e: "#ff4040", k: "#1a0a10" } },
   // champions
   "champion-orc-captain": { base: "troll", over: ["helm"], pal: { a: "#5a8a3a", b: "#5a3a2a", E: "#ff3020", k: "#2a1a10", m: "#9aa3ad" } },
   "champion-goblin-trapmaster": { base: "goblin", pal: { a: "#7aa040", b: "#6a4a2a", E: "#ffd040", w: "#efe8d8" } },
@@ -698,6 +714,26 @@ function bone(p, x, y, c = "#e8e2d0") { p.rect(x + 1, y, 4, 1, c); p.px(x, y - 1
 function barrel(p, x, y, h = 9) { p.rect(x, y, 7, h, "#6a4424"); p.rect(x + 1, y, 1, h, "#8a5a30"); p.rect(x, y + 1, 7, 1, "#3a3036"); p.rect(x, y + h - 2, 7, 1, "#3a3036"); p.rect(x + 5, y, 1, h, "#4a2c18"); }
 
 const ROOMS = {
+  "room-bone-pit": (p, r) => { dungeon(p, r); p.ellipse(32, 29, 18, 5, "#120a10"); for (let i = 0; i < 9; i++) bone(p, 18 + Math.floor(r() * 26), 26 + Math.floor(r() * 5)); skull(p, 30, 25); },
+  "room-crypt": (p, r) => { dungeon(p, r, { wall: "#3a3a44" }); p.rect(20, 18, 24, 10, "#6a6474"); p.rect(20, 18, 24, 2, "#8a8494"); p.rect(30, 12, 4, 6, "#8a8494"); p.rect(28, 14, 8, 2, "#8a8494"); candle(p, 16, 22); candle(p, 47, 22); p.glow(32, 22, 16, "#a080ff", 0.08); },
+  "room-kennels": (p, r) => { dungeon(p, r); for (const x of [8, 26, 44]) { p.rect(x, 14, 14, 14, "#1a1218"); for (let k = 0; k < 14; k += 3) p.rect(x + k, 14, 1, 14, "#8a8f99"); p.px(x + 5, 22, "#ffd040"); p.px(x + 8, 22, "#ffd040"); } },
+  "room-hall-of-banners": (p, r) => { dungeon(p, r); for (const x of [10, 24, 38, 52]) { p.rect(x, 3, 1, 18, "#7a5230"); p.rect(x + 1, 4, 7, 10, "#8a1a2a"); p.rect(x + 1, 14, 3, 2, "#8a1a2a"); p.rect(x + 5, 14, 3, 2, "#8a1a2a"); } coinPile(p, r, 32, 34, 14, 4); gem(p, 32, 27, 2, "#d9434f"); },
+  "room-star-chamber": (p, r) => { p.rect(0, 0, ART_W, ART_H, "#0e0c20"); for (let i = 0; i < 30; i++) p.px(Math.floor(r() * ART_W), Math.floor(r() * 26), pickOf(r, ["#ffffff", "#a0c0ff", "#ffe0a0"])); p.ellipse(32, 30, 22, 4, "#2a2440"); coinPile(p, r, 32, 34, 14, 4); gem(p, 32, 27, 2, "#4b7def"); p.glow(32, 14, 14, "#6c95f0", 0.1); },
+  "room-saints-tomb": (p, r) => { dungeon(p, r, { wall: "#4a4448" }); p.rect(22, 16, 20, 12, "#a8a090"); p.rect(22, 16, 20, 2, "#c8c0b0"); p.rect(31, 6, 2, 9, "#e6b84a"); p.rect(28, 8, 8, 2, "#e6b84a"); coinPile(p, r, 32, 34, 12, 4); gem(p, 32, 27, 2, "#f0d860"); p.glow(32, 12, 12, "#ffe0a0", 0.12); },
+  "room-thieves-cache": (p, r) => { dungeon(p, r, { torches: false }); barrel(p, 10, 20); barrel(p, 46, 20); p.rect(24, 22, 16, 10, "#5a3a20"); p.rect(24, 22, 16, 2, "#7a5230"); p.rect(31, 25, 2, 3, "#e6b84a"); coinPile(p, r, 32, 22, 10, 3); gem(p, 32, 18, 2, "#3ab37d"); },
+  "room-poison-dart-hall": (p, r) => { dungeon(p, r); for (let y = 8; y < 24; y += 5) { p.rect(2, y, 3, 2, "#2a2026"); p.rect(59, y + 2, 3, 2, "#2a2026"); p.line(8, y + 1, 18, y + 1, "#9aff60"); } p.glow(20, 16, 8, "#9aff60", 0.08); },
+  "room-collapsing-ceiling": (p, r) => { dungeon(p, r); for (let i = 0; i < 8; i++) { const x = 10 + Math.floor(r() * 44), y = 2 + Math.floor(r() * 18); p.rect(x, y, 4, 3, "#6a6070"); p.px(x, y, "#8a8090"); } for (let i = 0; i < 6; i++) p.line(20 + i * 5, 0, 18 + i * 5, 6, "#1a1018"); },
+  "room-swinging-blades": (p, r) => { dungeon(p, r); for (const x of [16, 32, 48]) { p.line(x, 0, x + 6, 16, "#8a8f99"); p.poly([[x + 2, 16], [x + 12, 14], [x + 8, 20]], "#dfe6ee"); } },
+  "room-slime-pit": (p, r) => { dungeon(p, r); p.ellipse(32, 30, 20, 5, "#3a8a2a"); p.ellipse(32, 29, 14, 3, "#6aca4a"); for (let i = 0; i < 5; i++) p.disc(18 + i * 7, 28 + (i % 2), 1.4, "#a0ff80"); p.glow(32, 28, 16, "#80ff60", 0.08); },
+  "room-necropolis": (p, r) => { dungeon(p, r, { wall: "#2e2a36", flame: "#80ff80" }); for (const x of [8, 22, 36, 50]) { p.rect(x, 18, 8, 10, "#5a5468"); p.rect(x + 2, 22, 4, 6, "#0a080e"); skull(p, x + 2, 14); } p.glow(32, 20, 22, "#80ff80", 0.06); },
+  "room-arena": (p, r) => { dungeon(p, r); p.ellipse(32, 28, 26, 6, "#6a5a3a"); p.ellipse(32, 28, 22, 4, "#8a7a4a"); for (const x of [20, 44]) { p.line(x, 26, x + 4, 18, "#9aa3ad"); } skull(p, 30, 26); },
+  "room-sacrificial-chamber": (p, r) => { dungeon(p, r, { wall: "#3e2a32" }); p.rect(20, 20, 24, 8, "#5a4a4a"); p.rect(20, 20, 24, 2, "#a0182a"); candle(p, 18, 18); candle(p, 45, 18); p.glow(32, 22, 14, "#ff2030", 0.1); },
+  "room-counting-room": (p, r) => { dungeon(p, r); p.rect(14, 20, 36, 3, "#5a3a20"); p.rect(16, 23, 2, 9, "#4a2c18"); p.rect(46, 23, 2, 9, "#4a2c18"); coinPile(p, r, 26, 20, 8, 3); coinPile(p, r, 40, 20, 6, 2); candle(p, 33, 15); },
+  "room-hatchery": (p, r) => { dungeon(p, r); for (let i = 0; i < 7; i++) { const x = 12 + i * 6, y = 27 + (i % 2) * 2; p.ellipse(x, y, 3, 4, "#c8c0a0"); p.px(x - 1, y - 2, "#e8e2d0"); } p.glow(32, 26, 18, "#ffd060", 0.06); },
+  "room-warded-door": (p, r) => { dungeon(p, r); p.rect(22, 6, 20, 26, "#4a2c18"); p.rect(22, 6, 20, 2, "#6a4424"); for (let a = 0; a < 6.28; a += 0.8) p.px(32 + Math.cos(a) * 6, 18 + Math.sin(a) * 6, "#a0c0ff"); p.glow(32, 18, 10, "#80a0ff", 0.14); },
+  "room-illusion-hall": (p, r) => { dungeon(p, r, { wall: "#3a2a4a" }); for (let i = 0; i < 5; i++) p.rect(8 + i * 11, 6, 8, 20, rgba("#c080ff", 0.12 + i * 0.03)); p.glow(32, 16, 20, "#c080ff", 0.08); },
+  "room-dragons-lair": (p, r) => { dungeon(p, r, { wall: "#3a2a24", flame: "#ff6020" }); coinPile(p, r, 32, 35, 40, 10); skull(p, 14, 28); bone(p, 46, 30); p.glow(32, 24, 22, "#ff8030", 0.1); },
+  "room-bat-roost": (p, r) => { dungeon(p, r, { torches: false }); for (let i = 0; i < 9; i++) { const x = 8 + Math.floor(r() * 48), y = 3 + Math.floor(r() * 10); p.px(x, y, "#1a1018"); p.line(x - 2, y - 1, x, y, "#1a1018"); p.line(x, y, x + 2, y - 1, "#1a1018"); p.px(x, y + 1, "#ff4040"); } },
   "room-guard-post": (p, r) => {
     dungeon(p, r);
     p.rect(26, 2, 12, 1, "#7a5230");
@@ -962,6 +998,30 @@ const TERRAIN_FEATURE = {
   "terrain-eagle-cliffs": (p, r) => { p.poly([[40, 36], [44, 14], [52, 10], [64, 9], [64, 36]], "#3a3a44"); p.rect(44, 13, 20, 1, "#5a5a66"); const ex = 22, ey = 7; p.line(ex - 6, ey - 2, ex, ey + 1, "#1a1418"); p.line(ex, ey + 1, ex + 6, ey - 2, "#1a1418"); p.line(ex - 5, ey - 3, ex - 1, ey, "#2a2228"); p.line(ex + 1, ey, ex + 5, ey - 3, "#2a2228"); p.px(ex, ey + 2, "#e8e2d0"); },
   "terrain-cursed-barrow": (p, r) => { p.ellipse(32, 28, 18, 9, "#3a4a36"); p.rect(14, 28, 36, 8, "#3a4a36"); p.rect(28, 22, 8, 8, "#6a6078"); p.rect(29, 23, 6, 7, "#0a080e"); p.glow(32, 28, 16, "#80ff80", 0.07, 5); skull(p, 45, 31); },
   "terrain-collapsed-keep": (p, r) => { p.rect(22, 4, 16, 28, "#5a5268"); p.rect(22, 4, 2, 28, "#6a6278"); p.poly([[22, 4], [26, 1], [29, 5], [33, 0], [38, 3], [38, 6], [22, 6]], SKY.Ruins[1]); p.rect(26, 10, 2, 4, "#120a16"); p.rect(32, 16, 2, 4, "#120a16"); p.rect(28, 25, 4, 7, "#120a16"); for (let i = 0; i < 6; i++) p.rect(16 + Math.floor(r() * 30), 31 + Math.floor(r() * 3), 3, 2, "#6a6078"); },
+  "terrain-strangling-vines": (p, r) => { for (let i = 0; i < 5; i++) { let x = 8 + i * 12, y = 0; for (let k = 0; k < 14; k++) { const nx = x + (k % 2 ? 1 : -1), ny = y + 2; p.line(x, y, nx, ny, "#2a5a2a"); if (k % 3 === 0) p.px(nx + 1, ny, "#4a8a3a"); x = nx; y = ny; } } },
+  "terrain-snare-thicket": (p, r) => { for (const [x, y] of [[18, 30], [44, 32]]) { p.ellipse(x, y, 5, 1.5, "#8a6a3a"); p.ellipse(x, y, 3, 0.8, "#2a4a2a"); p.line(x, y - 1, x, y - 10, "#6a4a2a"); } p.line(18, 20, 44, 22, "#c8b890"); },
+  "terrain-bramble-maze": (p, r) => { for (let i = 0; i < 7; i++) { const x = 4 + i * 9, h = 6 + Math.floor(r() * 6); p.rect(x, 34 - h, 7, h, "#1e3a1e"); for (let k = 0; k < 4; k++) p.px(x + Math.floor(r() * 7), 34 - Math.floor(r() * h), "#c84a4a"); } },
+  "terrain-hanging-oak": (p, r) => { p.rect(28, 10, 4, 24, "#3a2a1a"); p.poly([[14, 12], [30, 2], [48, 10], [40, 14], [20, 15]], "#1e3a24"); p.line(42, 12, 42, 22, "#c8b890"); p.rect(41, 22, 3, 5, "#4a3a3a"); p.px(42, 21, "#e8e2d0"); },
+  "terrain-fey-ring": (p, r) => { for (let a = 0; a < 6.28; a += 0.55) { const x = 32 + Math.cos(a) * 14, y = 29 + Math.sin(a) * 4; p.rect(x - 1, y - 2, 3, 2, "#e0d0ff"); p.px(x, y, "#efe4c8"); } p.glow(32, 26, 14, "#d0a0ff", 0.14, 6); for (let i = 0; i < 8; i++) p.px(20 + Math.floor(r() * 24), 14 + Math.floor(r() * 10), "#fff0ff"); },
+  "terrain-drowning-pool": (p, r) => { p.ellipse(32, 29, 18, 5, "#0e2a2a"); p.ellipse(32, 29, 12, 3, "#0a1e20"); for (const x of [26, 32, 38]) p.line(x, 29, x + 1, 25, "#a8c0a8"); p.px(32, 24, "#e8e2d0"); },
+  "terrain-bloodfly-swarm": (p, r) => { p.glow(32, 18, 16, "#ff4040", 0.06); for (let i = 0; i < 40; i++) { const a = r() * 6.28, d = r() * 14; p.px(32 + Math.cos(a) * d * 1.4, 18 + Math.sin(a) * d * 0.6, pickOf(r, ["#c02030", "#1a0a0a", "#ff6060"])); } },
+  "terrain-lantern-bog": (p, r) => { for (const [x, y] of [[14, 18], [30, 14], [48, 20]]) { p.glow(x, y, 6, "#ffe080", 0.18); p.disc(x, y, 1.2, "#fff4c0"); p.px(x, y + 2, "#ffe080"); } },
+  "terrain-rotting-causeway": (p, r) => { for (let x = 0; x < ART_W; x += 5) { const y = 26 + Math.round(Math.sin(x / 9) * 2); p.rect(x, y, 4, 2, x % 15 === 0 ? "#3a2a1a" : "#6a4a2a"); p.rect(x + 1, y + 2, 1, 3, "#3a2a1a"); } },
+  "terrain-witchs-stilt-hut": (p, r) => { for (const x of [24, 30, 36]) p.rect(x, 22, 1, 12, "#3a2a1a"); p.rect(22, 12, 17, 10, "#4a3a2a"); p.poly([[20, 12], [30, 3], [41, 12]], "#3a3a26"); p.rect(28, 15, 3, 4, "#d0ff60"); p.glow(29, 17, 6, "#d0ff60", 0.12); },
+  "terrain-avalanche-slope": (p, r) => { p.poly([[0, 20], [64, 4], [64, 30], [0, 34]], "#d8e4f0"); for (let i = 0; i < 9; i++) p.disc(10 + Math.floor(r() * 44), 14 + Math.floor(r() * 14), 1.5 + r() * 2, "#f4f8ff"); },
+  "terrain-dizzying-heights": (p, r) => { p.rect(0, 24, 22, 12, "#3a3e50"); p.rect(42, 22, 22, 14, "#3a3e50"); p.rect(22, 30, 20, 6, "#0a0c18"); p.line(22, 24, 42, 22, "#8a6a3a"); p.line(22, 25, 42, 23, "#6a4a2a"); for (let x = 24; x < 42; x += 3) p.px(x, 26 - Math.floor((x - 22) / 10), "#c8b890"); },
+  "terrain-knife-edge-ridge": (p, r) => { p.poly([[0, 34], [32, 12], [64, 34]], "#3a3e50"); p.line(0, 34, 32, 12, "#e8eef8"); p.line(32, 12, 64, 34, "#8a90a8"); },
+  "terrain-storm-peak": (p, r) => { p.poly([[18, 34], [34, 8], [52, 34]], "#3a3e50"); p.rect(0, 0, ART_W, 6, "#20263a"); let x = 40, y = 2; for (let k = 0; k < 6; k++) { const nx = x + (k % 2 ? 3 : -2), ny = y + 2; p.line(x, y, nx, ny, "#e0f0ff"); x = nx; y = ny; } p.glow(40, 8, 8, "#a0d0ff", 0.18); },
+  "terrain-silent-monastery": (p, r) => { p.rect(22, 12, 20, 14, "#6a6070"); p.poly([[20, 12], [32, 4], [44, 12]], "#5a3a3a"); p.rect(30, 18, 4, 8, "#120a16"); p.rect(31, 6, 2, 5, "#e8d8a0"); p.rect(29, 7, 6, 1, "#e8d8a0"); p.glow(32, 8, 6, "#ffe0a0", 0.12); },
+  "terrain-haunted-ossuary": (p, r) => { p.rect(14, 14, 36, 20, "#2a2230"); for (let y = 16; y < 32; y += 4) for (let x = 16; x < 48; x += 6) skull(p, x, y, "#c8c0b0"); p.glow(32, 22, 16, "#a0ffe0", 0.07); },
+  "terrain-crumbling-stair": (p, r) => { for (let i = 0; i < 6; i++) p.rect(10 + i * 7, 32 - i * 4, 10, 4, i === 3 ? SKY.Ruins[1] : "#6a6078"); for (let i = 0; i < 5; i++) p.rect(30 + Math.floor(r() * 14), 30 + Math.floor(r() * 4), 2, 2, "#5a5068"); },
+  "terrain-warded-gate": (p, r) => { column(p, 18, 34, 22, 5, "#7a7088", false); column(p, 41, 34, 22, 5, "#7a7088", false); p.rect(17, 10, 30, 3, "#6a6078"); p.rect(23, 14, 18, 20, "rgba(120,160,255,0.25)"); for (let y = 16; y < 34; y += 5) p.line(25, y, 39, y + 2, "#a0c0ff"); p.glow(32, 24, 12, "#80a0ff", 0.12); },
+  "terrain-plague-pit": (p, r) => { p.ellipse(32, 30, 16, 4, "#1a120a"); for (let i = 0; i < 4; i++) bone(p, 20 + i * 6, 29 + (i % 2)); p.glow(32, 26, 14, "#a0c040", 0.1, 5); for (let i = 0; i < 6; i++) p.px(20 + Math.floor(r() * 24), 18 + Math.floor(r() * 8), "#c0e060"); },
+  "terrain-shifting-halls": (p, r) => { for (let i = 0; i < 4; i++) { const x = 6 + i * 15, y = 12 + (i % 2) * 3; p.rect(x, y, 10, 22 - (i % 2) * 3, "#5a5268"); p.rect(x + 3, y + 8, 4, 22 - (i % 2) * 3 - 8, "#120a16"); } p.glow(32, 22, 20, "#c080ff", 0.06); },
+  "terrain-whispering-pines": (p, r) => { for (let i = 0; i < 5; i++) { const x = 8 + i * 12; p.glow(x, 14, 5, "#a0c0ff", 0.12); p.px(x, 14, "#e0f0ff"); } },
+  "terrain-gator-shallows": (p, r) => { for (const [x, y] of [[20, 28], [42, 30]]) { p.rect(x, y, 10, 2, "#3a5a2a"); p.px(x + 2, y - 1, "#ffe040"); p.px(x + 4, y - 1, "#ffe040"); for (let k = 0; k < 10; k += 2) p.px(x + k, y, "#2a4a1a"); } },
+  "terrain-wyrms-gorge": (p, r) => { p.poly([[24, 36], [30, 18], [34, 18], [40, 36]], "#0a080e"); for (let y = 20; y < 36; y += 4) p.px(32 + (y % 8 ? 1 : -1), y, "#ff4030"); p.glow(32, 30, 10, "#ff4030", 0.08); },
+  "terrain-toppled-idol": (p, r) => { p.poly([[18, 32], [44, 26], [46, 30], [20, 36]], "#7a7088"); skull(p, 42, 24, "#a098b0"); p.glow(40, 26, 10, "#c080ff", 0.1); },
   "terrain-bleeding-stones": (p, r) => { p.glow(32, 22, 18, "#ff2030", 0.08); for (const [x, h] of [[18, 14], [29, 18], [41, 13]]) { p.rect(x, 32 - h, 5, h, "#6a6474"); p.rect(x, 32 - h, 1, h, "#8a8494"); p.rect(x + 2, 32 - h + 2, 1, h - 4, "#a0182a"); p.px(x + 2, 33, "#a0182a"); } },
 };
 function terrainScene(d, withFeature = true) {
@@ -1012,6 +1072,22 @@ function tableBackdrop(p, r, cloth = "#2a1a3a") {
   p.glow(32, 20, 22, "#ffe8c0", 0.07, 16);
 }
 const ITEMS = {
+  "item-battleaxe": (p) => { p.line(26, 32, 38, 6, "#7a5230"); p.line(27, 32, 39, 6, "#5a3a20"); p.poly([[36, 4], [46, 8], [44, 16], [38, 12]], "#c9cfd6"); p.poly([[36, 4], [30, 6], [32, 13], [38, 12]], "#9aa3ad"); },
+  "item-blessed-mail": (p) => { p.rect(22, 6, 20, 24, "#9aa3ad"); for (let y = 7; y < 30; y += 2) for (let x = 23 + (y % 4 ? 1 : 0); x < 42; x += 2) p.px(x, y, "#c9cfd6"); p.rect(31, 10, 2, 12, "#e6b84a"); p.rect(28, 13, 8, 2, "#e6b84a"); p.glow(32, 16, 12, "#ffe890", 0.1); },
+  "item-war-banner": (p) => { p.rect(22, 3, 2, 30, "#7a5230"); p.rect(24, 4, 18, 14, "#8a1a2a"); p.poly([[24, 18], [33, 18], [24, 24]], "#8a1a2a"); p.poly([[33, 18], [42, 18], [42, 24]], "#8a1a2a"); skull(p, 31, 8, "#e6b84a"); },
+  "item-scouts-map": (p) => { p.rect(18, 8, 28, 20, "#d8c8a0"); p.rect(18, 8, 28, 1, "#a89070"); p.line(22, 24, 30, 14, "#8a1a2a"); p.line(30, 14, 40, 20, "#8a1a2a"); p.px(40, 20, "#2a1a10"); p.px(41, 19, "#2a1a10"); p.px(39, 21, "#2a1a10"); },
+  "item-wand-of-sparks": (p, r) => { p.line(22, 30, 40, 10, "#5a3a20"); p.glow(41, 9, 8, "#ffe060", 0.2); for (let i = 0; i < 8; i++) p.px(36 + Math.floor(r() * 12), 4 + Math.floor(r() * 10), "#fff4a0"); },
+  "item-runed-circlet": (p) => { p.ellipse(32, 18, 12, 6, "#c9a048"); p.ellipse(32, 18, 10, 4, "#1a1020"); for (const x of [22, 27, 32, 37, 42]) p.px(x, 13 + Math.abs(x - 32) / 4, "#9fe8ff"); gem(p, 32, 12, 2, "#9b6cf0"); },
+  "item-tome-of-secrets": (p) => { p.rect(21, 8, 22, 20, "#efe4c8"); p.rect(20, 7, 22, 20, "#4a1a3a"); p.rect(20, 7, 3, 20, "#2a0a1a"); p.rect(28, 13, 8, 8, "#1a0a10"); p.px(30, 16, "#ff4060"); p.px(33, 16, "#ff4060"); p.glow(32, 17, 9, "#ff4060", 0.08); },
+  "item-mirror-amulet": (p) => { p.line(26, 4, 32, 12, "#c9a048"); p.line(38, 4, 32, 12, "#c9a048"); p.disc(32, 19, 7, "#c9a048"); p.disc(32, 19, 5, "#a8c8e0"); p.disc(30, 17, 1.5, "#ffffff"); },
+  "item-holy-water": (p) => { p.rect(28, 6, 8, 4, "#a89070"); p.rect(26, 10, 12, 18, "#a8d0e0"); p.rect(27, 14, 10, 13, "#5a9ad0"); p.rect(31, 16, 2, 8, "#ffffff"); p.rect(29, 19, 6, 2, "#ffffff"); p.glow(32, 18, 10, "#a0d8ff", 0.12); },
+  "item-pilgrims-staff": (p) => { p.rect(31, 4, 2, 28, "#7a5230"); p.ellipse(32, 6, 4, 3, "#7a5230"); p.ellipse(32, 6, 2, 1, "#1a1020"); p.rect(28, 14, 8, 3, "#8a6a4a"); },
+  "item-sacred-text": (p) => { p.rect(20, 10, 24, 16, "#efe4c8"); p.rect(31, 10, 2, 16, "#a89070"); for (let y = 13; y < 24; y += 3) { p.rect(22, y, 8, 1, "#5a4a3a"); p.rect(34, y, 8, 1, "#5a4a3a"); } p.glow(32, 16, 12, "#ffe890", 0.1); },
+  "item-sunstone": (p) => { p.glow(32, 16, 14, "#ffc040", 0.2); gem(p, 32, 16, 7, "#ffb030"); p.disc(30, 14, 1.5, "#fff4c0"); },
+  "item-throwing-knives": (p) => { for (const dx of [-8, 0, 8]) { p.line(32 + dx, 28, 32 + dx + 4, 8, "#c9cfd6"); p.rect(31 + dx, 27, 3, 5, "#3a2a1a"); } },
+  "item-smoke-bombs": (p) => { for (const [x, y] of [[24, 24], [36, 26]]) { p.disc(x, y, 5, "#2a2a30"); p.px(x - 2, y - 2, "#5a5a68"); p.rect(x, y - 7, 1, 3, "#a89070"); } for (let i = 0; i < 4; i++) p.disc(28 + i * 4, 10 - i, 3, "rgba(200,200,210,0.25)"); },
+  "item-poisoned-dagger": (p) => { p.poly([[31, 4], [34, 4], [33, 22], [32, 22]], "#c9cfd6"); p.rect(27, 22, 11, 2, "#5a3a20"); p.rect(31, 24, 3, 7, "#3a2a1a"); p.px(32, 8, "#80ff60"); p.px(33, 12, "#80ff60"); p.glow(32, 12, 8, "#80ff60", 0.12); },
+  "item-forged-papers": (p) => { p.rect(20, 8, 20, 22, "#e8dcc0"); p.rect(24, 6, 20, 22, "#efe4c8"); for (let y = 10; y < 22; y += 3) p.rect(26, y, 14, 1, "#5a4a3a"); p.disc(38, 24, 3, "#a0182a"); },
   "item-sword-of-dawn": (p) => { p.glow(32, 14, 12, "#ffd890", 0.15); p.rect(31, 2, 3, 22, "#c9cfd6"); p.rect(32, 2, 1, 22, "#ffffff"); p.px(32, 1, "#ffffff"); p.rect(25, 24, 15, 2, "#e6b84a"); p.rect(31, 26, 3, 5, "#6a4424"); p.disc(32.5, 32, 2, "#e6b84a"); },
   "item-tower-shield": (p) => { p.rect(22, 4, 21, 26, "#8a8f99"); p.rect(24, 6, 17, 22, "#2f4a8a"); p.rect(31, 6, 3, 22, "#e6b84a"); p.rect(24, 13, 17, 3, "#e6b84a"); p.rect(22, 30, 21, 1, "#5a5e68"); p.rect(23, 4, 1, 26, "#c9cfd6"); },
   "item-warhorn": (p) => { for (let t = 0; t <= 1; t += 0.03) { const x = 16 + t * 30, y = 26 - Math.sin(t * Math.PI) * 10 - t * 6, s = 1 + t * 3.5; p.disc(x, y, s, t > 0.92 ? "#c9a048" : mix("#e8dcc0", "#a89070", t)); } p.rect(26, 17, 1, 6, "#c9a048"); p.rect(37, 12, 1, 8, "#c9a048"); p.disc(46, 14, 2.5, "#2a1e14"); },
@@ -1038,7 +1114,7 @@ function treasureScene(d) {
   const p = new Pic(ART_W, ART_H), r = rng(d.id);
   dungeon(p, r, { wall: "#3e3a44", torches: false, floor: "#2e2a34" });
   p.glow(32, 26, 24, "#ffd060", 0.1, 14);
-  const big = /legend|hoard/.test(d.id), mid = /prize|pile/.test(d.id);
+  const big = /legend|hoard|relic|ransom/.test(d.id), mid = /prize|pile/.test(d.id);
   const w = big ? 46 : mid ? 32 : 20, h = big ? 15 : mid ? 10 : 6;
   coinPile(p, r, 32, 35, w, h);
   const gc = CLASS_GEM[d.type] ?? "#e6b84a";

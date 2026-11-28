@@ -29,7 +29,7 @@ export function playOut(state, { maxActions = 20000, onReject } = {}) {
 }
 
 if (process.argv[1]?.endsWith("simulate.mjs")) {
-  const stats = { rounds: [], heroesWin: 0, rejects: 0, vanquished: 0, eliminated: 0, souls: [] };
+  const stats = { rounds: [], heroesWin: 0, rejects: 0, vanquished: 0, eliminated: 0, souls: [], claimed: [], winnerClaimed: [], margins: [], sharedWins: 0, claimedBy: new Map() };
   const rejectReasons = new Map();
   for (let g = 0; g < games; g++) {
     const seats = Array.from({ length: players }, (_, i) => ({ name: `Bot ${i + 1}`, isBot: true }));
@@ -42,12 +42,20 @@ if (process.argv[1]?.endsWith("simulate.mjs")) {
     stats.vanquished += state.players.reduce((n, p) => n + p.villains.filter((v) => v.vanquished).length, 0);
     stats.eliminated += state.players.filter((p) => p.eliminated).length;
     stats.souls.push(...state.players.map((p) => p.soulsTotal));
+    stats.claimed.push(state.players.reduce((n, p) => n + p.claimed.length, 0));
+    for (const p of state.players) for (const c of p.claimed) stats.claimedBy.set(c.id, (stats.claimedBy.get(c.id) ?? 0) + 1);
+    const st = state.result.standings ?? [];
+    if (st.length) { stats.winnerClaimed.push(st[0].objectives); if (st.length > 1) stats.margins.push(st[0].objectives - st[1].objectives); }
+    if (state.result.winners?.length > 1) stats.sharedWins++;
   }
   const avg = (a) => (a.reduce((x, y) => x + y, 0) / a.length).toFixed(1);
   console.log(`${games} games, ${players} players`);
   console.log(`  rounds: avg ${avg(stats.rounds)}, min ${Math.min(...stats.rounds)}, max ${Math.max(...stats.rounds)}`);
   console.log(`  heroes won: ${stats.heroesWin}; villains vanquished per game: ${(stats.vanquished / games).toFixed(1)}; players eliminated per game: ${(stats.eliminated / games).toFixed(1)}`);
   console.log(`  souls harvested per player: avg ${avg(stats.souls)}`);
+  console.log(`  objectives claimed per game: avg ${avg(stats.claimed)}; winner's objectives: avg ${avg(stats.winnerClaimed)}${stats.margins.length ? `; lead over 2nd: avg ${avg(stats.margins)}` : ""}; shared wins: ${stats.sharedWins}`);
+  const never = [...stats.claimedBy].length;
+  console.log(`  objectives most claimed: ${[...stats.claimedBy].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([k, v]) => `${k.replace("objective-", "")} ${v}`).join(", ")}; distinct ever claimed: ${never}`);
   console.log(`  rejected bot actions: ${stats.rejects}`);
   for (const [k, v] of [...rejectReasons].sort((a, b) => b[1] - a[1]).slice(0, 8)) console.log(`    ${v}× ${k}`);
 }

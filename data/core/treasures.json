@@ -2,7 +2,7 @@
   {
     "id": "treasure-warrior-trinket",
     "name": "Warrior Trinket",
-    "copies": 2,
+    "copies": 14,
     "type": "Warrior",
     "value": 1,
     "soulThreshold": 0,
@@ -19,7 +19,7 @@
   {
     "id": "treasure-warrior-prize",
     "name": "Warrior Prize",
-    "copies": 1,
+    "copies": 9,
     "type": "Warrior",
     "value": 2,
     "soulThreshold": 3,
@@ -36,7 +36,7 @@
   {
     "id": "treasure-warrior-legend",
     "name": "Warrior Legend",
-    "copies": 1,
+    "copies": 6,
     "type": "Warrior",
     "value": 3,
     "soulThreshold": 6,
@@ -51,9 +51,26 @@
     ]
   },
   {
+    "id": "treasure-warrior-relic",
+    "name": "Warrior Relic",
+    "copies": 3,
+    "type": "Warrior",
+    "value": 4,
+    "soulThreshold": 9,
+    "coinCost": 5,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "treasure-mage-trinket",
     "name": "Mage Trinket",
-    "copies": 2,
+    "copies": 14,
     "type": "Mage",
     "value": 1,
     "soulThreshold": 0,
@@ -70,7 +87,7 @@
   {
     "id": "treasure-mage-prize",
     "name": "Mage Prize",
-    "copies": 1,
+    "copies": 9,
     "type": "Mage",
     "value": 2,
     "soulThreshold": 3,
@@ -87,7 +104,7 @@
   {
     "id": "treasure-mage-legend",
     "name": "Mage Legend",
-    "copies": 1,
+    "copies": 6,
     "type": "Mage",
     "value": 3,
     "soulThreshold": 6,
@@ -102,9 +119,26 @@
     ]
   },
   {
+    "id": "treasure-mage-relic",
+    "name": "Mage Relic",
+    "copies": 3,
+    "type": "Mage",
+    "value": 4,
+    "soulThreshold": 9,
+    "coinCost": 5,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "treasure-acolyte-trinket",
     "name": "Acolyte Trinket",
-    "copies": 2,
+    "copies": 14,
     "type": "Acolyte",
     "value": 1,
     "soulThreshold": 0,
@@ -121,7 +155,7 @@
   {
     "id": "treasure-acolyte-prize",
     "name": "Acolyte Prize",
-    "copies": 1,
+    "copies": 9,
     "type": "Acolyte",
     "value": 2,
     "soulThreshold": 3,
@@ -138,7 +172,7 @@
   {
     "id": "treasure-acolyte-legend",
     "name": "Acolyte Legend",
-    "copies": 1,
+    "copies": 6,
     "type": "Acolyte",
     "value": 3,
     "soulThreshold": 6,
@@ -153,9 +187,26 @@
     ]
   },
   {
+    "id": "treasure-acolyte-relic",
+    "name": "Acolyte Relic",
+    "copies": 3,
+    "type": "Acolyte",
+    "value": 4,
+    "soulThreshold": 9,
+    "coinCost": 5,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "treasure-rogue-trinket",
     "name": "Rogue Trinket",
-    "copies": 2,
+    "copies": 14,
     "type": "Rogue",
     "value": 1,
     "soulThreshold": 0,
@@ -172,7 +223,7 @@
   {
     "id": "treasure-rogue-prize",
     "name": "Rogue Prize",
-    "copies": 1,
+    "copies": 9,
     "type": "Rogue",
     "value": 2,
     "soulThreshold": 3,
@@ -189,7 +240,7 @@
   {
     "id": "treasure-rogue-legend",
     "name": "Rogue Legend",
-    "copies": 1,
+    "copies": 6,
     "type": "Rogue",
     "value": 3,
     "soulThreshold": 6,
@@ -204,9 +255,26 @@
     ]
   },
   {
+    "id": "treasure-rogue-relic",
+    "name": "Rogue Relic",
+    "copies": 3,
+    "type": "Rogue",
+    "value": 4,
+    "soulThreshold": 9,
+    "coinCost": 5,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "treasure-gold-pile",
     "name": "Gold Pile",
-    "copies": 3,
+    "copies": 18,
     "type": "Gold",
     "value": 3,
     "soulThreshold": 0,
@@ -223,11 +291,28 @@
   {
     "id": "treasure-dragons-hoard",
     "name": "Dragon's Hoard",
-    "copies": 1,
+    "copies": 8,
     "type": "Gold",
     "value": 6,
     "soulThreshold": 5,
     "coinCost": 5,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "treasure-kings-ransom",
+    "name": "King's Ransom",
+    "copies": 3,
+    "type": "Gold",
+    "value": 9,
+    "soulThreshold": 9,
+    "coinCost": 7,
     "flavour": "TODO",
     "art": null,
     "todo": [
