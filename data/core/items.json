@@ -86,6 +86,126 @@
     ]
   },
   {
+    "id": "item-battleaxe",
+    "name": "Battleaxe",
+    "type": "Warrior",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "might",
+        "text": "+1 Might die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "room",
+        "text": "One Room rolls +1 die this round."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-blessed-mail",
+    "name": "Blessed Mail",
+    "type": "Warrior",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "faith",
+        "text": "+1 Faith die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "healVillain",
+        "amount": 1,
+        "text": "Heal your active Villain 1."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-war-banner",
+    "name": "War Banner",
+    "type": "Warrior",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "might",
+        "text": "+1 Might die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "tempt",
+        "amount": 1,
+        "text": "+1 tempt on one Hero in Town."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-scouts-map",
+    "name": "Scout's Map",
+    "type": "Warrior",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "cunning",
+        "text": "+1 Cunning die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "chooseDirection",
+        "text": "Choose one Overworld Hero's move direction."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
     "id": "item-staff-of-embers",
     "name": "Staff of Embers",
     "type": "Mage",
@@ -156,8 +276,131 @@
     ],
     "villainEffect": [
       {
-        "op": "learnObjective",
-        "text": "Look at one hidden objective of another player."
+        "op": "peekObjective",
+        "amount": 2,
+        "text": "Look at the top 2 cards of the Objective deck."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-wand-of-sparks",
+    "name": "Wand of Sparks",
+    "type": "Mage",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "magic",
+        "text": "+1 Magic die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "heroLoseHealth",
+        "amount": 1,
+        "text": "One Hero in your lands loses 1 Health."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-runed-circlet",
+    "name": "Runed Circlet",
+    "type": "Mage",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "faith",
+        "text": "+1 Faith die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "inflictStatus",
+        "status": "Cursed",
+        "rounds": 1,
+        "text": "One Hero in your lands gains Cursed 1."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-tome-of-secrets",
+    "name": "Tome of Secrets",
+    "type": "Mage",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "magic",
+        "text": "+1 Magic die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "gainTrick",
+        "amount": 1,
+        "text": "Gain a Trick (draw 2, keep 1)."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-mirror-amulet",
+    "name": "Mirror Amulet",
+    "type": "Mage",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "cunning",
+        "text": "+1 Cunning die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "monster",
+        "text": "All your Monsters roll +1 die this round."
       }
     ],
     "recharges": true,
@@ -259,6 +502,128 @@
     ]
   },
   {
+    "id": "item-holy-water",
+    "name": "Holy Water",
+    "type": "Acolyte",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "faith",
+        "text": "+1 Faith die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "inflictStatus",
+        "status": "Bleeding",
+        "rounds": 1,
+        "text": "One Hero in your lands gains Bleeding 1."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-pilgrims-staff",
+    "name": "Pilgrim's Staff",
+    "type": "Acolyte",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "might",
+        "text": "+1 Might die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "text": "Gain 1 Coin."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-sacred-text",
+    "name": "Sacred Text",
+    "type": "Acolyte",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "magic",
+        "text": "+1 Magic die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "healVillain",
+        "amount": 1,
+        "text": "Heal your active Villain 1."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-sunstone",
+    "name": "Sunstone",
+    "type": "Acolyte",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "faith",
+        "text": "+1 Faith die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "villain",
+        "text": "Your Villain rolls +1 die this round."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
     "id": "item-shadow-cloak",
     "name": "Shadow Cloak",
     "type": "Rogue",
@@ -331,6 +696,128 @@
         "op": "gainCoins",
         "amount": 1,
         "text": "Gain 1 Coin."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-throwing-knives",
+    "name": "Throwing Knives",
+    "type": "Rogue",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "might",
+        "text": "+1 Might die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "heroLoseHealth",
+        "amount": 1,
+        "text": "One Hero in your lands loses 1 Health."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-smoke-bombs",
+    "name": "Smoke Bombs",
+    "type": "Rogue",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "cunning",
+        "text": "+1 Cunning die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "any",
+        "text": "One of your Rooms or Monsters rolls +1 die this round."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-poisoned-dagger",
+    "name": "Poisoned Dagger",
+    "type": "Rogue",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "cunning",
+        "text": "+1 Cunning die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "inflictStatus",
+        "status": "Bleeding",
+        "rounds": 2,
+        "text": "One Hero in your lands gains Bleeding 2."
+      }
+    ],
+    "recharges": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "item-forged-papers",
+    "name": "Forged Papers",
+    "type": "Rogue",
+    "heroEffect": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "stat": "magic",
+        "text": "+1 Magic die."
+      }
+    ],
+    "villainEffect": [
+      {
+        "op": "tempt",
+        "amount": 1,
+        "text": "+1 tempt on one Hero in Town."
       }
     ],
     "recharges": true,

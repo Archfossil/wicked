@@ -6,9 +6,10 @@
 | **Active Villain** | The Villain currently running your dungeon and fighting Heroes who reach the end of it. |
 | **Vanquished** | A Villain beaten by a Hero. The next one takes over, or the player is eliminated. |
 | **Eliminated** | A player who has lost all 3 Villains. They can't win. |
-| **Overlord** | The winner: the surviving player with the most unscored objectives. |
-| **Objective list** | A player's secret list of things they want to stop *other* villains from doing. |
-| **Scored (objective)** | An objective that another villain has achieved. It no longer counts for the list's owner. |
+| **Overlord** | The winner: the surviving player with the most Objectives claimed. |
+| **Objective Market** | The shared, face-up row of Objectives (players + 2). Any villain can race to complete them. |
+| **Claimed (Objective)** | An Objective a villain completed first. They keep the card and its reward, and it counts towards winning. |
+| **Do it / Have it** | The two kinds of Objective: *do it* (event) is claimed the moment it happens; *have it* (state) is checked at the end of each End Phase, with turn order breaking ties. |
 | **Dungeon** | A player's row of built Rooms between the Overworld and the Villain. |
 | **Room** | A Dungeon card. It makes up your dungeon and can hold a Champion. |
 | **Champion** | A hired mercenary placed in a Room. Gives bonuses and has effects based on pay. |

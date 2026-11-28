@@ -1,6 +1,6 @@
 # 03 — Markets
 
-There are four shared markets that work the same way. In code they should share one `Market` type.
+There are five shared markets that work the same way. In code they should share one `Market` type.
 
 | Market | Deck | One slot holds |
 | --- | --- | --- |
@@ -8,8 +8,9 @@ There are four shared markets that work the same way. In code they should share 
 | Terrain Market | Terrain + Monsters | 1 Terrain card **paired with** 1 Monster card |
 | Champion Market | Champions | 1 Champion card, bought at its printed price |
 | Treasure Market | Treasures | 1 Treasure card, bought in the End Phase for its Coin cost once you reach its soul threshold |
+| Objective Market | Objectives | 1 Objective card, **claimed** (not bought) by the first villain to complete it. See [Objectives](05-objectives-and-scoring.md) |
 
-- **Rule (answers Q-20):** the Dungeon and Terrain markets have **players + 2** slots (4 at 2 players, 8 at 6). The Champion market always has **3**. The **Treasure market** also has **players + 2** (answers Q-34a).
+- **Rule (answers Q-20):** the Dungeon and Terrain markets have **players + 2** slots (4 at 2 players, 8 at 6). The Champion market always has **3**. The **Treasure market** also has **players + 2** (answers Q-34a), and so does the **Objective market** (answers Q-79a). The Objective market never drops its oldest card (answers Q-79b).
 - **Assumed:** the Champion and Treasure markets follow the same shift, refill and oldest-discard rules. → Q-25, Q-34b
 - **Rule (answers Q-24):** when a deck runs out, **shuffle its discards** into a new deck. The **Hero deck is the exception**: it never reshuffles. Once it's empty, no new Heroes arrive, and the game ends when the last Hero is defeated.
 - **Rule (answers Q-23):** taking a Room or a Terrain + Monster pair, and building a Room, are **free**. Your one pick each round is the limit. Coins go on Champions, Champion pay, Treasures and Trick costs.

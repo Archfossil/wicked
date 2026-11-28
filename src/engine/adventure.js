@@ -64,7 +64,11 @@ export function monsterThreat(state, p, r, c) {
   const m = def(state, sq.monster);
   let { dice, damage } = m.threat;
   const parts = [];
-  if (sq.terrain && def(state, sq.terrain).terrainType === m.preferredTerrain) { dice += sumBonus(m.preferredBonus, "addDice"); parts.push("home terrain"); }
+  if (sq.terrain && def(state, sq.terrain).terrainType === m.preferredTerrain) {
+    dice += sumBonus(m.preferredBonus, "addDice");
+    damage += sumBonus(m.preferredBonus, "addDamage");
+    parts.push("home terrain");
+  }
   const vp = sumBonus(villainPower(state, p, (e) => e.when === "passive"), "addDice", (e) => e.target === "monster");
   if (vp) { dice += vp; parts.push("Villain"); }
   const bd = buffSum(p, "dice", (b) => b.allMonsters || (b.square && b.square[0] === r && b.square[1] === c));

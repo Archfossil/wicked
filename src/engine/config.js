@@ -45,10 +45,9 @@ export const DEFAULT_CONFIG = {
 
   // Q-54d: a stolen Item stops being Tainted and the Hero keeps it only if eligible (assumed).
 
-  // Q-75: if the soul tie-break is tied too, the tied players share the win.
-
-  // Q-76: does a swapped objective keep its scored/revealed status?
-  swapKeepsStatus: true,
+  // Q-78: do souls gained as an Objective reward count as harvested (soulsTotal:
+  // Treasure thresholds and the tie-break)? Assumed no: they're spendable only.
+  rewardSoulsHarvested: false,
 
   // Q-33b: Hero loot (Coins) is paid in the End Phase (assumed).
 };

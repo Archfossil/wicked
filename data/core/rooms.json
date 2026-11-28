@@ -2,7 +2,7 @@
   {
     "id": "room-guard-post",
     "name": "Guard Post",
-    "copies": 3,
+    "copies": 14,
     "effect": [],
     "coveredBonus": [
       {
@@ -31,7 +31,7 @@
   {
     "id": "room-pit-trap",
     "name": "Pit Trap",
-    "copies": 3,
+    "copies": 13,
     "effect": [],
     "coveredBonus": [
       {
@@ -61,7 +61,7 @@
   {
     "id": "room-spike-corridor",
     "name": "Spike Corridor",
-    "copies": 2,
+    "copies": 10,
     "effect": [],
     "coveredBonus": [
       {
@@ -91,7 +91,7 @@
   {
     "id": "room-goblin-den",
     "name": "Goblin Den",
-    "copies": 3,
+    "copies": 13,
     "effect": [],
     "coveredBonus": [
       {
@@ -128,7 +128,7 @@
   {
     "id": "room-barracks",
     "name": "Barracks",
-    "copies": 2,
+    "copies": 6,
     "effect": [
       {
         "op": "gainMinion",
@@ -164,7 +164,7 @@
   {
     "id": "room-vault",
     "name": "Vault",
-    "copies": 2,
+    "copies": 6,
     "effect": [],
     "coveredBonus": [
       {
@@ -192,7 +192,7 @@
   {
     "id": "room-trophy-hall",
     "name": "Trophy Hall",
-    "copies": 2,
+    "copies": 10,
     "effect": [],
     "coveredBonus": [
       {
@@ -226,7 +226,7 @@
   {
     "id": "room-arcane-library",
     "name": "Arcane Library",
-    "copies": 2,
+    "copies": 10,
     "effect": [],
     "coveredBonus": [
       {
@@ -260,7 +260,7 @@
   {
     "id": "room-reliquary",
     "name": "Reliquary",
-    "copies": 2,
+    "copies": 10,
     "effect": [],
     "coveredBonus": [
       {
@@ -294,7 +294,7 @@
   {
     "id": "room-gambling-den",
     "name": "Gambling Den",
-    "copies": 2,
+    "copies": 10,
     "effect": [],
     "coveredBonus": [
       {
@@ -328,7 +328,7 @@
   {
     "id": "room-haunted-chapel",
     "name": "Haunted Chapel",
-    "copies": 2,
+    "copies": 10,
     "effect": [
       {
         "op": "inflictStatus",
@@ -365,7 +365,7 @@
   {
     "id": "room-flooded-cellar",
     "name": "Flooded Cellar",
-    "copies": 2,
+    "copies": 10,
     "effect": [
       {
         "op": "inflictStatus",
@@ -402,7 +402,7 @@
   {
     "id": "room-torture-chamber",
     "name": "Torture Chamber",
-    "copies": 2,
+    "copies": 10,
     "effect": [],
     "coveredBonus": [
       {
@@ -439,7 +439,7 @@
   {
     "id": "room-shrine-of-bargains",
     "name": "Shrine of Bargains",
-    "copies": 2,
+    "copies": 8,
     "effect": [],
     "coveredBonus": [
       {
@@ -478,7 +478,7 @@
   {
     "id": "room-blood-altar",
     "name": "Blood Altar",
-    "copies": 2,
+    "copies": 6,
     "effect": [],
     "coveredBonus": [
       {
@@ -517,7 +517,7 @@
   {
     "id": "room-war-forge",
     "name": "War Forge",
-    "copies": 2,
+    "copies": 8,
     "effect": [],
     "coveredBonus": [
       {
@@ -556,7 +556,7 @@
   {
     "id": "room-spawning-pit",
     "name": "Spawning Pit",
-    "copies": 2,
+    "copies": 8,
     "effect": [],
     "coveredBonus": [
       {
@@ -595,7 +595,7 @@
   {
     "id": "room-mirror-maze",
     "name": "Mirror Maze",
-    "copies": 2,
+    "copies": 10,
     "effect": [],
     "coveredBonus": [
       {
@@ -624,7 +624,7 @@
   {
     "id": "room-ogres-larder",
     "name": "Ogre's Larder",
-    "copies": 2,
+    "copies": 6,
     "effect": [],
     "coveredBonus": [
       {
@@ -653,7 +653,7 @@
   {
     "id": "room-lichs-study",
     "name": "Lich's Study",
-    "copies": 2,
+    "copies": 6,
     "effect": [],
     "coveredBonus": [
       {
@@ -669,6 +669,673 @@
       "damage": 2,
       "rank": "Monster"
     },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-bone-pit",
+    "name": "Bone Pit",
+    "copies": 13,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "addDamage",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space deals +1 damage."
+      }
+    ],
+    "threat": {
+      "tests": "might",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-crypt",
+    "name": "Crypt",
+    "copies": 11,
+    "effect": [
+      {
+        "op": "inflictStatus",
+        "status": "Cursed",
+        "rounds": 1,
+        "when": "onEnter",
+        "text": "When a Hero enters: Cursed for 1 round."
+      }
+    ],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "faith",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-kennels",
+    "name": "Kennels",
+    "copies": 11,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "might",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "minionBonus": [
+      {
+        "op": "addDamage",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 damage while a Minion is here."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-hall-of-banners",
+    "name": "Hall of Banners",
+    "copies": 6,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "when": "upkeep",
+        "text": "Upkeep: gain 1 Coin."
+      }
+    ],
+    "treasure": {
+      "type": "Warrior",
+      "value": 2,
+      "when": "whileOnTop"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-star-chamber",
+    "name": "Star Chamber",
+    "copies": 6,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "when": "upkeep",
+        "text": "Upkeep: gain 1 Coin."
+      }
+    ],
+    "treasure": {
+      "type": "Mage",
+      "value": 2,
+      "when": "whileOnTop"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-saints-tomb",
+    "name": "Saint's Tomb",
+    "copies": 6,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "when": "upkeep",
+        "text": "Upkeep: gain 1 Coin."
+      }
+    ],
+    "treasure": {
+      "type": "Acolyte",
+      "value": 2,
+      "when": "whileOnTop"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-thieves-cache",
+    "name": "Thieves' Cache",
+    "copies": 6,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "gainCoins",
+        "amount": 1,
+        "when": "upkeep",
+        "text": "Upkeep: gain 1 Coin."
+      }
+    ],
+    "treasure": {
+      "type": "Rogue",
+      "value": 2,
+      "when": "whileOnTop"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-poison-dart-hall",
+    "name": "Poison Dart Hall",
+    "copies": 11,
+    "effect": [
+      {
+        "op": "inflictStatus",
+        "status": "Bleeding",
+        "rounds": 1,
+        "when": "onEnter",
+        "text": "When a Hero enters: Bleeding for 1 round."
+      }
+    ],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "cunning",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "trap": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-collapsing-ceiling",
+    "name": "Collapsing Ceiling",
+    "copies": 10,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "cunning",
+      "dice": 2,
+      "damage": 2,
+      "rank": "Monster"
+    },
+    "trap": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-swinging-blades",
+    "name": "Swinging Blades",
+    "copies": 8,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "addDamage",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space deals +1 damage."
+      }
+    ],
+    "threat": {
+      "tests": "cunning",
+      "dice": 4,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "trap": true,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-slime-pit",
+    "name": "Slime Pit",
+    "copies": 11,
+    "effect": [
+      {
+        "op": "inflictStatus",
+        "status": "Slowed",
+        "rounds": 1,
+        "when": "onEnter",
+        "text": "When a Hero enters: Slowed for 1 round."
+      }
+    ],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "might",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-necropolis",
+    "name": "Necropolis",
+    "copies": 6,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "faith",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-arena",
+    "name": "Arena",
+    "copies": 11,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "might",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "minionBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die while a Minion is here."
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-sacrificial-chamber",
+    "name": "Sacrificial Chamber",
+    "copies": 6,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "faith",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "soulExchanges": [
+      {
+        "souls": 2,
+        "gives": {
+          "op": "gainCoins",
+          "amount": 4,
+          "text": "Gain 4 Coins."
+        }
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-counting-room",
+    "name": "Counting Room",
+    "copies": 8,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "cunning",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "soulExchanges": [
+      {
+        "souls": 1,
+        "gives": {
+          "op": "gainCoins",
+          "amount": 2,
+          "text": "Gain 2 Coins."
+        }
+      }
+    ],
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-hatchery",
+    "name": "Hatchery",
+    "copies": 6,
+    "effect": [
+      {
+        "op": "gainMinion",
+        "amount": 1,
+        "when": "upkeep",
+        "text": "Upkeep: gain 1 Minion (only while on top)."
+      }
+    ],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "might",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-warded-door",
+    "name": "Warded Door",
+    "copies": 11,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "addDamage",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space deals +1 damage."
+      }
+    ],
+    "threat": {
+      "tests": "magic",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-illusion-hall",
+    "name": "Illusion Hall",
+    "copies": 11,
+    "effect": [
+      {
+        "op": "inflictStatus",
+        "status": "Cursed",
+        "rounds": 1,
+        "when": "onEnter",
+        "text": "When a Hero enters: Cursed for 1 round."
+      }
+    ],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "magic",
+      "dice": 2,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-dragons-lair",
+    "name": "Dragon's Lair",
+    "copies": 5,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "might",
+      "dice": 4,
+      "damage": 2,
+      "rank": "Monster"
+    },
+    "treasure": {
+      "type": "Gold",
+      "value": 3,
+      "when": "whileOnTop"
+    },
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "wording",
+      "balance"
+    ]
+  },
+  {
+    "id": "room-bat-roost",
+    "name": "Bat Roost",
+    "copies": 11,
+    "effect": [],
+    "coveredBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "topRoom",
+        "text": "The top Room in this space rolls +1 die."
+      }
+    ],
+    "threat": {
+      "tests": "cunning",
+      "dice": 3,
+      "damage": 1,
+      "rank": "Monster"
+    },
+    "minionBonus": [
+      {
+        "op": "addDice",
+        "amount": 1,
+        "target": "self",
+        "text": "+1 die while a Minion is here."
+      }
+    ],
     "flavour": "TODO",
     "art": null,
     "todo": [

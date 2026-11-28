@@ -2,40 +2,39 @@
 
 ## The idea
 
-Villainy is less about what you achieve and more about what you take from others. So objectives aren't "do this thing" but "**stop another villain from doing this thing**."
+Objectives are a **public race**. Everyone sees the same Objectives at the same time. The first villain to complete one claims it, with its reward. Because everything is in the open, you can read what your rivals are chasing, then beat them to it, deny it, or let them have it when that suits you.
 
-## Rules (decided)
+## The Objective Market
 
-- **Rule:** each player has a **secret objective list**.
-- **Rule (answers Q-70):** at setup each player is dealt **5 objectives** from an Objective deck.
-- **Rule (answers Q-71):** the lists are mostly secret, with ways to leak:
-  - At the start, each player **chooses 1** of their objectives and reveals it to everyone (answers Q-77).
-  - **Minions and Tricks** can **learn** other players' objectives, **force swaps**, or have objectives **replaced**.
-  - Each time one of your Villains is **vanquished** and a new Villain takes over, you **reveal another objective at random**.
-- **Rule:** the objectives on *your* list are things you want to stop the *other* villains from doing. When another villain does one, they **score** it against you.
-- **Rule:** at game end (the last Hero defeated), the **surviving** player with the most **unscored** objectives on their list wins and becomes the **Overlord**.
-- **Rule (answers Q-72):** each objective card **prints how it's checked**:
-  - **Event** (e.g. "a villain kills a Legendary Hero"): scored **the moment it happens**, and it stays scored.
-  - **State** (e.g. "a villain has 5 Rooms"): checked **at game end** against the final board.
-- **Rule (answers Q-74):** one action can score objectives on **several lists at once**. Every matching objective is scored.
-- **Rule (answers Q-73):** a scored objective is **revealed to everyone**.
-- **Rule:** tie-break: **most souls harvested** (total).
+- **Rule (answers Q-79):** Objectives are a shared, face-up **Objective Market**, not secret lists.
+- **Rule (answers Q-79a):** the market has **players + 2** face-up Objectives (6 at 4 players), like the Dungeon, Terrain and Treasure markets. When one is claimed, the cards to its right shift left and the market refills from the Objective deck on the right. See [Markets](03-markets.md).
+- **Rule (answers Q-79b):** the Objective Market **never drops its oldest card**. An Objective stays face-up until someone claims it (or a card throws it out).
+- **Rule:** when the Objective deck runs out, the market just shrinks. Discarded Objectives reshuffle into the deck as usual (Q-24).
+- **Rule:** nothing is dealt or revealed at setup. The market fills with the other markets.
+
+## Claiming
+
+- **Rule:** each Objective card prints a **reward** (for example Coins, souls, a Trick or a Minion). The villain who claims it takes the card and the reward at once.
+- **Rule:** each Objective card is one of two kinds:
+  - **Do it** (event, e.g. "Kill a Legendary Hero"): claimed **the moment** a villain does it. Only Objectives that were face-up when it happened count. One action can claim **several** face-up Objectives at once (replaces Q-74).
+  - **Have it** (state, e.g. "Have 10 or more Coins"): **(answers Q-79c)** checked **once a round, at the end of the End Phase**, after everyone's End Phase actions. Each face-up "have it" Objective goes to the **first villain in turn order** (from the first player) who meets it then. Objectives that refill into the market during this check are checked too.
+- **Rule:** a "have it" Objective must not be true at the start of the game (e.g. not "still have all 3 Villains").
+- **Rule:** eliminated villains can't claim Objectives.
+- **Idea:** some Tricks and powers interact with the market: peek at the next Objectives, throw a face-up one out to deny a rival, or claim a "have it" Objective early (before the End Phase check). See [Tricks](09-tricks.md).
+
+## Winning
+
+- **Rule:** at game end (the last Hero defeated), the **surviving** villain with the **most Objectives claimed** wins and becomes the **Overlord**.
+- **Rule (answers Q-31 and Q-75):** ties go to the most **souls harvested in total**, then the most **Coins**. If they're still tied, the tied villains **share** the win.
 - **Rule:** eliminated players can't win.
 - **Rule (answers Q-02):** the **Heroes win** only if **every** villain is eliminated.
 
-## Example objective (illustration only)
-
-> *"No other villain may build a Frozen room."* If anyone else does, this objective is scored and you lose it.
-
 ## Objective state (for code)
 
-Each objective on a list is:
-
-- `hidden` or `revealed` (to everyone), plus a list of individual players who have **learned** it privately
-- `unscored` or `scored by <player>`
-- `kind`: `event` (scored when it happens) or `state` (checked at game end)
+- The market is a `Market` of type `objective` (see [the data model](11-data-model.md)).
+- Each player has a public `claimed` list of Objective cards.
+- An Objective card has a `name`, `text`, `kind` (`event` or `state`), a `trigger` and a `reward` (a list of effects).
 
 ## Open
 
-- Q-75: if the tie-break is also tied (same souls), what then?
-- Q-76: "force swaps": does that swap an objective between two players' lists, or swap one of yours for a new card from the deck? Does a swapped or replaced objective keep its scored or revealed status?
+- Q-78: do souls gained as an Objective reward count as **harvested** (towards Treasure thresholds and the tie-break), or only as souls to spend? Assumed spendable only.

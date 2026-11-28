@@ -28,7 +28,7 @@ What is a villain without a bag of tricks?
 | --- | --- | --- |
 | **Spell** | **Rule** | Not discarded after use. It becomes **Exhausted** for its **printed recharge time** (1, 2 or 3 Upkeeps). |
 | Construction | Idea | Builds or upgrades Rooms or Terrain. |
-| Deceit | Idea | Hits other villains: steal, lure Heroes away. **Rule:** some Tricks can learn, swap or replace objectives. |
+| Deceit | Idea | Hits other villains: steal, lure Heroes away. **Rule:** some Tricks work on the Objective Market: peek at the next Objectives, throw a face-up one out, or claim a "have it" Objective before the End Phase check. |
 | Empower | Idea | Boosts your Villain, Champions or Monsters. |
 | Command | Idea | Controls Heroes or Monsters, e.g. pick a Hero's move direction instead of rolling for it. |
 

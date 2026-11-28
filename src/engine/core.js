@@ -2,6 +2,7 @@
 // treasure, objectives, deaths and vanquishes.
 import { loadSet } from "./data.js";
 import { pick, randInt } from "./rng.js";
+import { refill } from "./market.js";
 import {
   CLASSES, CLASS_STAT, GRID, LURE, MAX_MINIONS, MAX_SUSTAINED, TIER_VALUE, TOWN_CAPACITY_DEFAULT,
 } from "./config.js";
@@ -203,8 +204,8 @@ export function gainTaintedItem(state, p, item) {
   if (p.sustained.length >= 2) fireEvent(state, p.id, { op: "sustainedItems", count: p.sustained.length });
 }
 
-// ---------- objectives ----------
-function eventMatches(trigger, ev, ownerPid, actorPid) {
+// ---------- objectives (a public market, 05-objectives-and-scoring.md) ----------
+function eventMatches(trigger, ev, actorPid) {
   if (trigger.op !== ev.op) return false;
   switch (ev.op) {
     case "heroKilled":
@@ -215,45 +216,84 @@ function eventMatches(trigger, ev, ownerPid, actorPid) {
     case "roomDestroyed": return trigger.owner !== "other" || ev.owner !== actorPid;
     case "treasureBought": return ev.value >= (trigger.minValue ?? 0);
     case "championHired": return ev.cost >= (trigger.minCost ?? 0);
-    case "objectiveLearned": return trigger.target !== "owner" || ev.from === ownerPid;
-    default: return true; // championMaxLevel, soulExchangeUsed, villainVanquished, luredAway
+    default: return true; // championMaxLevel, soulExchangeUsed, luredAway
   }
 }
-/** An event done by `actorPid` scores every matching objective on every OTHER player's list. */
+
+/** Claim a face-up Objective: it leaves the market (which refills) and its rewards are paid. */
+export function claimObjective(state, p, card, how = "") {
+  const m = state.markets.objective;
+  const i = m.slots.findIndex((c) => c.uid === card.uid);
+  if (i < 0) return false;
+  m.slots.splice(i, 1);
+  refill(state, m);
+  p.claimed.push(card);
+  const d = def(state, card);
+  log(state, `🎯 ${p.name} claims "${d.name}" (${d.text})${how ? ` ${how}` : ""}. Reward: ${d.reward.map((e) => e.text).join(" ")}`, { kind: "objective", pid: p.id });
+  for (const e of d.reward) grantReward(state, p, e, d.name);
+  return true;
+}
+function grantReward(state, p, e, why) {
+  switch (e.op) {
+    case "gainCoins": p.coins += e.amount; return;
+    case "gainSouls": p.souls += e.amount; if (state.config.rewardSoulsHarvested) p.soulsTotal += e.amount; return;
+    case "gainMinion": gainMinions(state, p, e.amount ?? 1, why); return;
+    case "gainTrick": gainTrick(state, p, why); return;
+    default: log(state, `(reward not automated yet: "${e.text}")`);
+  }
+}
+
+/** An event done by `actorPid` claims every matching event Objective that was face-up when it happened. */
 export function fireEvent(state, actorPid, ev) {
-  for (const q of state.players) {
-    if (q.id === actorPid) continue;
-    for (const o of q.objectives) {
-      if (o.scoredBy != null) continue;
-      const d = def(state, o.card);
-      if (d.kind !== "event" || !eventMatches(d.trigger, ev, q.id, actorPid)) continue;
-      o.scoredBy = actorPid; o.revealed = true;
-      log(state, `🎯 ${pname(state, actorPid)} scores "${d.text}" against ${q.name}.`, { kind: "objective" });
+  const p = state.players[actorPid];
+  const m = state.markets?.objective;
+  if (!p || p.eliminated || !m) return;
+  const hits = m.slots.filter((c) => { const d = def(state, c); return d.kind === "event" && eventMatches(d.trigger, ev, actorPid); });
+  for (const c of hits) claimObjective(state, p, c);
+}
+
+/** How far a player is toward a "have X" Objective (compare with trigger.min). */
+export function stateProgress(state, p, trigger) {
+  switch (trigger.op) {
+    case "championCount": return p.dungeon.filter((s) => s.champion).length;
+    case "stackHeight": return Math.max(0, ...p.dungeon.map((s) => s.stack.length));
+    case "minionCount": return p.minions.length;
+    case "terrainCount": return p.overworld.flat().filter((s) => s.terrain).length;
+    case "soulsHarvestedTotal": return p.soulsTotal;
+    case "coins": return p.coins;
+    case "treasureClasses": return treasureClasses(state, p);
+    case "taintedItemCount": return p.sustained.length + p.treasury.filter((t) => def(state, t).deck === "items").length;
+    case "trapRoomsOnTop": return p.dungeon.filter((s) => { const t = topRoom(s); return t && def(state, t).trap; }).length;
+    case "spacesBuilt": return p.dungeon.filter((s) => s.stack.length).length;
+    case "roomsInDungeon": return p.dungeon.reduce((n, s) => n + s.stack.length, 0);
+    case "hazardCount": return p.overworld.flat().filter((s) => s.terrain && def(state, s.terrain).kind === "hazard").length;
+    case "statusTerrainCount": return p.overworld.flat().filter((s) => s.terrain && def(state, s.terrain).kind === "status").length;
+    case "terrainTypes": return new Set(p.overworld.flat().filter((s) => s.terrain).map((s) => def(state, s.terrain).terrainType)).size;
+    case "championLevels": return p.dungeon.reduce((n, s) => n + (s.champion?.level ?? 0), 0);
+    case "heroesInLands": return state.heroes.filter((h) => heroInLandsOf(h, p.id)).length;
+    case "treasureCards": return p.treasury.filter((t) => def(state, t).deck === "treasures").length;
+    case "minionsInTown": return p.minions.filter((m) => m === "town").length;
+    case "monstersAtHome": return p.overworld.flat().filter((s) => s.terrain && s.monster && def(state, s.monster).preferredTerrain === def(state, s.terrain).terrainType).length;
+    default: return 0;
+  }
+}
+export const stateObjectiveMet = (state, p, trigger) => stateProgress(state, p, trigger) >= (trigger.min ?? 0);
+
+/**
+ * End Phase: each face-up "have X" Objective goes to the first player in turn
+ * order who meets it. Objectives that refill into the market are checked too.
+ */
+export function checkStateObjectives(state) {
+  const order = turnOrder(state).map((id) => state.players[id]);
+  for (let again = true; again;) {
+    again = false;
+    for (const c of [...state.markets.objective.slots]) {
+      const d = def(state, c);
+      if (d.kind !== "state") continue;
+      const p = order.find((q) => stateObjectiveMet(state, q, d.trigger));
+      if (p && claimObjective(state, p, c, "in the End Phase")) again = true;
     }
   }
-}
-export function stateObjectiveMet(state, p, trigger) {
-  const min = trigger.min ?? 0;
-  switch (trigger.op) {
-    case "championCount": return p.dungeon.filter((s) => s.champion).length >= min;
-    case "stackHeight": return Math.max(0, ...p.dungeon.map((s) => s.stack.length)) >= min;
-    case "minionCount": return p.minions.length >= min;
-    case "terrainCount": return p.overworld.flat().filter((s) => s.terrain).length >= min;
-    case "soulsHarvestedTotal": return p.soulsTotal >= min;
-    case "coins": return p.coins >= min;
-    case "treasureClasses": return treasureClasses(state, p) >= min;
-    case "villainsRemaining": return p.villains.filter((v) => !v.vanquished).length >= min;
-    case "taintedItemCount": return p.sustained.length + p.treasury.filter((t) => def(state, t).deck === "items").length >= min;
-    case "trapRoomsOnTop": return p.dungeon.filter((s) => { const t = topRoom(s); return t && def(state, t).trap; }).length >= min;
-    default: return false;
-  }
-}
-export function revealRandomObjective(state, p) {
-  const hidden = p.objectives.filter((o) => !o.revealed);
-  if (!hidden.length) return;
-  const o = pick(state, hidden);
-  o.revealed = true;
-  log(state, `${p.name} must reveal an objective: "${def(state, o.card).text}".`, { kind: "objective" });
 }
 
 // ---------- deaths ----------
@@ -303,7 +343,6 @@ export function vanquish(state, p, h) {
   const v = activeVillain(state, p);
   v.vanquished = true; v.revealed = true;
   log(state, `⚔️ ${name(state, h)} vanquishes ${name(state, v.card)}, ${p.name}'s Villain!`, { kind: "vanquish", pid: p.id });
-  fireEvent(state, p.id, { op: "villainVanquished" });
   // steal a sustained Item: own class first, else random (Q-54b)
   if (p.sustained.length) {
     const cls = def(state, h).class;
@@ -316,10 +355,8 @@ export function vanquish(state, p, h) {
   returnToTown(state, h);
   log(state, `${name(state, h)} returns to Town, healed.`, { kind: "hero" });
   p.activeVillain = null;
-  if (p.villains.some((x) => !x.vanquished)) {
-    revealRandomObjective(state, p);
-    p.needsVillainChoice = true;
-  } else eliminate(state, p);
+  if (p.villains.some((x) => !x.vanquished)) p.needsVillainChoice = true;
+  else eliminate(state, p);
 }
 
 export function eliminate(state, p) {

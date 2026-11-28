@@ -61,7 +61,6 @@ export function botAction(state, pid) {
       const v = best(p.villains.filter((x) => !x.vanquished), (x) => def(state, x.card).health - x.damage);
       return { type: "chooseVillain", uid: v.card.uid };
     }
-    case "revealObjective": return { type: "revealObjective", index: 0 };
     case "roomDraft": {
       const slots = state.markets.dungeon.slots;
       if (!slots.length) return { type: "draftRoom", blind: true };
@@ -176,7 +175,7 @@ function endStep(state, p) {
       const pickT = best(opts, (x) => (x.d.type === "Gold" ? x.d.value / 3 * Math.max(1, town.length) : x.d.value * (1 + town.filter((c) => c === x.d.type).length)) + rand(p) * 0.5);
       if (pickT) return { type: "buyTreasure", slot: pickT.i };
     }
-    const use = tryUse(state, p, "end", (u) => !(u.effects[0].op === "healVillain" && !(v?.damage > 0)) && !["replaceObjective", "swapObjective"].includes(u.effects[0].op));
+    const use = tryUse(state, p, "end", (u) => !(u.effects[0].op === "healVillain" && !(v?.damage > 0)) && !["replaceObjective", "peekObjective"].includes(u.effects[0].op));
     if (use) return use;
   }
   if (p.hand.rooms.length + p.hand.tricks.length > HAND_LIMIT) {

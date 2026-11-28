@@ -31,8 +31,8 @@ interface TrickCard    { id: string; name: string; type: TrickType; effect: Effe
 interface HeroCard     { id: string; name: string; class: HeroClass; tier: HeroTier; stats: HeroStats; desire: number /* own-class treasure + floor(gold/3) */; souls: 1 | 2 | 3 /* by tier */; }
 type Status = "Cursed" | "Slowed" | "Bleeding"; // starter set; timers tick in End Phase
 interface TerrainCard  { id: string; name: string; terrainType: string; kind: "hazard" | "status"; threat?: Threat /* hazard, Monster rank */; status?: Status; statusRounds?: number /* printed duration */; }
-interface MonsterCard  { id: string; name: string; preferredTerrain: string; threat: Threat; preferredBonus: Effect[]; }
-interface ObjectiveCard{ id: string; text: string; kind: "event" | "state" /* event: scored when it happens; state: checked at game end */; trigger: TriggerCondition; }
+interface MonsterCard  { id: string; name: string; preferredTerrain: string; threat: Threat; preferredBonus: Effect[] /* addDice or addDamage, applied on its preferred terrain */; }
+interface ObjectiveCard{ id: string; name: string; text: string; kind: "event" | "state" /* event: claimed when it happens; state: checked at the end of each End Phase */; trigger: TriggerCondition; reward: Effect[] /* gainCoins, gainSouls, gainTrick, gainMinion */; }
 
 interface Region {
   id: string; name: string;
@@ -46,7 +46,7 @@ interface Region {
 // The loader adds `deck` ("rooms", "items", ...) to each definition so code can tell card types apart.
 interface Card { uid: string; id: string; }
 
-interface Market { type: "dungeon" | "terrain" | "champion" | "treasure"; size: number /* dungeon, terrain, treasure: players + 2; champion: 3 */;
+interface Market { type: "dungeon" | "terrain" | "champion" | "treasure" | "objective"; size: number /* dungeon, terrain, treasure, objective: players + 2; champion: 3 */;
   deck: Card[]; discard: Card[]; slots: Card[] /* index 0 = oldest (left) */;
   monsterDeck?: Card[]; monsterDiscard?: Card[]; } // terrain only: slots hold { terrain: Card; monster: Card }
 
@@ -98,7 +98,7 @@ interface PlayerState {
   sustained: { card: Card; exhausted: boolean }[]; // Tainted Items, max 2
   souls: number;                    // spendable, through Rooms' soulExchanges in the End Phase
   soulsTotal: number;               // harvested ever; unlocks Treasure cards; the tie-break
-  objectives: { card: Card; revealed: boolean; learnedBy: PlayerId[]; scoredBy: PlayerId | null }[];
+  claimed: Card[]; // Objectives this player has claimed (public)
   eliminated: boolean;
   allow: { placements: number; monsterMoves: number; championMoves: number; treasureBuys: number }; // what is left this phase
   buffs: { dice?: number; damage?: number; space?: number; square?: [number, number]; allMonsters?: true; villain?: true; trapRooms?: true }[]; // from Tricks and Items; cleared in Upkeep
@@ -112,12 +112,12 @@ interface GameState {
   round: number;
   phase: "setup" | Phase | "gameOver";
   step: { type: StepType; mode: "sim"; waiting: PlayerId[] } | { type: StepType; mode: "seq"; order: PlayerId[]; idx: number };
-  // StepType: draftVillain, chooseVillain, revealObjective, startingTricks, roomDraft (setup);
+  // StepType: draftVillain, chooseVillain, startingTricks, roomDraft (setup);
   //           town, build, buildTricks, lure, adventure, end (each round); chooseVillain again after a vanquish
   firstPlayer: PlayerId;             // Town picks and Trick turns go clockwise from here; moves left each round
   players: PlayerState[];
-  markets: { dungeon: Market; terrain: Market; champion: Market; treasure: Market };
-  heroDeck: Card[]; itemDeck: Card[]; trickDeck: Card[]; trickDiscard: Card[]; objectiveDeck: Card[]; villainDeck: Card[];
+  markets: { dungeon: Market; terrain: Market; champion: Market; treasure: Market; objective: Market };
+  heroDeck: Card[]; itemDeck: Card[]; trickDeck: Card[]; trickDiscard: Card[]; villainDeck: Card[];
   heroes: HeroInPlay[];              // alive, in Town or in someone's lands
   fallen: { uid: string; id: string; killer: PlayerId; round: number }[];
   townShop: Card[];                  // Items no Hero was eligible for; oldest first (Q-36d)
@@ -125,7 +125,7 @@ interface GameState {
   lureGold: Record<PlayerId, Record<string, number>>;  // extra Gold for one Hero this Lure Phase (Lure of Gold)
   buildSnapshot: Record<PlayerId, object> | null;      // what others see of your lands until the Build reveal
   log: { n: number; round: number; phase: string; text: string; kind?: string; only?: PlayerId }[]; // `only` = a private line
-  result: { heroesWin: boolean; winners: PlayerId[]; standings: { pid: PlayerId; unscored: number; souls: number }[]; solo: boolean } | null;
+  result: { heroesWin: boolean; winners: PlayerId[]; standings: { pid: PlayerId; objectives: number; souls: number; coins: number }[]; solo: boolean } | null;
 }
 
 // Draft effect shape: `op` for the engine, `text` as the source of truth. Vocabulary in data/README.md
@@ -139,5 +139,5 @@ interface TreasureCard { id: string; name: string; type: TreasureType; value: nu
 ## Implementation notes
 
 - **Seeded RNG:** hero movement, shuffles, pairings, lure rolls and combat dice all depend on randomness. A seeded RNG makes games replayable and testable.
-- **Hidden information:** objective lists and reserve villains are secret, so the rules engine gives each player their own view of the state (`src/engine/view.js`).
+- **Hidden information:** hands, reserve villains and the decks (including the Objective deck) are secret, so the rules engine gives each player their own view of the state (`src/engine/view.js`).
 - **The rules engine stays separate from the UI**, so the same rules run in tests (`npm test`), bot simulations (`npm run simulate`) and the online server (`server/index.js`).

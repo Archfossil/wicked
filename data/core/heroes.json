@@ -69,6 +69,144 @@
     ]
   },
   {
+    "id": "hero-dunstan-plowshare",
+    "name": "Dunstan Plowshare",
+    "class": "Warrior",
+    "tier": "Common",
+    "stats": {
+      "might": 3,
+      "magic": 2,
+      "faith": 1,
+      "cunning": 1,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-greta-halberd",
+    "name": "Greta Halberd",
+    "class": "Warrior",
+    "tier": "Common",
+    "stats": {
+      "might": 3,
+      "magic": 1,
+      "faith": 2,
+      "cunning": 1,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-wat-the-bowyer",
+    "name": "Wat the Bowyer",
+    "class": "Warrior",
+    "tier": "Common",
+    "stats": {
+      "might": 3,
+      "magic": 1,
+      "faith": 1,
+      "cunning": 2,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-ulric-mudboot",
+    "name": "Ulric Mudboot",
+    "class": "Warrior",
+    "tier": "Common",
+    "stats": {
+      "might": 3,
+      "magic": 2,
+      "faith": 1,
+      "cunning": 1,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-joss-tanner",
+    "name": "Joss Tanner",
+    "class": "Warrior",
+    "tier": "Common",
+    "stats": {
+      "might": 3,
+      "magic": 1,
+      "faith": 2,
+      "cunning": 1,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-brenna-oakshield",
+    "name": "Brenna Oakshield",
+    "class": "Warrior",
+    "tier": "Common",
+    "stats": {
+      "might": 3,
+      "magic": 1,
+      "faith": 1,
+      "cunning": 2,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "hero-sir-aldric",
     "name": "Sir Aldric",
     "class": "Warrior",
@@ -115,6 +253,98 @@
     ]
   },
   {
+    "id": "hero-dame-rosalind",
+    "name": "Dame Rosalind",
+    "class": "Warrior",
+    "tier": "Paragon",
+    "stats": {
+      "might": 4,
+      "magic": 3,
+      "faith": 2,
+      "cunning": 2,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-captain-edric-vane",
+    "name": "Captain Edric Vane",
+    "class": "Warrior",
+    "tier": "Paragon",
+    "stats": {
+      "might": 4,
+      "magic": 2,
+      "faith": 3,
+      "cunning": 2,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-torvald-bearhand",
+    "name": "Torvald Bearhand",
+    "class": "Warrior",
+    "tier": "Paragon",
+    "stats": {
+      "might": 4,
+      "magic": 2,
+      "faith": 2,
+      "cunning": 3,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-ysolde-the-lancer",
+    "name": "Ysolde the Lancer",
+    "class": "Warrior",
+    "tier": "Paragon",
+    "stats": {
+      "might": 4,
+      "magic": 3,
+      "faith": 2,
+      "cunning": 2,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "hero-gerhard-the-unbroken",
     "name": "Gerhard the Unbroken",
     "class": "Warrior",
@@ -124,6 +354,52 @@
       "magic": 3,
       "faith": 3,
       "cunning": 3,
+      "health": 7
+    },
+    "desire": 6,
+    "souls": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-lord-commander-hale",
+    "name": "Lord Commander Hale",
+    "class": "Warrior",
+    "tier": "Legendary",
+    "stats": {
+      "might": 5,
+      "magic": 4,
+      "faith": 3,
+      "cunning": 2,
+      "health": 7
+    },
+    "desire": 6,
+    "souls": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-brunhild-dragonsbane",
+    "name": "Brunhild Dragonsbane",
+    "class": "Warrior",
+    "tier": "Legendary",
+    "stats": {
+      "might": 5,
+      "magic": 2,
+      "faith": 3,
+      "cunning": 4,
       "health": 7
     },
     "desire": 6,
@@ -207,6 +483,144 @@
     ]
   },
   {
+    "id": "hero-fennel-the-scribe",
+    "name": "Fennel the Scribe",
+    "class": "Mage",
+    "tier": "Common",
+    "stats": {
+      "might": 2,
+      "magic": 3,
+      "faith": 1,
+      "cunning": 1,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-ada-inkwell",
+    "name": "Ada Inkwell",
+    "class": "Mage",
+    "tier": "Common",
+    "stats": {
+      "might": 1,
+      "magic": 3,
+      "faith": 2,
+      "cunning": 1,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-lio-candlewick",
+    "name": "Lio Candlewick",
+    "class": "Mage",
+    "tier": "Common",
+    "stats": {
+      "might": 1,
+      "magic": 3,
+      "faith": 1,
+      "cunning": 2,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-morwick-the-odd",
+    "name": "Morwick the Odd",
+    "class": "Mage",
+    "tier": "Common",
+    "stats": {
+      "might": 2,
+      "magic": 3,
+      "faith": 1,
+      "cunning": 1,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-tamsin-brightwater",
+    "name": "Tamsin Brightwater",
+    "class": "Mage",
+    "tier": "Common",
+    "stats": {
+      "might": 1,
+      "magic": 3,
+      "faith": 2,
+      "cunning": 1,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-quill-ashby",
+    "name": "Quill Ashby",
+    "class": "Mage",
+    "tier": "Common",
+    "stats": {
+      "might": 1,
+      "magic": 3,
+      "faith": 1,
+      "cunning": 2,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "hero-magister-ilse",
     "name": "Magister Ilse",
     "class": "Mage",
@@ -253,6 +667,98 @@
     ]
   },
   {
+    "id": "hero-lady-evadne",
+    "name": "Lady Evadne",
+    "class": "Mage",
+    "tier": "Paragon",
+    "stats": {
+      "might": 3,
+      "magic": 4,
+      "faith": 2,
+      "cunning": 2,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-thaddeus-orrery",
+    "name": "Thaddeus Orrery",
+    "class": "Mage",
+    "tier": "Paragon",
+    "stats": {
+      "might": 2,
+      "magic": 4,
+      "faith": 3,
+      "cunning": 2,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-isolde-frostweaver",
+    "name": "Isolde Frostweaver",
+    "class": "Mage",
+    "tier": "Paragon",
+    "stats": {
+      "might": 2,
+      "magic": 4,
+      "faith": 2,
+      "cunning": 3,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-barnaby-runecutter",
+    "name": "Barnaby Runecutter",
+    "class": "Mage",
+    "tier": "Paragon",
+    "stats": {
+      "might": 3,
+      "magic": 4,
+      "faith": 2,
+      "cunning": 2,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "hero-archmage-seraphine",
     "name": "Archmage Seraphine",
     "class": "Mage",
@@ -262,6 +768,52 @@
       "magic": 5,
       "faith": 3,
       "cunning": 3,
+      "health": 7
+    },
+    "desire": 6,
+    "souls": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-the-azure-sage",
+    "name": "The Azure Sage",
+    "class": "Mage",
+    "tier": "Legendary",
+    "stats": {
+      "might": 4,
+      "magic": 5,
+      "faith": 3,
+      "cunning": 2,
+      "health": 7
+    },
+    "desire": 6,
+    "souls": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-merrow-starhand",
+    "name": "Merrow Starhand",
+    "class": "Mage",
+    "tier": "Legendary",
+    "stats": {
+      "might": 2,
+      "magic": 5,
+      "faith": 3,
+      "cunning": 4,
       "health": 7
     },
     "desire": 6,
@@ -345,6 +897,144 @@
     ]
   },
   {
+    "id": "hero-brother-cuthbert",
+    "name": "Brother Cuthbert",
+    "class": "Acolyte",
+    "tier": "Common",
+    "stats": {
+      "might": 2,
+      "magic": 1,
+      "faith": 3,
+      "cunning": 1,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-sister-tilda",
+    "name": "Sister Tilda",
+    "class": "Acolyte",
+    "tier": "Common",
+    "stats": {
+      "might": 1,
+      "magic": 2,
+      "faith": 3,
+      "cunning": 1,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-novice-hob",
+    "name": "Novice Hob",
+    "class": "Acolyte",
+    "tier": "Common",
+    "stats": {
+      "might": 1,
+      "magic": 1,
+      "faith": 3,
+      "cunning": 2,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-pilgrim-wynn",
+    "name": "Pilgrim Wynn",
+    "class": "Acolyte",
+    "tier": "Common",
+    "stats": {
+      "might": 2,
+      "magic": 1,
+      "faith": 3,
+      "cunning": 1,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-sister-bryony",
+    "name": "Sister Bryony",
+    "class": "Acolyte",
+    "tier": "Common",
+    "stats": {
+      "might": 1,
+      "magic": 2,
+      "faith": 3,
+      "cunning": 1,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-deacon-alwin",
+    "name": "Deacon Alwin",
+    "class": "Acolyte",
+    "tier": "Common",
+    "stats": {
+      "might": 1,
+      "magic": 1,
+      "faith": 3,
+      "cunning": 2,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "hero-mother-agathe",
     "name": "Mother Agathe",
     "class": "Acolyte",
@@ -391,6 +1081,98 @@
     ]
   },
   {
+    "id": "hero-abbess-hildegard",
+    "name": "Abbess Hildegard",
+    "class": "Acolyte",
+    "tier": "Paragon",
+    "stats": {
+      "might": 3,
+      "magic": 2,
+      "faith": 4,
+      "cunning": 2,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-father-benedict",
+    "name": "Father Benedict",
+    "class": "Acolyte",
+    "tier": "Paragon",
+    "stats": {
+      "might": 2,
+      "magic": 3,
+      "faith": 4,
+      "cunning": 2,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-canoness-ida",
+    "name": "Canoness Ida",
+    "class": "Acolyte",
+    "tier": "Paragon",
+    "stats": {
+      "might": 2,
+      "magic": 2,
+      "faith": 4,
+      "cunning": 3,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-brother-oswin",
+    "name": "Brother Oswin",
+    "class": "Acolyte",
+    "tier": "Paragon",
+    "stats": {
+      "might": 3,
+      "magic": 2,
+      "faith": 4,
+      "cunning": 2,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "hero-saint-ophelia",
     "name": "Saint Ophelia",
     "class": "Acolyte",
@@ -400,6 +1182,52 @@
       "magic": 3,
       "faith": 5,
       "cunning": 3,
+      "health": 7
+    },
+    "desire": 6,
+    "souls": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-saint-aurelian",
+    "name": "Saint Aurelian",
+    "class": "Acolyte",
+    "tier": "Legendary",
+    "stats": {
+      "might": 4,
+      "magic": 3,
+      "faith": 5,
+      "cunning": 2,
+      "health": 7
+    },
+    "desire": 6,
+    "souls": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-the-lantern-bearer",
+    "name": "The Lantern Bearer",
+    "class": "Acolyte",
+    "tier": "Legendary",
+    "stats": {
+      "might": 2,
+      "magic": 3,
+      "faith": 5,
+      "cunning": 4,
       "health": 7
     },
     "desire": 6,
@@ -483,6 +1311,144 @@
     ]
   },
   {
+    "id": "hero-pip-fingerlight",
+    "name": "Pip Fingerlight",
+    "class": "Rogue",
+    "tier": "Common",
+    "stats": {
+      "might": 2,
+      "magic": 1,
+      "faith": 1,
+      "cunning": 3,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-mags-underhill",
+    "name": "Mags Underhill",
+    "class": "Rogue",
+    "tier": "Common",
+    "stats": {
+      "might": 1,
+      "magic": 2,
+      "faith": 1,
+      "cunning": 3,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-tuck-the-fence",
+    "name": "Tuck the Fence",
+    "class": "Rogue",
+    "tier": "Common",
+    "stats": {
+      "might": 1,
+      "magic": 1,
+      "faith": 2,
+      "cunning": 3,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-sly-wenna",
+    "name": "Sly Wenna",
+    "class": "Rogue",
+    "tier": "Common",
+    "stats": {
+      "might": 2,
+      "magic": 1,
+      "faith": 1,
+      "cunning": 3,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-dodger-crane",
+    "name": "Dodger Crane",
+    "class": "Rogue",
+    "tier": "Common",
+    "stats": {
+      "might": 1,
+      "magic": 2,
+      "faith": 1,
+      "cunning": 3,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-kit-rooftop",
+    "name": "Kit Rooftop",
+    "class": "Rogue",
+    "tier": "Common",
+    "stats": {
+      "might": 1,
+      "magic": 1,
+      "faith": 2,
+      "cunning": 3,
+      "health": 3
+    },
+    "desire": 2,
+    "souls": 1,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "hero-vesper-nightglass",
     "name": "Vesper Nightglass",
     "class": "Rogue",
@@ -529,6 +1495,98 @@
     ]
   },
   {
+    "id": "hero-silas-blackwater",
+    "name": "Silas Blackwater",
+    "class": "Rogue",
+    "tier": "Paragon",
+    "stats": {
+      "might": 3,
+      "magic": 2,
+      "faith": 2,
+      "cunning": 4,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-renard-the-smiling",
+    "name": "Renard the Smiling",
+    "class": "Rogue",
+    "tier": "Paragon",
+    "stats": {
+      "might": 2,
+      "magic": 3,
+      "faith": 2,
+      "cunning": 4,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-juno-ninelives",
+    "name": "Juno Ninelives",
+    "class": "Rogue",
+    "tier": "Paragon",
+    "stats": {
+      "might": 2,
+      "magic": 2,
+      "faith": 3,
+      "cunning": 4,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-ash-wickersby",
+    "name": "Ash Wickersby",
+    "class": "Rogue",
+    "tier": "Paragon",
+    "stats": {
+      "might": 3,
+      "magic": 2,
+      "faith": 2,
+      "cunning": 4,
+      "health": 5
+    },
+    "desire": 4,
+    "souls": 2,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
     "id": "hero-the-grey-fox",
     "name": "The Grey Fox",
     "class": "Rogue",
@@ -537,6 +1595,52 @@
       "might": 3,
       "magic": 3,
       "faith": 3,
+      "cunning": 5,
+      "health": 7
+    },
+    "desire": 6,
+    "souls": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-the-velvet-shadow",
+    "name": "The Velvet Shadow",
+    "class": "Rogue",
+    "tier": "Legendary",
+    "stats": {
+      "might": 4,
+      "magic": 3,
+      "faith": 2,
+      "cunning": 5,
+      "health": 7
+    },
+    "desire": 6,
+    "souls": 3,
+    "flavour": "TODO",
+    "art": null,
+    "todo": [
+      "name",
+      "flavour",
+      "art",
+      "balance"
+    ]
+  },
+  {
+    "id": "hero-mistral-the-unseen",
+    "name": "Mistral the Unseen",
+    "class": "Rogue",
+    "tier": "Legendary",
+    "stats": {
+      "might": 2,
+      "magic": 3,
+      "faith": 4,
       "cunning": 5,
       "health": 7
     },

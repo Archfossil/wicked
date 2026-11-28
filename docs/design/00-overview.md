@@ -18,7 +18,7 @@ A competitive **market-based deckbuilder** with a semi-cooperative twist: every 
 
 - **Rule:** 1 to 6 players (villains).
 - **Rule (answers Q-01):** **1 to 6 players**, including a **solo mode**.
-- **Open:** how solo works. With no rivals, objective lists can't be scored against you: what's the goal (e.g. a target score before the Hero deck runs out, or objectives you must achieve yourself)? → Q-01a
+- **Open:** how solo works. With no rivals there's no race for Objectives: what's the goal (e.g. claim a target number of Objectives before the Hero deck runs out)? → Q-01a
 
 ## Components (card decks)
 
@@ -46,7 +46,7 @@ Other parts mentioned in the design (their exact form is still open):
 - **Dice:** fights use d6 dice pools (5–6 = hit). Luring rolls a die only when your treasure falls short of a Hero's desire.
 
 The phases of a round are in [Round Flow](02-round-flow.md): Upkeep → Town → Build → Lure → Adventure → End.
-- **Objective lists** (secret, one per player).
+- The **Objective Market** (shared and face-up): goals any villain can claim, each with a reward. See [Objectives & Scoring](05-objectives-and-scoring.md).
 
 ## A hero's journey (the core loop)
 
@@ -71,5 +71,5 @@ Town ──(lured by treasure)──► Overworld 4×4 grid ──► Dungeon ro
 - **Rule:** the game ends when the **last Hero in the region is defeated**. The Hero deck never reshuffles, so once it's empty the end is in sight (answers Q-24).
 - **Rule (answers Q-08):** there's **no round limit** or other backstop. Heroes who keep winning keep vanquishing Villains, so eliminations end the game anyway.
 - **Rule:** a player who loses all 3 villains is **eliminated**.
-- **Rule:** the winner is the surviving player with the most objectives on their list *not* scored by other villains. Tie-break: most souls harvested. See [Objectives & Scoring](05-objectives-and-scoring.md).
+- **Rule:** the winner is the surviving player with the most **Objectives claimed** from the shared Objective Market. Tie-breaks: most souls harvested, then most Coins; then a shared win. See [Objectives & Scoring](05-objectives-and-scoring.md).
 - **Rule:** the **Heroes win** if **every** villain is eliminated. That's the risk if the villains hobble each other too much.
