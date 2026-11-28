@@ -4,10 +4,14 @@
 const CARDS = await fetch("/cards.json").then((r) => r.json());
 const SERVER_CFG = await fetch("/config.json").then((r) => r.json());
 const C = (x) => (x ? CARDS[x.id ?? x] : null);
+import { artFor, pairArt, spriteFor, minionSprite, wallTile } from "/art.js";
+document.documentElement.style.setProperty("--wall", `url(${wallTile()})`);
+const artImg = (d) => `<img class="art" src="${artFor(d)}" alt="">`;
+const spr = (d, cls = "spr") => `<img class="${cls}" src="${spriteFor(d)}" alt="">`;
 
 // ---------- connection ----------
 let ws = null, lobby = null, view = null, seat = null;
-const ui = { tab: null, sel: null, inspect: null, modal: null, resultsDismissed: false, lastLog: 0, name: localStorage.getItem("wa-name") || "" };
+const ui = { center: "lands", side: "hand", focusKey: null, tab: null, sel: null, inspect: null, modal: null, resultsDismissed: false, lastLog: 0, name: localStorage.getItem("wa-name") || "" };
 const session = () => JSON.parse(sessionStorage.getItem("wa-session") || "null");
 
 function connect() {
@@ -40,6 +44,8 @@ function onMessage(m) {
       view = m.view;
       if (prevStep !== `${view.round}:${view.step?.type}`) { ui.sel = null; }
       if (ui.tab == null) ui.tab = view.you;
+      const fk = `${view.round}:${view.step?.type}:${view.acting.includes(view.you)}`;
+      if (fk !== ui.focusKey) { ui.focusKey = fk; if (view.acting.includes(view.you)) autoFocus(); }
       break;
     }
     case "error": toast(m.message); ui.sel = null; break;
@@ -128,32 +134,32 @@ function roomCard(inst, attrs = "", extra = "") {
   for (const e of d.minionBonus ?? []) lines.push(`<span class="sub">Minion: ${esc(e.text)}</span>`);
   for (const x of d.soulExchanges ?? []) lines.push(`<span class="sub">👻${x.souls} → ${esc(x.gives.text)}</span>`);
   lines.push(`<span class="sub">Covered: ${esc(d.coveredBonus.map((e) => e.text).join(" "))}</span>`);
-  return `<div class="card room ${d.trap ? "trap" : ""}" title="${tip(d)}" ${attrs}><div class="hd"><span>${esc(d.name)}</span>${d.trap ? '<span class="tag">TRAP</span>' : ""}</div><div class="bd">${lines.map((l) => `<div class="ln">${l}</div>`).join("")}${extra}</div></div>`;
+  return `<div class="card room ${d.trap ? "trap" : ""}" ${attrs}><div class="hd"><span>${esc(d.name)}</span>${d.trap ? '<span class="tag">TRAP</span>' : ""}</div>${artImg(d)}<div class="bd">${lines.map((l) => `<div class="ln">${l}</div>`).join("")}${extra}</div></div>`;
 }
 function trickCard(inst, attrs = "", extra = "", cost = null) {
   const d = C(inst);
-  return `<div class="card trick" title="${tip(d)}" ${attrs}><div class="hd"><span>${esc(d.name)}</span><span class="tag">${d.type}</span></div><div class="bd"><div class="sub">${phaseList(d.phases)} · <span class="price">${costTxt(cost ?? d.playCost)}</span>${d.recharge ? ` · ⟳${d.recharge}` : ""}</div>${d.effect.map((e) => `<div class="ln">${esc(e.text)}</div>`).join("")}${extra}</div></div>`;
+  return `<div class="card trick" ${attrs}><div class="hd"><span>${esc(d.name)}</span><span class="tag">${d.type}</span></div>${artImg(d)}<div class="bd"><div class="sub">${phaseList(d.phases)} · <span class="price">${costTxt(cost ?? d.playCost)}</span>${d.recharge ? ` · ⟳${d.recharge}` : ""}</div>${d.effect.map((e) => `<div class="ln">${esc(e.text)}</div>`).join("")}${extra}</div></div>`;
 }
 function champCard(inst, attrs = "", extra = "", level = null) {
   const d = C(inst);
-  return `<div class="card champion" title="${tip(d)}" ${attrs}><div class="hd"><span>${esc(d.name)}</span><span class="price">${d.cost}¤</span></div><div class="bd"><div class="ln">${d.dice}🎲 · ${esc(d.roomBonus.map((e) => e.text).join(" "))}</div>${d.levels.map((l, i) => `<div class="sub" style="${level != null && i < level ? "color:var(--gold)" : ""}">Lv${i + 1} ${l.coins}¤: ${esc(l.effect.map((e) => e.text).join(" "))}</div>`).join("")}${extra}</div></div>`;
+  return `<div class="card champion" ${attrs}><div class="hd"><span>${esc(d.name)}</span><span class="price">${d.cost}¤</span></div>${artImg(d)}<div class="bd"><div class="ln">${d.dice}🎲 · ${esc(d.roomBonus.map((e) => e.text).join(" "))}</div>${d.levels.map((l, i) => `<div class="sub" style="${level != null && i < level ? "color:var(--gold)" : ""}">Lv${i + 1} ${l.coins}¤: ${esc(l.effect.map((e) => e.text).join(" "))}</div>`).join("")}${extra}</div></div>`;
 }
 function pairCard(pair, attrs = "") {
   const t = C(pair.terrain), m = C(pair.monster);
   const match = m.preferredTerrain === t.terrainType;
-  return `<div class="card pair" ${attrs}><div class="hd terrain ${t.terrainType}" title="${tip(t)}"><span>${esc(t.name)}</span><span class="tag">${t.terrainType}</span></div><div class="bd"><div class="ln">${t.kind === "hazard" ? `⚠ ${threatHtml(t.threat)}` : `☠ ${t.status} ${t.statusRounds}r`}</div></div><div class="mohd" title="${tip(m)}">👹 ${esc(m.name)}${match ? " ★" : ""}</div><div class="bd"><div class="ln">${threatHtml(m.threat)}</div><div class="sub">Likes ${m.preferredTerrain}${match ? " (home!)" : ""}</div></div></div>`;
+  return `<div class="card pair" ${attrs}><div class="hd terrain ${t.terrainType}" title="${tip(t)}"><span>${esc(t.name)}</span><span class="tag">${t.terrainType}</span></div><img class="art" src="${pairArt(t, m)}" alt=""><div class="bd"><div class="ln">${t.kind === "hazard" ? `⚠ ${threatHtml(t.threat)}` : `☠ ${t.status} ${t.statusRounds}r`}</div></div><div class="mohd" title="${tip(m)}">👹 ${esc(m.name)}${match ? " ★" : ""}</div><div class="bd"><div class="ln">${threatHtml(m.threat)}</div><div class="sub">Likes ${m.preferredTerrain}${match ? " (home!)" : ""}</div></div></div>`;
 }
 function treasureCard(inst, attrs = "", extra = "") {
   const d = C(inst);
-  return `<div class="card treasure" title="${tip(d)}" ${attrs}><div class="hd"><span>${esc(d.name)}</span><span class="price">${d.coinCost}¤</span></div><div class="bd"><div class="ln">💰 ${d.value} ${d.type}</div><div class="sub">Needs ${d.soulThreshold}👻 harvested</div>${extra}</div></div>`;
+  return `<div class="card treasure" ${attrs}><div class="hd"><span>${esc(d.name)}</span><span class="price">${d.coinCost}¤</span></div>${artImg(d)}<div class="bd"><div class="ln">💰 ${d.value} ${d.type}</div><div class="sub">Needs ${d.soulThreshold}👻 harvested</div>${extra}</div></div>`;
 }
 function itemCard(inst, attrs = "", extra = "") {
   const d = C(inst);
-  return `<div class="card item" title="${tip(d)}" ${attrs}><div class="hd"><span>${esc(d.name)}</span><span class="tag">${d.type}</span></div><div class="bd"><div class="sub">Tainted: ${esc(d.villainEffect.map((e) => e.text).join(" "))}</div>${extra}</div></div>`;
+  return `<div class="card item" ${attrs}><div class="hd"><span>${esc(d.name)}</span><span class="tag">${d.type}</span></div>${artImg(d)}<div class="bd"><div class="sub">Tainted: ${esc(d.villainEffect.map((e) => e.text).join(" "))}</div>${extra}</div></div>`;
 }
 function villainCard(inst, attrs = "", extra = "") {
   const d = C(inst);
-  return `<div class="card villain big" title="${tip(d)}" ${attrs}><div class="hd"><span>${esc(d.name)}</span><span>${d.health}♥</span></div><div class="bd"><div class="ln">${threatHtml(d.threat)}</div>${d.power.map((e) => `<div class="ln">${e.recharges ? "⟳ " : e.when === "passive" ? "◆ " : ""}${esc(e.text)}</div>`).join("")}${extra}</div></div>`;
+  return `<div class="card villain big" ${attrs}><div class="hd"><span>${esc(d.name)}</span><span>${d.health}♥</span></div>${artImg(d)}<div class="bd"><div class="ln">${threatHtml(d.threat)}</div>${d.power.map((e) => `<div class="ln">${e.recharges ? "⟳ " : e.when === "passive" ? "◆ " : ""}${esc(e.text)}</div>`).join("")}${extra}</div></div>`;
 }
 function heroChip(h, extraCls = "") {
   const d = C(h);
@@ -161,12 +167,14 @@ function heroChip(h, extraCls = "") {
   const tempts = Object.entries(h.tempts ?? {}).filter(([, n]) => n > 0).map(([pid, n]) => `${esc(pname(+pid).replace(/^🤖 /, "").slice(0, 6))} ${n}/${h.lure}`).join(" ");
   const title = `${d.name}\n${cardLines(d).join("\n")}\nHealth ${h.health}${h.statuses.length ? `\nStatuses: ${h.statuses.map((s) => `${s.status} (${s.rounds})`).join(", ")}` : ""}${h.carrying ? `\nCarrying ${C(h.carrying).name}: ${C(h.carrying).heroEffect.map((e) => e.text).join(" ")}` : ""}${tempts ? `\nTempts: ${tempts}` : ""}`;
   const tierMark = d.tier === "Legendary" ? "★★" : d.tier === "Paragon" ? "★" : "";
-  return `<span class="hero ${d.class} ${d.tier} ${extraCls}" title="${esc(title)}">${tierMark}${esc(d.name)} <span class="hpt">${h.health}♥</span>${st ? ` <span class="stx">${st}</span>` : ""}${h.carrying ? " 🗡" : ""}${tempts ? ` <span class="tm">${tempts}</span>` : ""}</span>`;
+  return `<span class="hero ${d.class} ${d.tier} ${extraCls}" title="${esc(title)}">${spr(d)}${tierMark}${esc(d.name)} <span class="hpt">${h.health}♥</span>${st ? ` <span class="stx">${st}</span>` : ""}${h.carrying ? " 🗡" : ""}${tempts ? ` <span class="tm">${tempts}</span>` : ""}</span>`;
 }
 const diceHtml = (arr, cls = "") => `<span class="dice">${arr.map((x) => `<span class="die ${cls} ${x >= 5 ? "hit" : ""}">${x}</span>`).join("")}</span>`;
 
 // ---------- screens ----------
 function render() {
+  const zoomed = zoomSrc ? zoomAt : null;
+  hideZoom();
   const app = document.getElementById("app");
   const keep = {};
   for (const el of app.querySelectorAll("[data-scroll]")) keep[el.dataset.scroll] = el.scrollTop;
@@ -175,6 +183,7 @@ function render() {
   else app.innerHTML = gameScreen();
   document.getElementById("modal").innerHTML = modalHtml();
   for (const el of app.querySelectorAll("[data-scroll]")) if (keep[el.dataset.scroll] != null) el.scrollTop = keep[el.dataset.scroll];
+  rezoom(zoomed);
   const log = document.querySelector(".log");
   if (log && ui.stickLog !== false) log.scrollTop = log.scrollHeight;
 }
@@ -183,6 +192,7 @@ function homeScreen() {
   const code = new URLSearchParams(location.search).get("room") ?? "";
   return `<div class="home">
     <h1>The Wicked Awaken</h1>
+    <div class="parade">${Object.values(CARDS).filter((c) => c.deck === "villains").slice(0, 9).map((c) => spr(c, "pspr")).join("")}</div>
     <div class="tag">Good already won. Build a dungeon, lure the heroes in, and spend their souls.</div>
     <div class="box"><h3>Your villainous name</h3><input id="nm" class="grow" style="width:100%" maxlength="24" placeholder="e.g. The Duke of Rot" value="${esc(ui.name)}"></div>
     <div class="box"><h3>Play</h3>
@@ -237,6 +247,7 @@ const stepType = () => view.step?.type;
 
 function gameScreen() {
   const phases = ["upkeep", "town", "build", "lure", "adventure", "end"];
+  const markets = ui.center === "markets";
   return `<div id="game">
     <header class="topbar"><h1>The Wicked Awaken</h1><span class="muted">Round ${view.round || "—"}</span>
       <div class="phases">${view.phase === "setup" ? '<span class="on">Setup</span>' : phases.map((p) => `<span class="${view.phase === p ? "on" : ""}">${p[0].toUpperCase() + p.slice(1)}</span>`).join("")}</div>
@@ -244,12 +255,25 @@ function gameScreen() {
     </header>
     ${promptBar()}
     <div class="main">
-      <aside class="left" data-scroll="left">${townPanel()}${marketsPanel()}</aside>
-      <section class="center" data-scroll="center">${tabsHtml()}${landsHtml(view.players[ui.tab ?? view.you])}</section>
-      <aside class="right" data-scroll="right">${mePanel()}</aside>
+      <aside class="left">
+        <div class="townbox" data-scroll="town">${townPanel()}</div>
+        <div class="logbox"><h3 class="lh">📜 Chronicle</h3><div class="log" data-scroll="log" onscroll="window.__logScroll(this)">${logHtml()}</div></div>
+      </aside>
+      <section class="center">${tabsHtml()}<div class="viewbody" data-scroll="${markets ? "markets" : "lands-" + ui.tab}">${markets ? marketsPanel() : landsHtml(view.players[ui.tab ?? view.you])}</div></section>
+      <aside class="right">${sidePanel()}</aside>
     </div>
-    <footer class="log" data-scroll="log" onscroll="window.__logScroll(this)">${logHtml()}</footer>
   </div>`;
+}
+/** When it becomes your turn, show the screen and panel that turn is about. */
+function autoFocus() {
+  const t = stepType(), p = me(), allow = view.me.allow ?? {};
+  if (["roomDraft", "town"].includes(t)) ui.center = "markets";
+  else if (["build", "buildTricks", "lure", "adventure"].includes(t)) { ui.center = "lands"; ui.tab = view.you; }
+  else if (t === "end") ui.center = allow.treasureBuys > 0 && view.markets.treasure.some((c) => p.coins >= C(c).coinCost && p.soulsTotal >= C(c).soulThreshold) ? "markets" : "lands";
+  if (["roomDraft", "build", "buildTricks"].includes(t)) ui.side = "hand";
+  if (t === "end" && view.me.hand.rooms.length + view.me.hand.tricks.length > 7) ui.side = "hand";
+  if (t === "lure" && view.me.townMinions) ui.side = "you";
+  ui.inspect = null;
 }
 window.__logScroll = (el) => { ui.stickLog = el.scrollTop + el.clientHeight >= el.scrollHeight - 8; };
 
@@ -310,15 +334,17 @@ function soulExchangeButtons() {
 }
 
 function tabsHtml() {
+  const t = stepType(), my = acting();
+  const shop = my && (["roomDraft", "town"].includes(t) || (t === "end" && view.me.allow?.treasureBuys > 0));
   return `<div class="tabs">${view.players.map((p) => {
     const v = p.villains.find((x) => x.active);
     const vd = v?.card && C(v.card);
     const hp = vd ? `${vd.health - v.damage}/${vd.health}♥` : "";
     const alive = p.villains.filter((x) => !x.vanquished).length;
-    return `<div class="tab ${ui.tab === p.id ? "sel" : ""} ${p.acting ? "acting" : ""} ${p.eliminated ? "out" : ""}" data-a="tab" data-pid="${p.id}">
-      <div class="nm">${view.firstPlayer === p.id ? "👑" : ""}${esc(p.name)}${p.id === view.you ? ' <span class="muted">(you)</span>' : ""}</div>
-      <div class="st"><span>¤${p.coins}</span><span>👻${p.soulsTotal}</span><span title="Villains left">☠${alive}/3</span>${hp ? `<span>${esc(vd.name.split(" ").slice(-1)[0])} ${hp}</span>` : ""}</div></div>`;
-  }).join("")}</div>`;
+    return `<div class="tab ${ui.center !== "markets" && ui.tab === p.id ? "sel" : ""} ${p.acting ? "acting" : ""} ${p.eliminated ? "out" : ""}" data-a="tab" data-pid="${p.id}">
+      <div class="nm">${vd ? spr(vd) : ""}${view.firstPlayer === p.id ? "👑" : ""}${esc(p.name)}${p.id === view.you ? ' <span class="muted">(you)</span>' : ""}</div>
+      <div class="st"><span>¤${p.coins}</span><span>👻${p.soulsTotal}</span><span title="Villains left">☠${alive}/3</span>${hp ? `<span>${hp}</span>` : ""}</div></div>`;
+  }).join("")}<div class="tab mk ${ui.center === "markets" ? "sel" : ""}" data-a="markets"><div class="nm">🛒 Markets${shop ? '<span class="badge">!</span>' : ""}</div><div class="st"><span>Rooms · Terrain</span><span>Champions · Treasure</span></div></div></div>`;
 }
 
 function landsHtml(p) {
@@ -341,7 +367,7 @@ function landsHtml(p) {
     if (sel?.kind === "monster" && sel.r === r && sel.c === c && mine) cls += " selected";
     const canMoveMon = myTurn && md && view.me.allow.monsterMoves > 0 && ["build", "buildTricks"].includes(t);
     const hs = heroesHere((l) => l.at === "overworld" && l.r === r && l.c === c);
-    cells.push(`<div class="cell ${cls}" ${attrs}><span class="xy">${r + 1},${c + 1}</span>
+    cells.push(`<div class="cell ${cls}" ${attrs} ${td ? `style="background-image:linear-gradient(#0d0911cc, #0d091155 60%, #0d091100), url(${artFor(td)})"` : ""}>${md ? `<img class="mspr" src="${spriteFor(md)}" alt="">` : ""}<span class="xy">${r + 1},${c + 1}</span>
       ${td ? `<div class="tn" title="${tip(td)}">${esc(td.name)}</div><div class="tk">${td.kind === "hazard" ? `⚠ ${threatHtml(td.threat)}` : `☠ ${td.status} ${td.statusRounds}r`}</div>` : '<div class="dim">wasteland</div>'}
       ${md ? `<div class="mo ${canMoveMon ? "monster-pick" : ""}" title="${tip(md)}${canMoveMon ? "\n(click to move)" : ""}" ${canMoveMon ? `data-a="monster" data-r="${r}" data-c="${c}"` : ""}>👹 ${esc(md.name)}${md.preferredTerrain === td?.terrainType ? "★" : ""} <span class="dim">${md.threat.dice + (md.preferredTerrain === td?.terrainType ? 1 : 0)}🎲</span></div>` : ""}
       <div class="inlands">${hs.map((h) => heroChip(h)).join("")}</div></div>`);
@@ -361,15 +387,15 @@ function landsHtml(p) {
     return `<div class="space ${cls} clickable" ${attrs}>
       <div class="idx"><span>Space ${i + 1}</span>${sp.stack.length > 1 ? `<span class="stackh" title="Underneath: ${esc(below.join(", "))}">▲${sp.stack.length}</span>` : ""}</div>
       ${top ? roomCard(top, 'style="width:100%"') : '<div class="emptytxt">empty<br>(takes a round to cross)</div>'}
-      ${ch ? `<div class="champ" title="${tip(C(ch.card))}" ${mine && building && view.me.allow.championMoves ? `data-a="champ" data-i="${i}"` : ""}>🛡 ${esc(C(ch.card).name)} <b>Lv${ch.level}</b> ${C(ch.card).dice}🎲</div>` : ""}
-      ${mins ? `<div class="minions" title="Minions here">${'<i class="minion"></i>'.repeat(mins)}</div>` : ""}
+      ${ch ? `<div class="champ" title="${tip(C(ch.card))}" ${mine && building && view.me.allow.championMoves ? `data-a="champ" data-i="${i}"` : ""}>${spr(C(ch.card))} ${esc(C(ch.card).name)} <b>Lv${ch.level}</b> ${C(ch.card).dice}🎲</div>` : ""}
+      ${mins ? `<div class="minions" title="Minions here">${`<img class="spr imp" src="${minionSprite()}" alt="">`.repeat(mins)}</div>` : ""}
       <div class="inlands">${hs.map((h) => heroChip(h)).join("")}</div></div>`;
   }).join("");
   // villain lair
   const v = p.villains.find((x) => x.active) ?? null;
   const vd = v?.card && C(v.card);
   const fighters = heroesHere((l) => l.at === "fight");
-  const lair = `<div class="lair">${vd ? `<div class="vn" title="${tip(vd)}">${esc(vd.name)}</div><div class="hp"><i style="width:${Math.max(0, 100 * (vd.health - v.damage) / vd.health)}%"></i></div><div class="tiny">${vd.health - v.damage}/${vd.health} Health · ${threatHtml(vd.threat)}</div>${vd.power.map((e) => `<div class="tiny muted">${e.recharges ? (mine && p.powerUsed ? "⟳ (used) " : "⟳ ") : "◆ "}${esc(e.text)}</div>`).join("")}` : `<div class="vn">${p.eliminated ? "Eliminated" : "No Villain yet"}</div>`}
+  const lair = `<div class="lair">${vd ? `${artImg(vd)}<div class="vn" title="${tip(vd)}">${esc(vd.name)}</div><div class="hp"><i style="width:${Math.max(0, 100 * (vd.health - v.damage) / vd.health)}%"></i></div><div class="tiny">${vd.health - v.damage}/${vd.health} Health · ${threatHtml(vd.threat)}</div>${vd.power.map((e) => `<div class="tiny muted">${e.recharges ? (mine && p.powerUsed ? "⟳ (used) " : "⟳ ") : "◆ "}${esc(e.text)}</div>`).join("")}` : `<div class="vn">${p.eliminated ? "Eliminated" : "No Villain yet"}</div>`}
     <div class="inlands">${fighters.map((h) => heroChip(h)).join("")}</div>
     <div class="reserve">${p.villains.filter((x) => !x.active).map((x) => x.vanquished ? `<div>✝ ${x.card ? esc(C(x.card).name) : "?"} (vanquished)</div>` : `<div>${x.card ? `Reserve: ${esc(C(x.card).name)}` : "Reserve: face-down"}</div>`).join("")}</div></div>`;
 
@@ -431,13 +457,17 @@ function marketsPanel() {
     const ok = my && t === "end" && coins >= d.coinCost && me().soulsTotal >= d.soulThreshold && view.me.allow.treasureBuys > 0;
     return treasureCard(c, ok ? `data-a="mkTreasure" data-i="${i}"` : (my && t === "end" ? 'data-state="disabled"' : ""));
   }).join("");
-  return `<div class="section"><h3>Dungeon Market <span class="dim">oldest left · ${view.counts.dungeonDeck} in deck</span></h3><div class="cards">${room}</div></div>
-    <div class="section"><h3>Terrain Market <span class="dim">Terrain + Monster pairs</span></h3><div class="cards">${terr}</div></div>
-    <div class="section"><h3>Champion Market</h3><div class="cards">${champ}</div></div>
-    <div class="section"><h3>Treasure Market <span class="dim">bought in the End Phase</span></h3><div class="cards">${treas}</div></div>`;
+  const hot = my ? ({ roomDraft: ["dungeon"], town: ["dungeon", "terrain", "champion"], end: ["treasure"] }[t] ?? []) : [];
+  const secs = [
+    ["dungeon", `Dungeon Market <span class="dim">oldest left · ${view.counts.dungeonDeck} in deck${t === "town" ? " · click one to take it" : ""}</span>`, room],
+    ["terrain", `Terrain Market <span class="dim">Terrain + Monster pairs${my && t === "town" ? " · click one, then a wasteland square" : ""}</span>`, terr],
+    ["champion", `Champion Market <span class="dim">hire with Coins${my && t === "town" ? ` · you have ${coins}¤` : ""}</span>`, champ],
+    ["treasure", `Treasure Market <span class="dim">bought in the End Phase · needs Coins and souls harvested</span>`, treas],
+  ].sort((a, b) => hot.includes(b[0]) - hot.includes(a[0]));
+  return `<div class="markets">${secs.map(([k, h, body]) => `<div class="section ${hot.includes(k) ? "hot" : ""}"><h3>${h}</h3><div class="cards">${body || '<span class="dim">empty</span>'}</div></div>`).join("")}</div>`;
 }
 
-function mePanel() {
+function sidePanel() {
   const p = me();
   const t = stepType();
   const my = acting();
@@ -450,20 +480,32 @@ function mePanel() {
   const ex = p.exhausted.map((x) => trickCard(x.card, 'data-state="disabled"', `<div class="sub">⟳ back in ${x.refreshIn} Upkeep${x.refreshIn > 1 ? "s" : ""}</div>`)).join("");
   const scorer = (o) => (o.scoredBy != null ? `scored by ${esc(pname(o.scoredBy))}` : o.revealed ? "revealed to all" : "hidden");
   const objs = p.objectives.map((o) => `<div class="obj ${o.revealed ? "revealed" : ""} ${o.scoredBy != null ? "scored" : ""}" title="${o.card ? esc(cardLines(C(o.card)).join("\n")) : ""}">${o.card ? esc(C(o.card).text) : "?"}<span class="meta">${C(o.card)?.kind === "state" ? "checked at game end" : "event"} · ${scorer(o)}${o.learnedByOthers?.length ? ` · known to ${o.learnedByOthers.map(pname).map(esc).join(", ")}` : ""}</span></div>`).join("");
-  const minionOrders = my && t === "build" && p.minions.length ? `<div class="mlist">${p.minions.map((m, i) => `<div class="row"><i class="minion"></i><span class="tiny">Minion ${i + 1}</span><select class="small" data-c="minionOrder" data-i="${i}">${["home", "town", 0, 1, 2, 3, 4].map((o) => `<option value="${o}" ${m === o ? "selected" : ""}>${o === "home" ? "Stay home" : o === "town" ? "Go to Town (+1 tempt)" : `Space ${o + 1}${C(p.dungeon[o].stack.at(-1))?.minionBonus ? " ★" : ""}`}</option>`).join("")}</select></div>`).join("")}</div>` : "";
+  const imp = `<img class="spr imp" src="${minionSprite()}" alt="">`;
+  const minionOrders = my && t === "build" && p.minions.length ? `<div class="mlist">${p.minions.map((m, i) => `<div class="row">${imp}<span class="tiny">Minion ${i + 1}</span><select class="small" data-c="minionOrder" data-i="${i}">${["home", "town", 0, 1, 2, 3, 4].map((o) => `<option value="${o}" ${m === o ? "selected" : ""}>${o === "home" ? "Stay home" : o === "town" ? "Go to Town (+1 tempt)" : `Space ${o + 1}${C(p.dungeon[o].stack.at(-1))?.minionBonus ? " ★" : ""}`}</option>`).join("")}</select></div>`).join("")}</div>` : "";
   const town = view.heroes.filter((h) => h.loc.at === "town");
-  const minionTargets = my && t === "lure" && view.me.townMinions ? `<div class="mlist">${Array.from({ length: view.me.townMinions }, (_, k) => `<div class="row"><i class="minion"></i><span class="tiny">Town Minion ${k + 1} tempts</span><select class="small" data-c="minionTarget" data-k="${k}"><option value="">(auto)</option>${town.map((h) => `<option value="${h.uid}" ${view.me.minionTargets[k] === h.uid ? "selected" : ""}>${esc(C(h).name)}</option>`).join("")}</select></div>`).join("")}</div>` : "";
+  const minionTargets = my && t === "lure" && view.me.townMinions ? `<div class="mlist">${Array.from({ length: view.me.townMinions }, (_, k) => `<div class="row">${imp}<span class="tiny">Town Minion ${k + 1} tempts</span><select class="small" data-c="minionTarget" data-k="${k}"><option value="">(auto)</option>${town.map((h) => `<option value="${h.uid}" ${view.me.minionTargets[k] === h.uid ? "selected" : ""}>${esc(C(h).name)}</option>`).join("")}</select></div>`).join("")}</div>` : "";
   const storedItems = p.treasury.filter((x) => C(x).deck === "items");
   const sustain = my && ["build", "end"].includes(t) && storedItems.length ? `<div class="mlist">${storedItems.map((it) => `<div class="row"><span class="tiny">${esc(C(it).name)}</span>${p.sustained.length < 2 ? `<button class="small" data-a="sustain" data-uid="${it.uid}">Sustain</button>` : p.sustained.map((s) => `<button class="small" data-a="sustain" data-uid="${it.uid}" data-replace="${s.card.uid}">Swap for ${esc(C(s.card).name)}</button>`).join("")}</div>`).join("")}</div>` : "";
-  return `${v ? villainCard(v.card, 'style="width:100%"', `<div class="hp"><i style="width:${100 * (C(v.card).health - v.damage) / C(v.card).health}%"></i></div><div class="sub">${C(v.card).health - v.damage}/${C(v.card).health} Health${p.powerUsed ? " · power used" : ""}</div>`) : ""}
-    <div class="res" style="margin-top:8px"><div class="c"><b>${p.coins}</b>Coins</div><div class="s"><b>${p.souls}</b>Souls <span class="dim tiny">(${p.soulsTotal} total)</span></div><div class="m"><b>${p.minions.length}</b>Minions</div></div>
+  const todo = !!(minionOrders || minionTargets || sustain);
+  const unscored = p.objectives.filter((o) => o.scoredBy == null).length;
+  const reserve = p.villains.filter((x) => !x.active).map((x) => `<div class="row tiny">${x.card ? spr(C(x.card)) : "?"}${x.vanquished ? `✝ ${x.card ? esc(C(x.card).name) : "?"} (vanquished)` : `Reserve: ${x.card ? esc(C(x.card).name) : "face-down"}`}</div>`).join("");
+  const side = ui.side ?? "hand";
+  const tabs = [
+    ["you", `${v ? spr(C(v.card)) : "☠ "}Villain${todo ? '<span class="badge">!</span>' : ""}`],
+    ["hand", `Hand <span class="${handN > 7 ? "over" : "dim"}">${handN}/7</span>${over || (building && side !== "hand") ? '<span class="badge">!</span>' : ""}`],
+    ["goals", `Objectives <span class="dim">${unscored}/${p.objectives.length}</span>`],
+  ];
+  let body;
+  if (side === "you") body = `${v ? villainCard(v.card, 'style="width:100%"', `<div class="hp"><i style="width:${100 * (C(v.card).health - v.damage) / C(v.card).health}%"></i></div><div class="sub">${C(v.card).health - v.damage}/${C(v.card).health} Health${p.powerUsed ? " · power used" : ""}</div>`) : ""}
     ${minionOrders ? `<div class="section"><h3>Minion orders</h3>${minionOrders}</div>` : ""}
     ${minionTargets ? `<div class="section"><h3>Town Minions</h3>${minionTargets}</div>` : ""}
     ${sustain ? `<div class="section"><h3>Stored Tainted Items</h3>${sustain}</div>` : ""}
-    <div class="section"><h3>Your objectives <span class="dim">stop the others doing these</span></h3><div class="objs">${objs}</div></div>
-    <div class="section"><h3>Hand <span class="dim" style="${handN > 7 ? "color:var(--blood)" : ""}">${handN}/7</span></h3>
-      <div class="cards">${rooms || '<span class="dim">no Rooms</span>'}</div>
-      <div class="cards" style="margin-top:5px">${tricks}${ex}</div></div>`;
+    <div class="section"><h3>Your other Villains</h3>${reserve || '<span class="dim">none</span>'}</div>`;
+  else if (side === "goals") body = `<div class="section"><h3>Your objectives <span class="dim">stop the others doing these</span></h3><div class="objs">${objs}</div></div>`;
+  else body = `<div class="handcards"><div class="cards">${rooms || '<span class="dim">no Rooms</span>'}</div><h3 class="lh" style="margin-top:8px">Tricks</h3><div class="cards">${tricks}${ex || ""}${tricks || ex ? "" : '<span class="dim">no Tricks</span>'}</div></div>`;
+  return `<div class="res"><div class="c"><b>${p.coins}</b>Coins</div><div class="s"><b>${p.souls}</b>Souls <span class="dim tiny">(${p.soulsTotal})</span></div><div class="m"><b>${p.minions.length}</b>Minions</div></div>
+    <nav class="subtabs">${tabs.map(([k, label]) => `<button class="${side === k ? "on" : ""}" data-a="side" data-k="${k}">${label}</button>`).join("")}</nav>
+    <div class="sidebody" data-scroll="side-${side}">${body}</div>`;
 }
 
 function logHtml() {
@@ -546,7 +588,9 @@ const handlers = {
   rules: () => { ui.modal = { kind: "rules" }; render(); },
   closeModal: () => { ui.modal = null; render(); },
   pick: (d) => { const m = ui.modal; ui.modal = null; m.onPick(m.options[+d.i].value); render(); },
-  tab: (d) => { ui.tab = +d.pid; ui.inspect = null; render(); },
+  tab: (d) => { ui.tab = +d.pid; ui.center = "lands"; ui.inspect = null; render(); },
+  markets: () => { ui.center = "markets"; ui.inspect = null; render(); },
+  side: (d) => { ui.side = d.k; render(); },
   draftVillain: (d) => act({ type: "draftVillain", uid: d.uid }),
   chooseVillain: (d) => act({ type: "chooseVillain", uid: d.uid }),
   revealObj: (d) => act({ type: "revealObjective", index: +d.i }),
@@ -558,9 +602,9 @@ const handlers = {
   cancelSel: () => { ui.sel = null; render(); },
   mkRoom: (d) => act(stepType() === "roomDraft" ? { type: "draftRoom", slot: +d.i } : { type: "townPick", choice: "room", slot: +d.i }),
   mkChamp: (d) => act({ type: "townPick", choice: "champion", slot: +d.i }),
-  mkTerrain: (d) => { ui.sel = { kind: "terrain", i: +d.i }; ui.tab = view.you; render(); },
+  mkTerrain: (d) => { ui.sel = { kind: "terrain", i: +d.i }; ui.tab = view.you; ui.center = "lands"; render(); },
   mkTreasure: (d) => act({ type: "buyTreasure", slot: +d.i }),
-  handRoom: (d) => { ui.sel = ui.sel?.uid === d.uid ? null : { kind: "handRoom", uid: d.uid, id: view.me.hand.rooms.find((r) => r.uid === d.uid).id }; ui.tab = view.you; render(); },
+  handRoom: (d) => { ui.sel = ui.sel?.uid === d.uid ? null : { kind: "handRoom", uid: d.uid, id: view.me.hand.rooms.find((r) => r.uid === d.uid).id }; ui.tab = view.you; ui.center = "lands"; render(); },
   reserveChamp: (d) => { ui.sel = { kind: "reserveChamp", uid: d.uid, id: me().championReserve.find((c) => c.uid === d.uid).id }; render(); },
   champ: (d) => { ui.sel = { kind: "spaceChamp", i: +d.i }; render(); },
   monster: (d) => { ui.sel = { kind: "monster", r: +d.r, c: +d.c }; render(); },
@@ -621,5 +665,36 @@ document.addEventListener("keydown", (ev) => {
   if (ev.key === "Escape") { ui.sel = null; ui.modal = ui.modal?.kind === "rules" || ui.modal?.kind === "picker" ? null : ui.modal; render(); }
   if (ev.key === "Enter" && !lobby && document.activeElement?.id === "code") handlers.join();
 });
+
+// ---------- card zoom ----------
+const zoom = document.getElementById("zoom");
+let zoomSrc = null, zoomTimer = null, zoomAt = 0, mouse = null;
+function hideZoom() { clearTimeout(zoomTimer); zoomSrc = null; zoom.hidden = true; }
+function showZoom(card, delay) {
+  zoomSrc = card; zoomAt = performance.now() + delay;
+  zoomTimer = setTimeout(() => {
+    if (!card.isConnected) return;
+    zoom.innerHTML = card.outerHTML.replace(/ data-a="[^"]*"/g, "");
+    zoom.hidden = false;
+    const r = card.getBoundingClientRect(), w = zoom.offsetWidth, h = zoom.offsetHeight;
+    const x = r.right + 10 + w < innerWidth ? r.right + 10 : Math.max(6, r.left - w - 10);
+    zoom.style.left = x + "px";
+    zoom.style.top = Math.max(6, Math.min(r.top - 20, innerHeight - h - 6)) + "px";
+  }, delay);
+}
+document.addEventListener("mousemove", (ev) => { mouse = { x: ev.clientX, y: ev.clientY, held: ev.buttons }; });
+document.addEventListener("mouseover", (ev) => {
+  const card = ev.target.closest?.("#app .card");
+  if (card === zoomSrc) return;
+  hideZoom();
+  if (card && !ev.buttons) showZoom(card, 220);
+});
+document.addEventListener("mousedown", hideZoom);
+/** A re-render replaces every card, so re-attach the zoom to whatever is under the mouse. */
+function rezoom(pendingUntil) {
+  if (!mouse || mouse.held) return;
+  const card = document.elementFromPoint(mouse.x, mouse.y)?.closest("#app .card");
+  if (card) showZoom(card, pendingUntil == null ? 220 : Math.max(0, pendingUntil - performance.now()));
+}
 
 connect();

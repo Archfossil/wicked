@@ -15,6 +15,7 @@ npm run simulate -- 20 4  # 20 bot-only games at 4 players, with rough balance n
 
 - **Create a game** and share the 4-letter code (or the `?room=CODE` link). Friends join from their own browsers. The host can add bots and change options before starting.
 - **Quick game vs bots:** open `/?bots=3` (1 to 5 bots). Add `&heroes=6` for a short game with a 6-card Hero deck.
+- **The screen:** the centre switches between each player's lands and the **Markets**, and the right panel between your **Villain**, **Hand** and **Objectives**. Both switch by themselves to what your turn needs, and a red **!** marks a tab with something to do. Hover any card to read it in full; open `/art.html` to see all the card art.
 - Refreshing the page reconnects you to your seat. Each browser tab is its own seat, so you can play several seats from one machine to test.
 
 ## Deploy to Render
@@ -40,6 +41,7 @@ Games are kept **in memory**. A redeploy or restart ends every game in progress,
 | `src/engine/bot.js` | A simple heuristic bot |
 | `server/index.js` | HTTP + WebSocket server: rooms, join codes, reconnects, bots |
 | `public/` | The browser client (plain HTML, CSS and JS, no build step) |
+| `public/art.js` | Placeholder pixel art, drawn in code: 16x16 sprites for Villains, Heroes, Monsters and Champions, and a scene for every card. See them all at `/art.html` |
 
 The server runs the rules and sends each player only their own view. The client never decides anything. Card text comes straight from the JSON, so editing `data/core/` changes the game with no code changes, except for `op: "custom"` effects, which have hand-written handlers keyed by card id.
 
